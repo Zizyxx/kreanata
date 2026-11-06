@@ -45,12 +45,16 @@ export default function Hero() {
         className="absolute top-52 right-[22%] w-1.5 h-1.5 rounded-full bg-black/40 pointer-events-none"
       />
 
-      {/* Giant Edge-to-Edge Background Word "creative" with Dramatic Entrance */}
+      {/* Giant Edge-to-Edge Background Word "creative" with Entrance & Exit Scroll Animation */}
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
         <motion.span
-          initial={{ scale: 0.9, opacity: 0, y: 30 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          variants={{
+            hidden: { scale: 0.9, opacity: 0, y: 30, transition: { duration: 0.4, ease: 'easeIn' } },
+            visible: { scale: 1, opacity: 1, y: 0, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.15 }}
           className="text-[34vw] sm:text-[34vw] md:text-[35vw] lg:text-[35vw] xl:text-[36vw] font-bold text-[#ffe600] tracking-tighter leading-none whitespace-nowrap block text-center transform -translate-y-1 sm:-translate-y-2"
           style={{
             fontFamily: 'var(--font-sans), sans-serif',
@@ -63,11 +67,15 @@ export default function Hero() {
 
       {/* Main Hero Center Container with Sunburst & Foreground Headline */}
       <div className="relative flex-1 flex items-center justify-center w-full max-w-7xl mx-auto px-4 sm:px-6 z-10">
-        {/* Radiating Optical Sunburst Graphic with Scale & Spin Entrance */}
+        {/* Radiating Optical Sunburst Graphic with Scale & Spin Entrance & Exit */}
         <motion.div
-          initial={{ scale: 0.7, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.8 }}
-          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          variants={{
+            hidden: { scale: 0.7, opacity: 0, transition: { duration: 0.35, ease: 'easeIn' } },
+            visible: { scale: 1, opacity: 0.8, transition: { duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] } },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.15 }}
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
         >
           <div className="relative w-[320px] sm:w-[440px] md:w-[540px] lg:w-[620px] h-[320px] sm:h-[440px] md:h-[540px] lg:h-[620px]">
@@ -95,23 +103,31 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Foreground Headline: Bilingual (EN / ID) */}
+        {/* Foreground Headline: Bilingual (EN / ID) with In & Out Scroll Animation */}
         <div className="relative z-20 text-center max-w-4xl mx-auto px-4">
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight leading-[1.1] overflow-hidden">
             <motion.span
               key={`line1-${language}`}
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              variants={{
+                hidden: { y: 45, opacity: 0, transition: { duration: 0.35, ease: 'easeIn' } },
+                visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] } },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
               className="block"
             >
               {t.line1}
             </motion.span>
             <motion.span
               key={`line2-${language}`}
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              variants={{
+                hidden: { y: 45, opacity: 0, transition: { duration: 0.35, ease: 'easeIn' } },
+                visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] } },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
               className="block"
             >
               {t.line2}
@@ -120,18 +136,26 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Sub-bar / Info Ticker Strip */}
+      {/* Sub-bar / Info Ticker Strip with Scroll In & Out Animation */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        variants={{
+          hidden: { opacity: 0, y: 30, transition: { duration: 0.35, ease: 'easeIn' } },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] } },
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
         className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-8 sm:pt-14 border-t border-zinc-100"
       >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold tracking-wider text-zinc-800 uppercase">
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.65 }}
+            variants={{
+              hidden: { opacity: 0, y: 15, transition: { duration: 0.3, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.45 } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
             className="flex items-center gap-2"
           >
             <span className="w-2 h-2 rounded-full bg-black shrink-0" />
@@ -141,9 +165,13 @@ export default function Hero() {
           <div className="hidden md:block w-12 h-[1px] bg-zinc-300" />
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.75 }}
+            variants={{
+              hidden: { opacity: 0, y: 15, transition: { duration: 0.3, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.55 } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
             className="flex items-center gap-1.5 text-zinc-700"
           >
             <MapPin className="w-3.5 h-3.5 text-black shrink-0" />
@@ -153,9 +181,13 @@ export default function Hero() {
           <div className="hidden md:block w-12 h-[1px] bg-zinc-300" />
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.85 }}
+            variants={{
+              hidden: { opacity: 0, y: 15, transition: { duration: 0.3, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.65 } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
             className="flex items-center gap-1.5"
           >
             <Heart className="w-3.5 h-3.5 text-black fill-black shrink-0" />

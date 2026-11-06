@@ -11,12 +11,15 @@ export default function Footer() {
 
   return (
     <footer id="contact" className="relative pt-10 pb-16 bg-white overflow-hidden border-t border-zinc-100">
-      {/* Giant "work together." Typography with Epic Entrance Animation */}
+      {/* Giant "work together." Typography with In & Out Scroll Animation */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.94, y: 35 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        variants={{
+          hidden: { opacity: 0, scale: 0.94, y: 35, transition: { duration: 0.4, ease: 'easeIn' } },
+          visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } },
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
         className="w-full overflow-hidden py-6 sm:py-10 select-none pointer-events-none flex items-center justify-center px-2 sm:px-6"
       >
         <svg
@@ -53,13 +56,16 @@ export default function Footer() {
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        {/* Action Inquiry Section with Staggered Entrances */}
+        {/* Action Inquiry Section with In & Out Staggered Scroll Animation */}
         <div className="mt-8 sm:mt-10 pt-12 border-t border-zinc-200 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, y: 30, transition: { duration: 0.35, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
           >
             <h3 className="text-2xl sm:text-4xl font-bold text-black tracking-tight">
               {t.inquiryTitle}
@@ -70,10 +76,13 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, y: 25, transition: { duration: 0.35, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
             className="flex flex-wrap items-center gap-4"
           >
             <a
@@ -97,13 +106,16 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* Multi-Column Info Footer with Staggered Column Entrances */}
+        {/* Multi-Column Info Footer with Staggered In & Out Column Scroll */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-zinc-100 text-xs sm:text-sm text-zinc-600">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, y: 30, transition: { duration: 0.35, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
           >
             <div className="font-bold text-black mb-3 text-base">Kreanata Studio.</div>
             <p className="leading-relaxed text-zinc-500">
@@ -112,10 +124,13 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, y: 30, transition: { duration: 0.35, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
           >
             <div className="font-bold text-black mb-3 uppercase tracking-wider text-xs">
               {t.expertiseTitle}
@@ -128,10 +143,13 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, y: 30, transition: { duration: 0.35, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.19, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
           >
             <div className="font-bold text-black mb-3 uppercase tracking-wider text-xs">
               {t.studioBaseTitle}
@@ -144,10 +162,13 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-30px' }}
-            transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, y: 30, transition: { duration: 0.35, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.26, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
           >
             <div className="font-bold text-black mb-3 uppercase tracking-wider text-xs">
               {t.socialsTitle}
@@ -171,10 +192,13 @@ export default function Footer() {
 
         {/* Bottom Copyright */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          variants={{
+            hidden: { opacity: 0, transition: { duration: 0.3 } },
+            visible: { opacity: 1, transition: { duration: 0.8, delay: 0.15 } },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false }}
           className="mt-16 pt-8 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400"
         >
           <p>© 2025 Kreanata Studio. {t.rights}</p>

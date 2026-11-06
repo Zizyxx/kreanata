@@ -17,23 +17,29 @@ export default function Portfolio() {
       {/* Top Transition Bar: Giant "projects" + Clean Metadata Pill + Action Button */}
       <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="relative flex flex-col md:flex-row items-start md:items-end justify-between gap-6 pb-6 border-b border-zinc-100">
-          {/* Left: Giant Lime "projects" Typography with Entrance Animation */}
+          {/* Left: Giant Lime "projects" Typography with In & Out Scroll Animation */}
           <div className="relative z-0 select-none">
             <motion.span
-              initial={{ opacity: 0, x: -40, scale: 0.95 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              variants={{
+                hidden: { opacity: 0, x: -40, scale: 0.95, transition: { duration: 0.4, ease: 'easeIn' } },
+                visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
               className="text-[14vw] sm:text-[13vw] md:text-[11vw] lg:text-[10vw] font-black text-[#ffe600] tracking-tighter leading-none block -translate-x-1"
               style={{ letterSpacing: '-0.06em' }}
             >
               projects
             </motion.span>
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              variants={{
+                hidden: { opacity: 0, y: 15, transition: { duration: 0.3, ease: 'easeIn' } },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.15 } },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
               className="flex items-center gap-3 mt-2 sm:mt-3"
             >
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-[11px] font-bold uppercase tracking-wider text-black">
@@ -46,12 +52,15 @@ export default function Portfolio() {
             </motion.div>
           </div>
 
-          {/* Right Action: EXPLORE PROJECTS Pill with Entrance Animation */}
+          {/* Right Action: EXPLORE PROJECTS Pill with In & Out Scroll Animation */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, x: 30, transition: { duration: 0.3, ease: 'easeIn' } },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
             className="relative z-20 self-start md:self-end mb-2"
           >
             <a
@@ -68,19 +77,26 @@ export default function Portfolio() {
           </motion.div>
         </div>
 
-        {/* 4-Column Horizontal Project Gallery Cards with Staggered Entrance */}
+        {/* 4-Column Horizontal Project Gallery Cards with In & Out Staggered Scroll */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 sm:mt-16">
           {projectsData.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.12,
-                ease: [0.16, 1, 0.3, 1],
+              variants={{
+                hidden: { opacity: 0, y: 40, transition: { duration: 0.35, ease: 'easeIn' } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.7,
+                    delay: index * 0.12,
+                    ease: [0.16, 1, 0.3, 1],
+                  },
+                },
               }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
               onClick={() => setSelectedProject(project)}
               className="group cursor-pointer flex flex-col"
             >

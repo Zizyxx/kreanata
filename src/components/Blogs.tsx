@@ -12,23 +12,29 @@ export default function Blogs() {
   return (
     <section id="articles" className="relative py-28 sm:py-36 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        {/* Section Header with Entrance Animation */}
+        {/* Section Header with In & Out Scroll Animation */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-14">
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, y: 30, transition: { duration: 0.35, ease: 'easeIn' } },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
             className="text-4xl sm:text-5xl font-bold text-black tracking-tight"
           >
             {t.title}
           </motion.h2>
 
           <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0, x: 25, transition: { duration: 0.3, ease: 'easeIn' } },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
           >
             <a
               href="#contact"
@@ -44,19 +50,26 @@ export default function Blogs() {
           </motion.div>
         </div>
 
-        {/* 4-Column Blog Card Grid with Staggered Entrance */}
+        {/* 4-Column Blog Card Grid with In & Out Staggered Scroll */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {t.list.map((blog, index) => (
             <motion.article
               key={blog.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.12,
-                ease: [0.16, 1, 0.3, 1],
+              variants={{
+                hidden: { opacity: 0, y: 40, transition: { duration: 0.35, ease: 'easeIn' } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.7,
+                    delay: index * 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  },
+                },
               }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.15 }}
               className="group flex flex-col"
             >
               {/* Image Frame */}

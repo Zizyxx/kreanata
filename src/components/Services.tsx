@@ -11,27 +11,34 @@ export default function Services() {
   return (
     <section id="expertise" className="relative pt-20 pb-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        {/* Row 1: 3 Numbered Columns Grid (01, 02, 03) */}
+        {/* Row 1: 3 Numbered Columns Grid (01, 02, 03) with Scroll In & Out Animation */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
           {services.slice(0, 3).map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.15,
-                ease: [0.16, 1, 0.3, 1],
+              variants={{
+                hidden: { opacity: 0, y: 40, transition: { duration: 0.35, ease: 'easeIn' } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.7,
+                    delay: index * 0.12,
+                    ease: [0.16, 1, 0.3, 1],
+                  },
+                },
               }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
               className="group flex flex-col items-start"
             >
               {/* Outlined big number like 01, 02, 03 */}
               <motion.span
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 + 0.1 }}
+                variants={{
+                  hidden: { opacity: 0, scale: 0.85, transition: { duration: 0.3, ease: 'easeIn' } },
+                  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: index * 0.12 + 0.08 } },
+                }}
                 className="text-6xl sm:text-7xl font-light text-zinc-300 tracking-tight select-none transition-colors duration-300 group-hover:text-black"
                 style={{
                   WebkitTextStroke: '1px #d4d4d8',
@@ -54,35 +61,45 @@ export default function Services() {
           ))}
         </div>
 
-        {/* Animated Horizontal Divider */}
+        {/* Animated Horizontal Divider with Scroll In & Out */}
         <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          variants={{
+            hidden: { scaleX: 0, transition: { duration: 0.3, ease: 'easeIn' } },
+            visible: { scaleX: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
           className="w-full h-[1px] bg-zinc-100 my-12 sm:my-16 origin-left"
         />
 
-        {/* Row 2: Next 3 services for full 6 capabilities (04, 05, 06) */}
+        {/* Row 2: Next 3 services for full 6 capabilities (04, 05, 06) with Scroll In & Out */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
           {services.slice(3, 6).map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{
-                duration: 0.7,
-                delay: index * 0.15,
-                ease: [0.16, 1, 0.3, 1],
+              variants={{
+                hidden: { opacity: 0, y: 40, transition: { duration: 0.35, ease: 'easeIn' } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.7,
+                    delay: index * 0.12,
+                    ease: [0.16, 1, 0.3, 1],
+                  },
+                },
               }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }}
               className="group flex flex-col items-start"
             >
               <motion.span
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 + 0.1 }}
+                variants={{
+                  hidden: { opacity: 0, scale: 0.85, transition: { duration: 0.3, ease: 'easeIn' } },
+                  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: index * 0.12 + 0.08 } },
+                }}
                 className="text-6xl sm:text-7xl font-light text-zinc-300 tracking-tight select-none transition-colors duration-300 group-hover:text-black"
                 style={{
                   WebkitTextStroke: '1px #d4d4d8',

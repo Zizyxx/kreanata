@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { type PortfolioCategory, type PortfolioProject, portfolioCategories } from '@/lib/portfolioData';
 
@@ -14,7 +14,7 @@ interface Props {
 export default function ProjectClientView({ category }: Props) {
   const { language, setLanguage } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
-  const [photoFilter, setPhotoFilter] = useState<'beauty-shoot' | 'dokumentasi' | 'all'>('beauty-shoot');
+  const [photoFilter, setPhotoFilter] = useState<'photoshoot' | 'dokumentasi' | 'all'>('photoshoot');
 
   const isPhoto = category.slug === 'fotografi' || category.slug === 'photography';
 
@@ -22,6 +22,28 @@ export default function ProjectClientView({ category }: Props) {
   const displayedProjects = isPhoto
     ? category.projects.filter((p) => photoFilter === 'all' || p.categoryType === photoFilter)
     : category.projects;
+
+  // Handle keyboard events (Escape, Left, Right) for pure photo lightbox
+  useEffect(() => {
+    if (!selectedProject || !isPhoto) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedProject(null);
+      } else if (e.key === 'ArrowLeft') {
+        const currIdx = displayedProjects.findIndex((p) => p.id === selectedProject.id);
+        const prevIdx = (currIdx - 1 + displayedProjects.length) % displayedProjects.length;
+        setSelectedProject(displayedProjects[prevIdx]);
+      } else if (e.key === 'ArrowRight') {
+        const currIdx = displayedProjects.findIndex((p) => p.id === selectedProject.id);
+        const nextIdx = (currIdx + 1) % displayedProjects.length;
+        setSelectedProject(displayedProjects[nextIdx]);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedProject, isPhoto, displayedProjects]);
 
   // Canonical 4 pillars for cross-navigation
   const canonicalSlugs = ['fotografi', 'videografi', 'desain', 'website'];
@@ -171,18 +193,18 @@ export default function ProjectClientView({ category }: Props) {
             </p>
           </div>
 
-          {/* 2 Kategori Khusus Fotografi: Beauty Shoot & Dokumentasi */}
+          {/* 2 Kategori Khusus Fotografi: Photoshoot & Dokumentasi */}
           {isPhoto ? (
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-1.5 bg-zinc-100 rounded-full border border-zinc-200">
               <button
-                onClick={() => setPhotoFilter('beauty-shoot')}
+                onClick={() => setPhotoFilter('photoshoot')}
                 className={`px-5 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  photoFilter === 'beauty-shoot'
+                  photoFilter === 'photoshoot'
                     ? 'bg-black text-[#ffe600] shadow-md'
                     : 'text-zinc-600 hover:text-black hover:bg-zinc-200/70'
                 }`}
               >
-                Beauty Shoot
+                Photoshoot
               </button>
               <button
                 onClick={() => setPhotoFilter('dokumentasi')}
@@ -233,19 +255,19 @@ export default function ProjectClientView({ category }: Props) {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 onClick={() => setSelectedProject(project)}
-                className="group relative aspect-[4/3] sm:aspect-[4/5] rounded-xl overflow-hidden bg-zinc-100 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+                className="group relative aspect-[4/3] sm:aspect-[4/5] rounded-xl overflow-hidden bg-zinc-100 shadow-sm hover:shadow-xl transition-all duration-500 cursor-zoom-in"
               >
-                {/* Clean B&W Image turning to rich vivid color on hover */}
+                {/* Natural full color photo without B&W effect */}
                 <img
                   src={project.image}
                   alt={project.title[language]}
                   loading="lazy"
-                  className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
 
                 {/* Minimalist Hover Accent */}
-                <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-                  <span className="w-11 h-11 rounded-full bg-[#ffe600] text-black flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                  <span className="w-10 h-10 rounded-full bg-[#ffe600] text-black flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
                     <ArrowUpRight className="w-5 h-5 text-black stroke-[2.5]" />
                   </span>
                 </div>
@@ -422,78 +444,141 @@ export default function ProjectClientView({ category }: Props) {
       {/* Interactive Lightbox / Modal for Expanded Photo / Project Preview */}
       <AnimatePresence>
         {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md"
-          >
+          isPhoto ? (
+            /* Pure Photo Lightbox - ZERO text, ZERO captions, pure photo view */
             <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-white rounded-3xl p-5 sm:p-8 shadow-2xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/95 backdrop-blur-md"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-zinc-100 text-black hover:bg-zinc-200 transition-colors cursor-pointer z-20"
-                aria-label="Close modal"
+                className="absolute top-5 right-5 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-colors cursor-pointer z-50"
+                aria-label="Close"
               >
-                <X className="w-5 h-5" />
+                <X className="w-6 h-6" />
               </button>
 
-              {/* Full Image Preview */}
-              <div className="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
+              {/* Prev / Next Navigation Controls */}
+              {displayedProjects.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const currIdx = displayedProjects.findIndex((p) => p.id === selectedProject.id);
+                      const prevIdx = (currIdx - 1 + displayedProjects.length) % displayedProjects.length;
+                      setSelectedProject(displayedProjects[prevIdx]);
+                    }}
+                    className="absolute left-3 sm:left-8 top-1/2 -translate-y-1/2 p-3 sm:p-3.5 rounded-full bg-white/10 hover:bg-[#ffe600] hover:text-black text-white backdrop-blur-md transition-all cursor-pointer z-50"
+                    aria-label="Previous photo"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const currIdx = displayedProjects.findIndex((p) => p.id === selectedProject.id);
+                      const nextIdx = (currIdx + 1) % displayedProjects.length;
+                      setSelectedProject(displayedProjects[nextIdx]);
+                    }}
+                    className="absolute right-3 sm:right-8 top-1/2 -translate-y-1/2 p-3 sm:p-3.5 rounded-full bg-white/10 hover:bg-[#ffe600] hover:text-black text-white backdrop-blur-md transition-all cursor-pointer z-50"
+                    aria-label="Next photo"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
+
+              {/* Photo Display Only - Absolutely No Text */}
+              <motion.div
+                key={selectedProject.id}
+                initial={{ scale: 0.96, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.96, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-w-7xl max-h-[92vh] flex items-center justify-center p-2"
+              >
                 <img
                   src={selectedProject.image}
-                  alt={selectedProject.title[language]}
-                  className="w-full h-full object-cover"
+                  alt=""
+                  className="max-h-[88vh] max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl select-none"
                 />
-              </div>
+              </motion.div>
+            </motion.div>
+          ) : (
+            /* Detailed Case Study Modal for Non-Photography categories */
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md"
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-white rounded-3xl p-5 sm:p-8 shadow-2xl"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-5 right-5 p-2 rounded-full bg-zinc-100 text-black hover:bg-zinc-200 transition-colors cursor-pointer z-20"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
 
-              {/* Header & Inquire */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-5 mb-5">
-                <div>
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-black bg-[#ffe600] px-3 py-0.5 rounded-full">
-                      {selectedProject.categoryType
-                        ? selectedProject.categoryType === 'beauty-shoot'
-                          ? 'Beauty Shoot'
-                          : language === 'EN'
-                          ? 'Documentation'
-                          : 'Dokumentasi'
-                        : category.title[language]}
-                    </span>
-                    <span className="text-xs text-zinc-400 font-medium">
-                      {selectedProject.year}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-black">
-                    {selectedProject.title[language]}
-                  </h3>
+                {/* Full Image Preview */}
+                <div className="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title[language]}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
-                <a
-                  href={`https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20proyek%20foto%20${encodeURIComponent(selectedProject.title[language])}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#ffe600] hover:text-black rounded-full px-6 py-3 text-xs sm:text-sm font-semibold tracking-tight transition-colors self-start sm:self-center shrink-0 cursor-pointer"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  {language === 'EN' ? 'Inquire Similar Shoot' : 'Konsultasi Sesi Foto'}
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
+                {/* Header & Inquire */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-5 mb-5">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-black bg-[#ffe600] px-3 py-0.5 rounded-full">
+                        {category.title[language]}
+                      </span>
+                      <span className="text-xs text-zinc-400 font-medium">
+                        {selectedProject.year}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-black">
+                      {selectedProject.title[language]}
+                    </h3>
+                  </div>
 
-              {/* Description */}
-              <p className="text-sm sm:text-base text-zinc-700 leading-relaxed">
-                {selectedProject.description[language]}
-              </p>
+                  <a
+                    href={`https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20proyek%20${encodeURIComponent(selectedProject.title[language])}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#ffe600] hover:text-black rounded-full px-6 py-3 text-xs sm:text-sm font-semibold tracking-tight transition-colors self-start sm:self-center shrink-0 cursor-pointer"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    {language === 'EN' ? 'Inquire Similar Project' : 'Konsultasi Proyek Serupa'}
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                {/* Description */}
+                <p className="text-sm sm:text-base text-zinc-700 leading-relaxed">
+                  {selectedProject.description[language]}
+                </p>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          )
         )}
       </AnimatePresence>
     </div>

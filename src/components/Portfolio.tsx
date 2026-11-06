@@ -1,14 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, X } from 'lucide-react';
-import { projectsData, type ProjectItem } from '@/lib/data';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { projectsData } from '@/lib/data';
 import { useLanguage } from '@/context/LanguageContext';
 import { translations } from '@/lib/translations';
 
 export default function Portfolio() {
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const { language } = useLanguage();
   const t = translations[language].portfolio;
 
@@ -97,105 +96,55 @@ export default function Portfolio() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.15 }}
-              onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer flex flex-col"
+              className="flex flex-col"
             >
-              {/* Image Frame with B&W to Color on Hover */}
-              <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-zinc-100 shadow-sm transition-all duration-500 group-hover:shadow-xl">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-108 transition-all duration-700 ease-out"
-                />
+              <Link
+                href={project.link}
+                className="group flex flex-col cursor-pointer"
+              >
+                {/* Image Frame with B&W to Color on Hover */}
+                <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-zinc-100 shadow-sm transition-all duration-500 group-hover:shadow-xl">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-108 transition-all duration-700 ease-out"
+                  />
 
-                {/* Subtle Hover Overlay */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-black/85 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg">
-                    {t.viewProject} <ArrowUpRight className="w-3.5 h-3.5 text-[#ffe600]" />
+                  {/* Top Pillar Tag */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-black bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full shadow-sm">
+                      {project.pillar} • {project.category}
+                    </span>
+                  </div>
+
+                  {/* Subtle Hover Overlay with Direct CTA */}
+                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-black/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg">
+                      {t.viewProject} <ArrowUpRight className="w-3.5 h-3.5 text-[#ffe600]" />
+                    </span>
+                  </div>
+                </div>
+
+                {/* Caption Below Image */}
+                <div className="mt-4 flex items-center justify-between">
+                  <div>
+                    <h4 className="text-base font-bold text-black group-hover:text-zinc-600 transition-colors">
+                      {project.title}
+                    </h4>
+                    <p className="text-xs text-zinc-500 mt-0.5">
+                      {project.client}
+                    </p>
+                  </div>
+                  <span className="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center shrink-0 group-hover:bg-[#ffe600] transition-colors">
+                    <ArrowUpRight className="w-3.5 h-3.5 text-black" />
                   </span>
                 </div>
-              </div>
-
-              {/* Caption Below Image */}
-              <div className="mt-4 flex items-center justify-between">
-                <div>
-                  <h4 className="text-base font-bold text-black group-hover:text-zinc-600 transition-colors">
-                    {project.title}
-                  </h4>
-                  <p className="text-xs text-zinc-500 mt-0.5">
-                    {project.category} &bull; {project.client}
-                  </p>
-                </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
       </div>
-
-      {/* Lightbox / Modal for Project Details */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-3xl bg-white rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden"
-            >
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-zinc-100 text-black hover:bg-zinc-200 transition-colors cursor-pointer"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-4 mb-4">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-black bg-[#ffe600] px-2.5 py-0.5 rounded-full">
-                    {selectedProject.category}
-                  </span>
-                  <h3 className="text-2xl font-bold text-black mt-2">
-                    {selectedProject.title}
-                  </h3>
-                  <p className="text-sm text-zinc-500">
-                    {t.clientLabel} <strong className="text-black">{selectedProject.client}</strong>
-                  </p>
-                </div>
-
-                <a
-                  href="#contact"
-                  onClick={() => setSelectedProject(null)}
-                  className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#ffe600] hover:text-black rounded-full px-5 py-2.5 text-xs font-semibold tracking-tight transition-colors"
-                >
-                  {t.modalCta}
-                  <ArrowUpRight className="w-4 h-4" />
-                </a>
-              </div>
-
-              <p className="text-sm text-zinc-600 leading-relaxed">
-                {t.modalDesc}
-              </p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

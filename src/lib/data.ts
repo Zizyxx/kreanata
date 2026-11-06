@@ -49,6 +49,8 @@ export const servicesData: ServiceItem[] = [
 
 export interface ProjectItem {
   id: number;
+  slug: string;
+  pillar: string;
   title: string;
   category: string;
   client: string;
@@ -59,35 +61,43 @@ export interface ProjectItem {
 export const projectsData: ProjectItem[] = [
   {
     id: 1,
-    title: "Kultura Roasters Visual Identity",
-    category: "Branding",
-    client: "Kultura Coffee Co.",
-    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80",
-    link: "#",
+    slug: "fotografi",
+    pillar: "01",
+    title: "Fotografi Komersial & Editorial",
+    category: "Fotografi",
+    client: "Katalog & Lookbook",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    link: "/projects/fotografi",
   },
   {
     id: 2,
-    title: "Aura Noir Editorial Lookbook",
-    category: "Photography",
-    client: "Maison De Mode",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    link: "#",
+    slug: "videografi",
+    pillar: "02",
+    title: "Videografi Sinematik & Film TVC",
+    category: "Videografi",
+    client: "Iklan & Aftermovie",
+    image: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80",
+    link: "/projects/videografi",
   },
   {
     id: 3,
-    title: "Luminaire Chrono Product Campaign",
-    category: "Commercial Film",
-    client: "Luminaire Geneve",
-    image: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80",
-    link: "#",
+    slug: "desain",
+    pillar: "03",
+    title: "Desain Identitas Visual & Grafis",
+    category: "Desain",
+    client: "Brand System & Kemasan",
+    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80",
+    link: "/projects/desain",
   },
   {
     id: 4,
-    title: "The Art of Cinematography Monograph",
-    category: "Editorial & Print",
-    client: "Nusantara Press",
-    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
-    link: "#",
+    slug: "website",
+    pillar: "04",
+    title: "Pengembangan Website Modern",
+    category: "Website",
+    client: "Platform Interaktif & Web",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    link: "/projects/website",
   },
 ];
 

@@ -53,7 +53,7 @@ export default function Navbar() {
           className="flex items-center gap-2.5 group"
         >
           <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm tracking-tighter transition-transform duration-300 group-hover:scale-105">
-            <span className="text-[#b8ff00]">k</span>.
+            <span className="text-[#ffe600]">k</span>.
           </div>
           <span className="font-bold text-lg tracking-tight text-black">
             Kreanata
@@ -94,7 +94,7 @@ export default function Navbar() {
               aria-label="Switch language to English"
               className={`px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer ${
                 language === 'EN'
-                  ? 'bg-black text-[#b8ff00] shadow-sm'
+                  ? 'bg-black text-[#ffe600] shadow-sm'
                   : 'text-zinc-500 hover:text-black'
               }`}
             >
@@ -105,7 +105,7 @@ export default function Navbar() {
               aria-label="Ganti bahasa ke Indonesia"
               className={`px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer ${
                 language === 'ID'
-                  ? 'bg-black text-[#b8ff00] shadow-sm'
+                  ? 'bg-black text-[#ffe600] shadow-sm'
                   : 'text-zinc-500 hover:text-black'
               }`}
             >
@@ -119,7 +119,7 @@ export default function Navbar() {
               e.preventDefault();
               handleNavClick('#contact');
             }}
-            className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#b8ff00] hover:text-black transition-all duration-300 rounded-full px-5 py-2 text-xs sm:text-sm font-semibold tracking-tight shadow-sm hover:shadow"
+            className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#ffe600] hover:text-black transition-all duration-300 rounded-full px-5 py-2 text-xs sm:text-sm font-semibold tracking-tight shadow-sm hover:shadow"
           >
             {t.hire}
             <ArrowRight className="w-3.5 h-3.5" />
@@ -133,7 +133,7 @@ export default function Navbar() {
               onClick={() => setLanguage('EN')}
               className={`px-2 py-0.5 rounded-full transition-all ${
                 language === 'EN'
-                  ? 'bg-black text-[#b8ff00]'
+                  ? 'bg-black text-[#ffe600]'
                   : 'text-zinc-500'
               }`}
             >
@@ -143,7 +143,7 @@ export default function Navbar() {
               onClick={() => setLanguage('ID')}
               className={`px-2 py-0.5 rounded-full transition-all ${
                 language === 'ID'
-                  ? 'bg-black text-[#b8ff00]'
+                  ? 'bg-black text-[#ffe600]'
                   : 'text-zinc-500'
               }`}
             >
@@ -181,7 +181,7 @@ export default function Navbar() {
                     onClick={() => setLanguage('EN')}
                     className={`px-3 py-1 rounded-full transition-all ${
                       language === 'EN'
-                        ? 'bg-black text-[#b8ff00]'
+                        ? 'bg-black text-[#ffe600]'
                         : 'text-zinc-500'
                     }`}
                   >
@@ -191,7 +191,7 @@ export default function Navbar() {
                     onClick={() => setLanguage('ID')}
                     className={`px-3 py-1 rounded-full transition-all ${
                       language === 'ID'
-                        ? 'bg-black text-[#b8ff00]'
+                        ? 'bg-black text-[#ffe600]'
                         : 'text-zinc-500'
                     }`}
                   >
@@ -215,7 +215,7 @@ export default function Navbar() {
                   e.preventDefault();
                   handleNavClick('#contact');
                 }}
-                className="mt-2 inline-flex items-center justify-center gap-2 bg-black text-white rounded-full py-3 text-sm font-semibold hover:bg-[#b8ff00] hover:text-black transition-colors"
+                className="mt-2 inline-flex items-center justify-center gap-2 bg-black text-white rounded-full py-3 text-sm font-semibold hover:bg-[#ffe600] hover:text-black transition-colors"
               >
                 {t.hire}
                 <ArrowRight className="w-4 h-4" />

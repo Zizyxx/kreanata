@@ -34,10 +34,10 @@ export default function Blogs() {
               href="#contact"
               className="group inline-flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-black transition-all"
             >
-              <span className="w-8 h-8 rounded-full bg-[#b8ff00] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <span className="w-8 h-8 rounded-full bg-[#ffe600] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                 <ArrowUpRight className="w-4 h-4 text-black" />
               </span>
-              <span className="border-b border-black pb-0.5 group-hover:border-[#b8ff00]">
+              <span className="border-b border-black pb-0.5 group-hover:border-[#ffe600]">
                 {t.exploreBtn}
               </span>
             </a>

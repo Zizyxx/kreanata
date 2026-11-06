@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-white text-zinc-950 selection:bg-[#b8ff00] selection:text-black">
+    <div className="relative min-h-screen bg-white text-zinc-950 selection:bg-[#ffe600] selection:text-black">
       {/* 1. Architectural Vertical Grid Lines (Full Page) */}
       <GridLines />
 

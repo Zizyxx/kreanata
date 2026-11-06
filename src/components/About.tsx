@@ -70,10 +70,10 @@ export default function About() {
                 href="#expertise"
                 className="group inline-flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-black transition-all"
               >
-                <span className="w-8 h-8 rounded-full bg-[#b8ff00] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <span className="w-8 h-8 rounded-full bg-[#ffe600] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                   <ArrowUpRight className="w-4 h-4 text-black" />
                 </span>
-                <span className="border-b border-black pb-0.5 group-hover:border-[#b8ff00]">
+                <span className="border-b border-black pb-0.5 group-hover:border-[#ffe600]">
                   {t.button}
                 </span>
               </a>
@@ -91,7 +91,7 @@ export default function About() {
         className="absolute right-0 bottom-0 pointer-events-none select-none z-0 translate-y-4 sm:translate-y-6 translate-x-2 sm:translate-x-4"
       >
         <span
-          className="text-[11vw] sm:text-[12vw] lg:text-[13vw] font-black text-[#b8ff00] tracking-tighter leading-none block"
+          className="text-[11vw] sm:text-[12vw] lg:text-[13vw] font-black text-[#ffe600] tracking-tighter leading-none block"
           style={{ letterSpacing: '-0.06em' }}
         >
           about

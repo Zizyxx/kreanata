@@ -3,13 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #111111;
-  --lime: #b8ff00;
+  --accent-yellow: #ffe600;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-lime-brand: #b8ff00;
+  --color-accent-brand: #ffe600;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -46,7 +46,7 @@ body {
 }
 
 ::selection {
-  background-color: #b8ff00;
+  background-color: #ffe600;
   color: #000000;
 }
 

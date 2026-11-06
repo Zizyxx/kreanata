@@ -29,7 +29,7 @@ export default function SideAccents() {
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="fixed right-6 bottom-6 z-40 w-11 h-11 rounded-full bg-black text-white hover:bg-[#b8ff00] hover:text-black transition-colors duration-300 shadow-xl flex items-center justify-center cursor-pointer border border-zinc-200"
+          className="fixed right-6 bottom-6 z-40 w-11 h-11 rounded-full bg-black text-white hover:bg-[#ffe600] hover:text-black transition-colors duration-300 shadow-xl flex items-center justify-center cursor-pointer border border-zinc-200"
         >
           <ArrowUp className="w-4 h-4" />
         </motion.button>

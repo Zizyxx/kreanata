@@ -24,7 +24,7 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[14vw] sm:text-[13vw] md:text-[11vw] lg:text-[10vw] font-black text-[#b8ff00] tracking-tighter leading-none block -translate-x-1"
+              className="text-[14vw] sm:text-[13vw] md:text-[11vw] lg:text-[10vw] font-black text-[#ffe600] tracking-tighter leading-none block -translate-x-1"
               style={{ letterSpacing: '-0.06em' }}
             >
               projects
@@ -58,10 +58,10 @@ export default function Portfolio() {
               href="#contact"
               className="group inline-flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-black transition-all"
             >
-              <span className="w-8 h-8 rounded-full bg-[#b8ff00] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+              <span className="w-8 h-8 rounded-full bg-[#ffe600] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                 <ArrowUpRight className="w-4 h-4 text-black" />
               </span>
-              <span className="border-b border-black pb-0.5 group-hover:border-[#b8ff00]">
+              <span className="border-b border-black pb-0.5 group-hover:border-[#ffe600]">
                 {t.exploreBtn}
               </span>
             </a>
@@ -96,7 +96,7 @@ export default function Portfolio() {
                 {/* Subtle Hover Overlay */}
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
                   <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-black/85 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg">
-                    {t.viewProject} <ArrowUpRight className="w-3.5 h-3.5 text-[#b8ff00]" />
+                    {t.viewProject} <ArrowUpRight className="w-3.5 h-3.5 text-[#ffe600]" />
                   </span>
                 </div>
               </div>
@@ -152,7 +152,7 @@ export default function Portfolio() {
 
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-4 mb-4">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-black bg-[#b8ff00] px-2.5 py-0.5 rounded-full">
+                  <span className="text-xs font-bold uppercase tracking-wider text-black bg-[#ffe600] px-2.5 py-0.5 rounded-full">
                     {selectedProject.category}
                   </span>
                   <h3 className="text-2xl font-bold text-black mt-2">
@@ -166,7 +166,7 @@ export default function Portfolio() {
                 <a
                   href="#contact"
                   onClick={() => setSelectedProject(null)}
-                  className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#b8ff00] hover:text-black rounded-full px-5 py-2.5 text-xs font-semibold tracking-tight transition-colors"
+                  className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#ffe600] hover:text-black rounded-full px-5 py-2.5 text-xs font-semibold tracking-tight transition-colors"
                 >
                   {t.modalCta}
                   <ArrowUpRight className="w-4 h-4" />

@@ -37,11 +37,11 @@ export default function Footer() {
             work
           </text>
 
-          {/* "together." in Vibrant Electric Lime */}
+          {/* "together." in Vibrant Electric Yellow */}
           <text
             x="560"
             y="155"
-            fill="#b8ff00"
+            fill="#ffe600"
             fontWeight="900"
             fontSize="215"
             letterSpacing="-0.06em"
@@ -80,7 +80,7 @@ export default function Footer() {
               href="https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20untuk%20konsultasi%20proyek"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-black text-white hover:bg-[#b8ff00] hover:text-black transition-all duration-300 rounded-full px-7 py-3.5 text-sm font-semibold tracking-tight shadow-md hover:shadow-lg cursor-pointer"
+              className="inline-flex items-center gap-2.5 bg-black text-white hover:bg-[#ffe600] hover:text-black transition-all duration-300 rounded-full px-7 py-3.5 text-sm font-semibold tracking-tight shadow-md hover:shadow-lg cursor-pointer"
             >
               <MessageCircle className="w-4 h-4" />
               {t.chatWa}

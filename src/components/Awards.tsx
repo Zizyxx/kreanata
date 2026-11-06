@@ -75,7 +75,7 @@ export default function Awards() {
                 <text
                   x="0"
                   y="105"
-                  fill="#b8ff00"
+                  fill="#ffe600"
                   fontWeight="900"
                   fontSize="125"
                   letterSpacing="-0.06em"
@@ -183,9 +183,9 @@ export default function Awards() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  <div className="flex items-center gap-1 text-[#b8ff00]">
+                  <div className="flex items-center gap-1 text-[#ffe600]">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-[#b8ff00]" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-[#ffe600]" />
                     ))}
                   </div>
                   <span className="text-[10px] font-bold tracking-widest text-zinc-400 uppercase mt-1 block">
@@ -219,7 +219,7 @@ export default function Awards() {
               </motion.div>
             </div>
 
-            {/* Right: Big Impactful Quote + Author in Lime */}
+            {/* Right: Big Impactful Quote + Author in Yellow */}
             <div className="lg:col-span-8">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -233,7 +233,7 @@ export default function Awards() {
                     &ldquo;{testimonial.quote}&rdquo;
                   </blockquote>
 
-                  <div className="mt-6 text-sm font-bold tracking-wider text-[#b8ff00] uppercase">
+                  <div className="mt-6 text-sm font-bold tracking-wider text-[#ffe600] uppercase">
                     {testimonial.author}
                   </div>
                 </motion.div>

@@ -33,7 +33,7 @@ export default function Hero() {
           y: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
           x: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
         }}
-        className="absolute top-36 left-[30%] w-1 h-1 rounded-full bg-[#b8ff00] pointer-events-none"
+        className="absolute top-36 left-[30%] w-1 h-1 rounded-full bg-[#ffe600] pointer-events-none"
       />
       <motion.div
         initial={{ opacity: 0 }}
@@ -51,7 +51,7 @@ export default function Hero() {
           initial={{ scale: 0.9, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[28vw] sm:text-[25vw] md:text-[23vw] lg:text-[22vw] font-black text-[#b8ff00] tracking-tighter leading-none whitespace-nowrap block text-center transform -translate-y-2 sm:-translate-y-4"
+          className="text-[28vw] sm:text-[25vw] md:text-[23vw] lg:text-[22vw] font-black text-[#ffe600] tracking-tighter leading-none whitespace-nowrap block text-center transform -translate-y-2 sm:-translate-y-4"
           style={{
             fontFamily: 'var(--font-sans), sans-serif',
             letterSpacing: '-0.07em',
@@ -75,7 +75,7 @@ export default function Hero() {
               viewBox="0 0 200 200"
               className="w-full h-full animate-spin-slow opacity-80"
               fill="none"
-              stroke="#b8ff00"
+              stroke="#ffe600"
               strokeWidth="0.85"
             >
               {Array.from({ length: 64 }).map((_, i) => {

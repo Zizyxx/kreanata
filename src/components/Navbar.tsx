@@ -1,143 +1,146 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { navLinks } from "@/lib/data";
-import { cn } from "@/lib/utils";
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ArrowRight } from 'lucide-react';
+import { navLinks } from '@/lib/data';
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+  const handleNavClick = (href: string) => {
+    setMobileMenuOpen(false);
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
-
-  const handleNavClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-      e.preventDefault();
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-      setMobileOpen(false);
-    },
-    []
-  );
+  };
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
-        "border-b border-white/5 backdrop-blur-xl",
-        scrolled ? "bg-neutral-950/90" : "bg-neutral-950/70"
-      )}
+    <motion.header
+      initial={{ y: -30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-[0_2px_20px_rgba(0,0,0,0.04)] py-4'
+          : 'bg-transparent py-6'
+      }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        {/* Logo */}
-        <a
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
+        {/* Left: Minimalist Agency Logo mark */}
+        <motion.a
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="flex items-center gap-0.5 text-xl font-bold tracking-tight text-white"
+          className="flex items-center gap-2.5 group"
         >
-          Kreanata
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#ccff00]" />
-        </a>
+          <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm tracking-tighter transition-transform duration-300 group-hover:scale-105">
+            <span className="text-[#b8ff00]">k</span>.
+          </div>
+          <span className="font-bold text-lg tracking-tight text-black">
+            Kreanata
+          </span>
+        </motion.a>
 
-        {/* Desktop navigation */}
-        <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-sm font-medium text-neutral-400 transition-colors duration-200 hover:text-white"
-              >
-                {link.label}
-              </a>
-            </li>
+        {/* Center: Desktop Navigation Links with Staggered Entrance */}
+        <nav className="hidden md:flex items-center gap-7 lg:gap-8">
+          {navLinks.map((link, idx) => (
+            <motion.button
+              key={link.label}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.15 + idx * 0.05,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              onClick={() => handleNavClick(link.href)}
+              className="text-xs lg:text-sm font-medium text-zinc-600 hover:text-black transition-colors cursor-pointer"
+            >
+              {link.label}
+            </motion.button>
           ))}
-        </ul>
+        </nav>
 
-        {/* Desktop CTA */}
-        <a
-          href="#contact"
-          onClick={(e) => handleNavClick(e, "#contact")}
-          className="hidden rounded-full bg-[#ccff00] px-5 py-2.5 text-sm font-semibold text-neutral-950 transition-colors duration-200 hover:bg-[#d4ff33] md:inline-flex"
+        {/* Right: Hire Agency Pill CTA */}
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden sm:flex items-center gap-4"
         >
-          Mulai Proyek
-        </a>
-
-        {/* Mobile menu toggle */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen((prev) => !prev)}
-          className="inline-flex items-center justify-center rounded-lg p-2 text-neutral-400 transition-colors hover:text-white md:hidden"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-        >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </nav>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="overflow-hidden border-t border-white/5 md:hidden"
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('#contact');
+            }}
+            className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#b8ff00] hover:text-black transition-all duration-300 rounded-full px-5 py-2 text-xs sm:text-sm font-semibold tracking-tight shadow-sm hover:shadow"
           >
-            <div className="space-y-1 px-6 pb-6 pt-4">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  initial={{ x: -16, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.05, duration: 0.25 }}
-                  className="block rounded-lg px-3 py-3 text-base font-medium text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
+            Hire agency
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+        </motion.div>
+
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="p-2 text-black md:hidden rounded-lg focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-b border-zinc-200 px-6 py-6 shadow-xl overflow-hidden"
+          >
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <button
+                  key={link.label}
+                  onClick={() => handleNavClick(link.href)}
+                  className="text-left text-base font-semibold text-zinc-800 hover:text-black py-1"
                 >
                   {link.label}
-                </motion.a>
+                </button>
               ))}
-              <motion.a
+              <a
                 href="#contact"
-                onClick={(e) => handleNavClick(e, "#contact")}
-                initial={{ x: -16, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: navLinks.length * 0.05, duration: 0.25 }}
-                className="mt-4 block rounded-full bg-[#ccff00] px-5 py-3 text-center text-sm font-semibold text-neutral-950 transition-colors hover:bg-[#d4ff33]"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('#contact');
+                }}
+                className="mt-2 inline-flex items-center justify-center gap-2 bg-black text-white rounded-full py-3 text-sm font-semibold hover:bg-[#b8ff00] hover:text-black transition-colors"
               >
-                Mulai Proyek
-              </motion.a>
+                Hire agency
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

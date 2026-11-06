@@ -1,193 +1,219 @@
-// Services data
-export interface Service {
-  id: number;
+// Mock data for Kreanata Creative Agency & Production Studio
+
+export interface ServiceItem {
+  id: string;
+  number: string;
   title: string;
   description: string;
-  icon: string; // lucide icon name
-  gridClass: string; // tailwind grid spanning classes
+  linkText?: string;
 }
 
-export const services: Service[] = [
+export const servicesData: ServiceItem[] = [
   {
-    id: 1,
-    title: "Dokumentasi Acara",
-    description:
-      "Tangkap setiap momen berharga dari acara Anda dengan dokumentasi profesional yang berkesan — dari persiapan hingga penutupan.",
-    icon: "Camera",
-    gridClass: "md:col-span-2 md:row-span-2",
+    id: "event",
+    number: "01",
+    title: "Event documentation",
+    description: "Full multi-camera 4K/6K coverage, drone cinematography, and same-day highlights for festivals, conferences, and exclusive events.",
   },
   {
-    id: 2,
-    title: "Fotografi Komersial",
-    description:
-      "Visual produk & komersial berkualitas tinggi yang memikat audiens dan meningkatkan daya jual brand Anda.",
-    icon: "Aperture",
-    gridClass: "md:col-span-1 md:row-span-1",
+    id: "photo",
+    number: "02",
+    title: "Commercial photography",
+    description: "High-end commercial product shoots, architectural captures, and editorial lookbooks engineered to elevate brand prestige.",
   },
   {
-    id: 3,
-    title: "Produksi Video & Sinematik",
-    description:
-      "Produksi video sinematik dari konsep hingga final cut — company profile, TVC, dokumenter, dan film pendek.",
-    icon: "Clapperboard",
-    gridClass: "md:col-span-1 md:row-span-2",
+    id: "video",
+    number: "03",
+    title: "Cinematic video production",
+    description: "Broadcast-quality TVCs, brand films, and narrative documentaries from concept, scriptwriting, and directing to color grading.",
   },
   {
-    id: 4,
-    title: "Konten Media Sosial",
-    description:
-      "Konten visual kreatif dan video pendek yang engaging untuk memperkuat kehadiran brand Anda di dunia digital.",
-    icon: "Share2",
-    gridClass: "md:col-span-1 md:row-span-1",
+    id: "social",
+    number: "04",
+    title: "Short-form & social content",
+    description: "High-retention vertical videos, viral campaign assets, and social storytelling tailored for modern digital algorithms.",
   },
   {
-    id: 5,
-    title: "Desain Grafis & Visual Identity",
-    description:
-      "Dari logo, brand guideline, hingga materi promosi — kami ciptakan identitas visual yang kuat dan konsisten.",
-    icon: "Palette",
-    gridClass: "md:col-span-1 md:row-span-1",
+    id: "branding",
+    number: "05",
+    title: "Visual identity & branding",
+    description: "Comprehensive visual systems, bespoke typography, brand books, packaging design, and marketing collaterals.",
   },
   {
-    id: 6,
-    title: "Web Design & Development",
-    description:
-      "Website modern, responsif, dan berkinerja tinggi yang dirancang untuk mengkonversi pengunjung menjadi klien.",
-    icon: "Globe",
-    gridClass: "md:col-span-1 md:row-span-1",
+    id: "web",
+    number: "06",
+    title: "Web design & development",
+    description: "High-performance, interactive web platforms built with Next.js, bespoke animations, and conversion-focused UX architecture.",
   },
 ];
 
-// Portfolio data
-export type PortfolioCategory = "all" | "photography" | "video" | "branding";
-
-export interface PortfolioItem {
+export interface ProjectItem {
   id: number;
   title: string;
-  category: PortfolioCategory;
-  categoryLabel: string;
+  category: string;
+  client: string;
   image: string;
-  aspectRatio: "video" | "portrait"; // video = 16:9, portrait = 4:5
+  link: string;
 }
 
-export const portfolioItems: PortfolioItem[] = [
+export const projectsData: ProjectItem[] = [
   {
     id: 1,
-    title: "Grand Wedding Celebration",
-    category: "photography",
-    categoryLabel: "Photography",
-    image:
-      "https://placehold.co/800x450/1a1a1a/666666?text=Grand+Wedding+Celebration",
-    aspectRatio: "video",
+    title: "Kultura Roasters Visual Identity",
+    category: "Branding",
+    client: "Kultura Coffee Co.",
+    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=80",
+    link: "#",
   },
   {
     id: 2,
-    title: "Brand Identity — Artisan Coffee",
-    category: "branding",
-    categoryLabel: "Branding & Web",
-    image:
-      "https://placehold.co/400x500/1a1a1a/666666?text=Brand+Identity+Artisan+Coffee",
-    aspectRatio: "portrait",
+    title: "Aura Noir Editorial Lookbook",
+    category: "Photography",
+    client: "Maison De Mode",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    link: "#",
   },
   {
     id: 3,
-    title: "Corporate Event Highlight",
-    category: "video",
-    categoryLabel: "Video & Event",
-    image:
-      "https://placehold.co/800x450/1a1a1a/666666?text=Corporate+Event+Highlight",
-    aspectRatio: "video",
+    title: "Luminaire Chrono Product Campaign",
+    category: "Commercial Film",
+    client: "Luminaire Geneve",
+    image: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80",
+    link: "#",
   },
   {
     id: 4,
-    title: "Luxury Product Catalog",
-    category: "photography",
-    categoryLabel: "Photography",
-    image:
-      "https://placehold.co/400x500/1a1a1a/666666?text=Luxury+Product+Catalog",
-    aspectRatio: "portrait",
-  },
-  {
-    id: 5,
-    title: "Cinematic Company Profile",
-    category: "video",
-    categoryLabel: "Video & Event",
-    image:
-      "https://placehold.co/800x450/1a1a1a/666666?text=Cinematic+Company+Profile",
-    aspectRatio: "video",
-  },
-  {
-    id: 6,
-    title: "Restaurant Web & Visual",
-    category: "branding",
-    categoryLabel: "Branding & Web",
-    image:
-      "https://placehold.co/400x500/1a1a1a/666666?text=Restaurant+Web+%26+Visual",
-    aspectRatio: "portrait",
-  },
-  {
-    id: 7,
-    title: "Music Festival Documentation",
-    category: "video",
-    categoryLabel: "Video & Event",
-    image:
-      "https://placehold.co/800x450/1a1a1a/666666?text=Music+Festival+Documentation",
-    aspectRatio: "video",
-  },
-  {
-    id: 8,
-    title: "Fashion Lookbook",
-    category: "photography",
-    categoryLabel: "Photography",
-    image:
-      "https://placehold.co/400x500/1a1a1a/666666?text=Fashion+Lookbook",
-    aspectRatio: "portrait",
+    title: "The Art of Cinematography Monograph",
+    category: "Editorial & Print",
+    client: "Nusantara Press",
+    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
+    link: "#",
   },
 ];
 
-// Portfolio filter tabs
-export const portfolioTabs: { label: string; value: PortfolioCategory }[] = [
-  { label: "Semua", value: "all" },
-  { label: "Photography", value: "photography" },
-  { label: "Video & Event", value: "video" },
-  { label: "Branding & Web", value: "branding" },
-];
-
-// Stats data
-export interface Stat {
-  value: string;
-  label: string;
+export interface AwardItem {
+  id: number;
+  multiplier: string;
+  title: string;
+  organizer: string;
+  year: string;
 }
 
-export const stats: Stat[] = [
-  { value: "200+", label: "Proyek Selesai" },
-  { value: "98%", label: "Kepuasan Klien" },
-  { value: "50K+", label: "Produksi Visual" },
-  { value: "5+", label: "Tahun Pengalaman" },
+export const awardsData: AwardItem[] = [
+  {
+    id: 1,
+    multiplier: "4X",
+    title: "Best Commercial Cinematography",
+    organizer: "Indonesian Film & Video Awards",
+    year: "2024",
+  },
+  {
+    id: 2,
+    multiplier: "3X",
+    title: "Site of the Day & UI Excellence",
+    organizer: "Awwwards",
+    year: "2024",
+  },
+  {
+    id: 3,
+    multiplier: "5X",
+    title: "Top Event Documentation Studio",
+    organizer: "Creative Media Index",
+    year: "2023",
+  },
+  {
+    id: 4,
+    multiplier: "2X",
+    title: "Brand Identity of the Year",
+    organizer: "Visual Design Annual",
+    year: "2023",
+  },
 ];
 
-// Marquee items
-export const marqueeItems: string[] = [
-  "Event Documentation",
-  "Commercial Photography",
-  "Cinematic Video Production",
-  "Social Media Content",
-  "Graphic Design",
-  "Web Development",
+export interface TestimonialItem {
+  id: number;
+  rating: string;
+  quote: string;
+  author: string;
+  company: string;
+}
+
+export const testimonialsData: TestimonialItem[] = [
+  {
+    id: 1,
+    rating: "4.95",
+    quote: "Kreanata transformed our brand presence with cinema-grade event documentation and a stunning digital platform. Their eye for detail and commitment to quality is unmatched in the industry.",
+    author: "ADITYA PRATAMA",
+    company: "Managing Director, Artha Group",
+  },
+  {
+    id: 2,
+    rating: "4.90",
+    quote: "From initial storyboard to final color grading, the team delivered a television commercial that exceeded our expectations and drove tangible engagement.",
+    author: "CLARISSA WIJAYA",
+    company: "Brand Lead, Nusantara Tech",
+  },
+  {
+    id: 3,
+    rating: "5.00",
+    quote: "Their multidisciplinary ability to handle photography, film production, and high-performance web development under one roof saved us months of coordination.",
+    author: "MARCUS CHEN",
+    company: "Founder, Atelier Studio",
+  },
 ];
 
-// Navigation links
+export interface BlogItem {
+  id: number;
+  category: string;
+  date: string;
+  title: string;
+  image: string;
+}
+
+export const blogsData: BlogItem[] = [
+  {
+    id: 1,
+    category: "PRODUCTION",
+    date: "24 OCTOBER 2024",
+    title: "Behind the Lens: Capturing High-Energy Festival and Event Moments",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    id: 2,
+    category: "CINEMA",
+    date: "18 OCTOBER 2024",
+    title: "Color Grading for Commercial TVC: DaVinci Resolve Masterclass",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    id: 3,
+    category: "BRANDING",
+    date: "10 OCTOBER 2024",
+    title: "Building an Unforgettable Brand Identity for Modern Businesses",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80",
+  },
+  {
+    id: 4,
+    category: "DIGITAL",
+    date: "02 OCTOBER 2024",
+    title: "Designing Immersive Web Experiences with Next.js and Motion",
+    image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=700&q=80",
+  },
+];
+
 export const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Works", href: "#works" },
-  { label: "About", href: "#about" },
+  { label: "Home", href: "#home" },
+  { label: "Agency", href: "#agency" },
+  { label: "Expertise", href: "#expertise" },
+  { label: "Projects", href: "#projects" },
+  { label: "Awards", href: "#awards" },
+  { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
 
-// Social links
-export const socialLinks = [
-  { label: "Instagram", href: "https://instagram.com/kreanata" },
-  { label: "YouTube", href: "https://youtube.com/@kreanata" },
-  { label: "LinkedIn", href: "https://linkedin.com/company/kreanata" },
-  { label: "Behance", href: "https://behance.net/kreanata" },
+export const clientLogos = [
+  { name: "awwwards.", font: "font-serif tracking-tight" },
+  { name: "fwa.", font: "font-sans font-bold tracking-tight" },
+  { name: "cssda.", font: "font-sans font-semibold tracking-tighter" },
+  { name: "behance.", font: "font-sans font-black tracking-wider" },
 ];

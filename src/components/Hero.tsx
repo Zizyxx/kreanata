@@ -1,139 +1,160 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Play, ArrowRight } from 'lucide-react';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.25, 0.4, 0.25, 1],
-    },
-  },
-};
+import { MapPin, Heart } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-neutral-950 flex items-center justify-center overflow-hidden">
-      {/* Subtle background radial glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[#ccff00]/[0.03] rounded-full blur-[120px]" />
+    <section
+      id="home"
+      className="relative min-h-[90vh] sm:min-h-screen flex flex-col justify-between pt-28 sm:pt-36 pb-12 overflow-hidden bg-white"
+    >
+      {/* Floating subtle particles / dots (exact matching reference image) */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [-6, 6, -6], x: [-3, 3, -3] }}
+        transition={{
+          opacity: { duration: 1 },
+          y: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
+          x: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
+        }}
+        className="absolute top-44 left-[18%] w-1.5 h-1.5 rounded-full bg-black/80 pointer-events-none"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [8, -8, 8], x: [4, -4, 4] }}
+        transition={{
+          opacity: { duration: 1, delay: 0.2 },
+          y: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
+          x: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
+        }}
+        className="absolute top-36 left-[30%] w-1 h-1 rounded-full bg-[#b8ff00] pointer-events-none"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [-10, 10, -10] }}
+        transition={{
+          opacity: { duration: 1, delay: 0.4 },
+          y: { duration: 8, repeat: Infinity, ease: 'easeInOut' },
+        }}
+        className="absolute top-52 right-[22%] w-1.5 h-1.5 rounded-full bg-black/40 pointer-events-none"
+      />
+
+      {/* Giant Edge-to-Edge Background Word "creative" with Dramatic Entrance */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
+        <motion.span
+          initial={{ scale: 0.9, opacity: 0, y: 30 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-[28vw] sm:text-[25vw] md:text-[23vw] lg:text-[22vw] font-black text-[#b8ff00] tracking-tighter leading-none whitespace-nowrap block text-center transform -translate-y-2 sm:-translate-y-4"
+          style={{
+            fontFamily: 'var(--font-sans), sans-serif',
+            letterSpacing: '-0.07em',
+          }}
+        >
+          creative
+        </motion.span>
       </div>
 
-      <motion.div
-        className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-24 md:py-32 flex flex-col items-center text-center"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Badge */}
-        <motion.div variants={itemVariants}>
-          <span className="inline-flex items-center gap-2 border border-zinc-700 bg-zinc-900/50 rounded-full px-4 py-1.5 text-sm text-zinc-400 backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#ccff00] opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ccff00]" />
-            </span>
-            Production House &amp; Digital Creative Studio
-          </span>
-        </motion.div>
-
-        {/* Main Headline */}
-        <motion.h1
-          className="mt-8 text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight max-w-4xl"
-          variants={itemVariants}
-        >
-          Kami Ciptakan Visual yang Bercerita &amp;{' '}
-          <span className="bg-gradient-to-r from-[#ccff00] to-emerald-400 bg-clip-text text-transparent">
-            Menggerakkan
-          </span>
-        </motion.h1>
-
-        {/* Sub-headline */}
-        <motion.p
-          className="mt-6 text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed"
-          variants={itemVariants}
-        >
-          Dari dokumentasi acara hingga produksi sinematik, fotografi komersial,
-          dan solusi digital — Kreanata menghadirkan karya visual berkelas untuk
-          brand Anda.
-        </motion.p>
-
-        {/* CTA Buttons */}
+      {/* Main Hero Center Container with Sunburst & Foreground Headline */}
+      <div className="relative flex-1 flex items-center justify-center w-full max-w-7xl mx-auto px-4 sm:px-6 z-10">
+        {/* Radiating Optical Sunburst Graphic with Scale & Spin Entrance */}
         <motion.div
-          className="mt-10 flex flex-col sm:flex-row items-center gap-4"
-          variants={itemVariants}
+          initial={{ scale: 0.7, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.8 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
         >
-          <motion.button
-            className="inline-flex items-center gap-2.5 bg-[#ccff00] text-neutral-950 font-semibold rounded-full px-7 py-3.5 transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_rgba(204,255,0,0.25)] cursor-pointer"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <Play className="w-4 h-4 fill-current" />
-            Lihat Karya Kami
-          </motion.button>
-
-          <motion.button
-            className="inline-flex items-center gap-2.5 border border-zinc-700 text-white rounded-full px-7 py-3.5 transition-all duration-300 hover:bg-zinc-800/50 hover:border-zinc-600 cursor-pointer"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Hubungi Kami
-            <ArrowRight className="w-4 h-4" />
-          </motion.button>
-        </motion.div>
-
-        {/* Video Showreel Placeholder */}
-        <motion.div
-          className="mt-16 md:mt-20 w-full relative group"
-          variants={itemVariants}
-        >
-          <div className="relative aspect-video w-full rounded-2xl bg-zinc-900 border border-zinc-800 overflow-hidden cursor-pointer">
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-neutral-950/40 z-10" />
-
-            {/* Grid pattern for visual texture */}
-            <div
-              className="absolute inset-0 opacity-[0.04]"
-              style={{
-                backgroundImage:
-                  'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
-              }}
-            />
-
-            {/* Centered play button and text */}
-            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4">
-              <motion.div
-                className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-300 group-hover:border-[#ccff00]/50 group-hover:bg-[#ccff00]/10"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-white group-hover:text-[#ccff00] group-hover:fill-[#ccff00] transition-colors duration-300" />
-              </motion.div>
-              <span className="text-sm md:text-base text-zinc-400 font-medium tracking-wider uppercase group-hover:text-zinc-300 transition-colors duration-300">
-                Showreel 2024
-              </span>
-            </div>
-
-            {/* Corner accent */}
-            <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-[#ccff00]/[0.08] to-transparent z-0 rounded-tl-2xl" />
-            <div className="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-[#ccff00]/[0.08] to-transparent z-0 rounded-br-2xl" />
+          <div className="relative w-[300px] sm:w-[420px] md:w-[520px] h-[300px] sm:h-[420px] md:h-[520px]">
+            <svg
+              viewBox="0 0 200 200"
+              className="w-full h-full animate-spin-slow opacity-80"
+              fill="none"
+              stroke="#b8ff00"
+              strokeWidth="0.85"
+            >
+              {Array.from({ length: 64 }).map((_, i) => {
+                const angle = (i * 360) / 64;
+                return (
+                  <line
+                    key={i}
+                    x1="100"
+                    y1="100"
+                    x2={100 + 85 * Math.cos((angle * Math.PI) / 180)}
+                    y2={100 + 85 * Math.sin((angle * Math.PI) / 180)}
+                    strokeLinecap="round"
+                  />
+                );
+              })}
+            </svg>
           </div>
         </motion.div>
+
+        {/* Foreground Headline: "We're a creative digital agency" */}
+        <div className="relative z-20 text-center max-w-4xl mx-auto px-4">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight leading-[1.1] overflow-hidden">
+            <motion.span
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="block"
+            >
+              We&apos;re a creative
+            </motion.span>
+            <motion.span
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              className="block"
+            >
+              digital agency
+            </motion.span>
+          </h1>
+        </div>
+      </div>
+
+      {/* Sub-bar / Info Ticker Strip (No Emojis - Using Clean SVG Icons) */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-8 sm:pt-14 border-t border-zinc-100"
+      >
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold tracking-wider text-zinc-800 uppercase">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="flex items-center gap-2"
+          >
+            <span className="w-2 h-2 rounded-full bg-black shrink-0" />
+            <span>FULL SERVICE CREATIVE STUDIO</span>
+          </motion.div>
+
+          <div className="hidden md:block w-12 h-[1px] bg-zinc-300" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.75 }}
+            className="flex items-center gap-1.5 text-zinc-700"
+          >
+            <MapPin className="w-3.5 h-3.5 text-black shrink-0" />
+            <span>LOCATED AT JAKARTA &amp; BALI</span>
+          </motion.div>
+
+          <div className="hidden md:block w-12 h-[1px] bg-zinc-300" />
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.85 }}
+            className="flex items-center gap-1.5"
+          >
+            <Heart className="w-3.5 h-3.5 text-black fill-black shrink-0" />
+            <span>AWARD WINNING PRODUCTION</span>
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );

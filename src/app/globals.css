@@ -2,46 +2,82 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111111;
+  --lime: #b8ff00;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-lime-brand: #b8ff00;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --animate-marquee: marquee 25s linear infinite;
-  --animate-marquee-reverse: marquee-reverse 30s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+  color: #111111;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #111111;
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
 }
 
-/* Marquee animations */
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+::selection {
+  background-color: #b8ff00;
+  color: #000000;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@keyframes marquee-reverse {
-  0% {
-    transform: translateX(-50%);
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spinSlow 25s linear infinite reverse;
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
   }
-  100% {
-    transform: translateX(0%);
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
   }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 4s ease-in-out infinite;
 }

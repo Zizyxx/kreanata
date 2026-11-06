@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ Kreanata — Creative Digital Agency & Production Studio
 
-## Getting Started
+Tampilan antarmuka website portofolio kelas dunia untuk **Kreanata**, dibangun dengan inspirasi desain presisi dari **Crafto Web Agency**:
+- **Desain Ultra-Clean & Rapi:** Latar belakang putih bersih (`#ffffff`), tipografi display sans-serif berbobot tebal, aksen **Electric Lime (`#b8ff00`)**, dan garis grid kolom arsitektural vertikal (*architectural vertical lines*).
+- **Tipografi Raksasa Dinamis:** Teks display berukuran masif di setiap transisi section (*"creative"*, *"about"*, *"projects"*, *"awards"*, *"work together"*).
+- **Full Animations:**
+  - Sunburst vector yang berputar halus di belakang teks Hero.
+  - Floating ambient particles.
+  - Rotating circular badge stamps berputar melingkar (*SVG text along path*).
+  - Transisi hover zoom halus pada galeri karya.
+  - Slider interaktif testimonial klien.
+  - Lightbox modal preview detail proyek.
+  - Indikator vertical "SCROLL TO TOP" & fixed side badge studio.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📁 Struktur File Proyek
+
+```plaintext
+kreanata/
+├── src/
+│   ├── app/
+│   │   ├── globals.css         # Styling clean white, custom scrollbar, & rotasi slow-spin
+│   │   ├── layout.tsx          # Metadata & konfigurasi typography
+│   │   └── page.tsx            # Komposisi halaman berurutan sesuai visual mockup
+│   ├── components/
+│   │   ├── GridLines.tsx       # Garis kolom vertikal arsitektural di latar belakang
+│   │   ├── SideAccents.tsx     # Indikator vertikal 'SCROLL TO TOP' & side badge
+│   │   ├── Navbar.tsx          # Sticky minimalist navbar + tombol pill 'Hire agency →'
+│   │   ├── Hero.tsx            # 'creative' raksasa + sunburst + 'We're a creative digital agency'
+│   │   ├── About.tsx           # Foto B&W candid + 'We create unique digital experiences' + 'about'
+│   │   ├── Services.tsx        # 01, 02, 03 kolom bernomor outline layanan
+│   │   ├── Portfolio.tsx       # 'projects' raksasa + rotating stamp badge + 4 kartu karya dummy
+│   │   ├── Awards.tsx          # 'Honorable awards' table + dark high-contrast testimonial slider
+│   │   ├── Blogs.tsx           # 'Latest blogs' 4 kartu artikel monokrom
+│   │   └── Footer.tsx          # 'work together' raksasa + circular stamp + CTA kolaborasi
+│   └── lib/
+│       ├── data.ts             # Data mock dummy lengkap (layanan, proyek, awards, testimoni, blog)
+│       └── utils.ts            # Utility functions
+├── next.config.ts
+├── package.json
+└── tsconfig.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Cara Menjalankan
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Masuk ke direktori
+cd d:\Code\kreanata
 
-## Learn More
+# Jalankan server pengembangan
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Buka peramban di [http://localhost:3000](http://localhost:3000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Build produksi
+npm run build
+npm run start
+```

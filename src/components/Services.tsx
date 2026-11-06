@@ -1,15 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { servicesData } from '@/lib/data';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function Services() {
+  const { language } = useLanguage();
+  const services = translations[language].services;
+
   return (
     <section id="expertise" className="relative pt-20 pb-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         {/* Row 1: 3 Numbered Columns Grid (01, 02, 03) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
-          {servicesData.slice(0, 3).map((service, index) => (
+          {services.slice(0, 3).map((service, index) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 40 }}
@@ -61,7 +65,7 @@ export default function Services() {
 
         {/* Row 2: Next 3 services for full 6 capabilities (04, 05, 06) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
-          {servicesData.slice(3, 6).map((service, index) => (
+          {services.slice(3, 6).map((service, index) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 40 }}

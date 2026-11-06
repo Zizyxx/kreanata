@@ -3,24 +3,28 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import { awardsData, testimonialsData, clientLogos } from '@/lib/data';
+import { clientLogos } from '@/lib/data';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function Awards() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const { language } = useLanguage();
+  const t = translations[language].awards;
 
   const prevTestimonial = () => {
     setCurrentTestimonial((prev) =>
-      prev === 0 ? testimonialsData.length - 1 : prev - 1
+      prev === 0 ? t.testimonials.length - 1 : prev - 1
     );
   };
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) =>
-      prev === testimonialsData.length - 1 ? 0 : prev + 1
+      prev === t.testimonials.length - 1 ? 0 : prev + 1
     );
   };
 
-  const testimonial = testimonialsData[currentTestimonial];
+  const testimonial = t.testimonials[currentTestimonial] || t.testimonials[0];
 
   return (
     <section id="awards" className="relative bg-white overflow-hidden">
@@ -38,20 +42,21 @@ export default function Awards() {
                 className="inline-block mb-3"
               >
                 <span className="bg-black text-white text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase">
-                  EXCELLENCE &amp; RECOGNITION
+                  {t.badge}
                 </span>
               </motion.div>
 
               <motion.h2
+                key={`awards-head-${language}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black tracking-tight leading-[1.1]"
               >
-                Honorable
+                {t.title1}
                 <br />
-                awards
+                {t.title2}
               </motion.h2>
             </div>
 
@@ -86,18 +91,19 @@ export default function Awards() {
           {/* Right Column: Narrative + Clean Table + Logos with Staggered Entrance */}
           <div className="lg:col-span-7 relative z-10 pt-2 lg:pt-4">
             <motion.p
+              key={`awards-intro-${language}`}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-zinc-600 text-sm sm:text-base leading-relaxed max-w-xl mb-10"
             >
-              Every award and recognition represents our relentless dedication to cinematic craftsmanship, visual precision, and strategic digital execution for our clients across Indonesia and beyond.
+              {t.intro}
             </motion.p>
 
             {/* Clean Minimalist Awards Table with Individual Staggered Row Entrances */}
             <div className="border-t border-b border-zinc-200 divide-y divide-zinc-200 bg-white">
-              {awardsData.map((award, index) => (
+              {t.list.map((award, index) => (
                 <motion.div
                   key={award.id}
                   initial={{ opacity: 0, x: 25 }}
@@ -219,7 +225,7 @@ export default function Awards() {
             <div className="lg:col-span-8">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={testimonial.id}
+                  key={`${testimonial.id}-${language}`}
                   initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -14 }}

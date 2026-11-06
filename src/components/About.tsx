@@ -2,8 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function About() {
+  const { language } = useLanguage();
+  const t = translations[language].about;
+
   return (
     <section id="agency" className="relative py-28 sm:py-36 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
@@ -28,29 +33,31 @@ export default function About() {
           {/* Right Column: Narrative Content with Individual Staggered Entrances */}
           <div className="lg:col-span-6 relative flex flex-col justify-center">
             <motion.h2
+              key={`about-head-${language}`}
               initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-3xl sm:text-5xl lg:text-6xl font-bold text-black tracking-tight leading-[1.12]"
             >
-              We craft bespoke
+              {t.headline1}
               <br />
-              visual &amp; digital stories.
+              {t.headline2}
             </motion.h2>
 
             <motion.p
+              key={`about-p-${language}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="mt-8 text-zinc-600 text-sm sm:text-base leading-relaxed max-w-xl"
             >
-              At Kreanata, we unite cinema-grade filmmaking, commercial photography, and modern digital development into a single multidisciplinary studio. With over{' '}
+              {t.p1}
               <strong className="text-black underline underline-offset-4 decoration-2 decoration-black">
-                6+ years of production excellence
-              </strong>{' '}
-              across Indonesia, our mission is to translate your brand&apos;s essence into unforgettable visual journeys that inspire and convert.
+                {t.highlight}
+              </strong>
+              {t.p2}
             </motion.p>
 
             {/* Action button with Lime Circle Accent */}
@@ -69,7 +76,7 @@ export default function About() {
                   <ArrowUpRight className="w-4 h-4 text-black" />
                 </span>
                 <span className="border-b border-black pb-0.5 group-hover:border-[#b8ff00]">
-                  ABOUT KREANATA
+                  {t.button}
                 </span>
               </a>
             </motion.div>

@@ -2,8 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { MapPin, Heart } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function Hero() {
+  const { language } = useLanguage();
+  const t = translations[language].hero;
+
   return (
     <section
       id="home"
@@ -90,30 +95,32 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Foreground Headline: "We're a creative digital agency" */}
+        {/* Foreground Headline: Bilingual (EN / ID) */}
         <div className="relative z-20 text-center max-w-4xl mx-auto px-4">
           <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight leading-[1.1] overflow-hidden">
             <motion.span
+              key={`line1-${language}`}
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="block"
             >
-              We&apos;re a creative
+              {t.line1}
             </motion.span>
             <motion.span
+              key={`line2-${language}`}
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="block"
             >
-              digital agency
+              {t.line2}
             </motion.span>
           </h1>
         </div>
       </div>
 
-      {/* Sub-bar / Info Ticker Strip (No Emojis - Using Clean SVG Icons) */}
+      {/* Sub-bar / Info Ticker Strip */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -128,7 +135,7 @@ export default function Hero() {
             className="flex items-center gap-2"
           >
             <span className="w-2 h-2 rounded-full bg-black shrink-0" />
-            <span>FULL SERVICE CREATIVE STUDIO</span>
+            <span>{t.tickerStudio}</span>
           </motion.div>
 
           <div className="hidden md:block w-12 h-[1px] bg-zinc-300" />
@@ -140,7 +147,7 @@ export default function Hero() {
             className="flex items-center gap-1.5 text-zinc-700"
           >
             <MapPin className="w-3.5 h-3.5 text-black shrink-0" />
-            <span>LOCATED AT JAKARTA &amp; BALI</span>
+            <span>{t.tickerLocation}</span>
           </motion.div>
 
           <div className="hidden md:block w-12 h-[1px] bg-zinc-300" />
@@ -152,7 +159,7 @@ export default function Hero() {
             className="flex items-center gap-1.5"
           >
             <Heart className="w-3.5 h-3.5 text-black fill-black shrink-0" />
-            <span>AWARD WINNING PRODUCTION</span>
+            <span>{t.tickerAward}</span>
           </motion.div>
         </div>
       </motion.div>

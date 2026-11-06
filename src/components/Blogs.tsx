@@ -2,22 +2,27 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import { blogsData } from '@/lib/data';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function Blogs() {
+  const { language } = useLanguage();
+  const t = translations[language].blogs;
+
   return (
     <section id="blog" className="relative py-28 sm:py-36 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         {/* Section Header with Entrance Animation */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-14">
           <motion.h2
+            key={`blogs-head-${language}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl sm:text-5xl font-bold text-black tracking-tight"
           >
-            Latest blogs
+            {t.title}
           </motion.h2>
 
           <motion.div
@@ -34,7 +39,7 @@ export default function Blogs() {
                 <ArrowUpRight className="w-4 h-4 text-black" />
               </span>
               <span className="border-b border-black pb-0.5 group-hover:border-[#b8ff00]">
-                EXPLORE ALL BLOGS
+                {t.exploreBtn}
               </span>
             </a>
           </motion.div>
@@ -42,7 +47,7 @@ export default function Blogs() {
 
         {/* 4-Column Blog Card Grid with Staggered Entrance */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {blogsData.map((blog, index) => (
+          {t.list.map((blog, index) => (
             <motion.article
               key={blog.id}
               initial={{ opacity: 0, y: 40 }}

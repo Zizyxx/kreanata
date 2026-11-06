@@ -2,8 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight, MessageCircle, Mail, MapPin } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language].footer;
+
   return (
     <footer id="contact" className="relative pt-10 pb-16 bg-white overflow-hidden border-t border-zinc-100">
       {/* Giant "work together." Typography with Epic Entrance Animation */}
@@ -57,11 +62,10 @@ export default function Footer() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <h3 className="text-2xl sm:text-4xl font-bold text-black tracking-tight">
-              Ready to create something remarkable?
+              {t.inquiryTitle}
             </h3>
             <p className="text-zinc-600 text-sm sm:text-base mt-2 max-w-lg">
-              Have an upcoming event documentation, a cinematic TVC production brief, or a visual digital project?
-              Let&apos;s collaborate and elevate your brand together.
+              {t.inquirySubtitle}
             </p>
           </motion.div>
 
@@ -79,7 +83,7 @@ export default function Footer() {
               className="inline-flex items-center gap-2.5 bg-black text-white hover:bg-[#b8ff00] hover:text-black transition-all duration-300 rounded-full px-7 py-3.5 text-sm font-semibold tracking-tight shadow-md hover:shadow-lg cursor-pointer"
             >
               <MessageCircle className="w-4 h-4" />
-              Chat via WhatsApp
+              {t.chatWa}
               <ArrowUpRight className="w-4 h-4" />
             </a>
 
@@ -103,7 +107,7 @@ export default function Footer() {
           >
             <div className="font-bold text-black mb-3 text-base">Kreanata Studio.</div>
             <p className="leading-relaxed text-zinc-500">
-              A boutique production house and digital creative agency based in Jakarta &amp; Bali, Indonesia.
+              {t.studioDesc}
             </p>
           </motion.div>
 
@@ -113,13 +117,13 @@ export default function Footer() {
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="font-bold text-black mb-3 uppercase tracking-wider text-xs">Expertise</div>
+            <div className="font-bold text-black mb-3 uppercase tracking-wider text-xs">
+              {t.expertiseTitle}
+            </div>
             <ul className="space-y-2 text-zinc-500">
-              <li>Event Documentation</li>
-              <li>Commercial Photography</li>
-              <li>Cinematic Video Production</li>
-              <li>Visual Identity &amp; Branding</li>
-              <li>Modern Web Development</li>
+              {t.expertiseItems.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </motion.div>
 
@@ -129,12 +133,14 @@ export default function Footer() {
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="font-bold text-black mb-3 uppercase tracking-wider text-xs">Studio Base</div>
+            <div className="font-bold text-black mb-3 uppercase tracking-wider text-xs">
+              {t.studioBaseTitle}
+            </div>
             <p className="text-zinc-500 flex items-start gap-2">
               <MapPin className="w-4 h-4 shrink-0 text-zinc-800 mt-0.5" />
-              <span>South Jakarta &amp; Denpasar, Bali — Indonesia</span>
+              <span>{t.studioBaseText}</span>
             </p>
-            <p className="text-zinc-500 mt-2">Mon — Sat, 09:00 - 18:00 WIB</p>
+            <p className="text-zinc-500 mt-2">{t.studioHours}</p>
           </motion.div>
 
           <motion.div
@@ -143,7 +149,9 @@ export default function Footer() {
             viewport={{ once: true, margin: '-30px' }}
             transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="font-bold text-black mb-3 uppercase tracking-wider text-xs">Socials</div>
+            <div className="font-bold text-black mb-3 uppercase tracking-wider text-xs">
+              {t.socialsTitle}
+            </div>
             <div className="flex flex-wrap gap-3 font-semibold text-zinc-700">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-black transition-colors">
                 Instagram <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />
@@ -169,9 +177,9 @@ export default function Footer() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mt-16 pt-8 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400"
         >
-          <p>© 2025 Kreanata Studio. All rights reserved.</p>
+          <p>© 2025 Kreanata Studio. {t.rights}</p>
           <p className="font-medium text-zinc-500">
-            Bespoke Creative Production &amp; Digital Studio.
+            {t.copyrightDesc}
           </p>
         </motion.div>
       </div>

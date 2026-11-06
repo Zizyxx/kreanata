@@ -4,9 +4,13 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, X } from 'lucide-react';
 import { projectsData, type ProjectItem } from '@/lib/data';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const { language } = useLanguage();
+  const t = translations[language].portfolio;
 
   return (
     <section id="projects" className="relative pt-16 pb-28 sm:pb-36 bg-white overflow-hidden">
@@ -34,10 +38,10 @@ export default function Portfolio() {
             >
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 text-[11px] font-bold uppercase tracking-wider text-black">
                 <span className="w-1.5 h-1.5 rounded-full bg-black" />
-                CURATED ARCHIVE &bull; 2024&mdash;2025
+                {t.badge}
               </span>
               <span className="text-xs text-zinc-400 hidden sm:inline">
-                Film, Photography &amp; Digital Platforms
+                {t.subtitle}
               </span>
             </motion.div>
           </div>
@@ -58,7 +62,7 @@ export default function Portfolio() {
                 <ArrowUpRight className="w-4 h-4 text-black" />
               </span>
               <span className="border-b border-black pb-0.5 group-hover:border-[#b8ff00]">
-                EXPLORE ALL WORKS
+                {t.exploreBtn}
               </span>
             </a>
           </motion.div>
@@ -92,7 +96,7 @@ export default function Portfolio() {
                 {/* Subtle Hover Overlay */}
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
                   <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-black/85 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg">
-                    View Project <ArrowUpRight className="w-3.5 h-3.5 text-[#b8ff00]" />
+                    {t.viewProject} <ArrowUpRight className="w-3.5 h-3.5 text-[#b8ff00]" />
                   </span>
                 </div>
               </div>
@@ -155,7 +159,7 @@ export default function Portfolio() {
                     {selectedProject.title}
                   </h3>
                   <p className="text-sm text-zinc-500">
-                    Client: <strong className="text-black">{selectedProject.client}</strong>
+                    {t.clientLabel} <strong className="text-black">{selectedProject.client}</strong>
                   </p>
                 </div>
 
@@ -164,14 +168,13 @@ export default function Portfolio() {
                   onClick={() => setSelectedProject(null)}
                   className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#b8ff00] hover:text-black rounded-full px-5 py-2.5 text-xs font-semibold tracking-tight transition-colors"
                 >
-                  Start Similar Project
+                  {t.modalCta}
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
               </div>
 
               <p className="text-sm text-zinc-600 leading-relaxed">
-                Created with precision by Kreanata Studio. Every detail reflects our commitment
-                to modern aesthetics, thoughtful composition, and impactful brand communication.
+                {t.modalDesc}
               </p>
             </motion.div>
           </motion.div>

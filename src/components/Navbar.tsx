@@ -3,11 +3,14 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight } from 'lucide-react';
-import { navLinks } from '@/lib/data';
+import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language].nav;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +62,7 @@ export default function Navbar() {
 
         {/* Center: Desktop Navigation Links with Staggered Entrance */}
         <nav className="hidden md:flex items-center gap-7 lg:gap-8">
-          {navLinks.map((link, idx) => (
+          {t.links.map((link, idx) => (
             <motion.button
               key={link.label}
               initial={{ opacity: 0, y: -10 }}
@@ -77,13 +80,39 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right: Hire Agency Pill CTA */}
+        {/* Right: Language Switcher (EN / ID) + Hire Agency Pill CTA */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden sm:flex items-center gap-4"
+          className="hidden sm:flex items-center gap-3.5"
         >
+          {/* Minimalist Segmented Language Switcher (EN | ID) */}
+          <div className="flex items-center p-0.5 rounded-full bg-zinc-100 border border-zinc-200/80 text-[11px] font-bold">
+            <button
+              onClick={() => setLanguage('EN')}
+              aria-label="Switch language to English"
+              className={`px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer ${
+                language === 'EN'
+                  ? 'bg-black text-[#b8ff00] shadow-sm'
+                  : 'text-zinc-500 hover:text-black'
+              }`}
+            >
+              EN
+            </button>
+            <button
+              onClick={() => setLanguage('ID')}
+              aria-label="Ganti bahasa ke Indonesia"
+              className={`px-2.5 py-1 rounded-full transition-all duration-200 cursor-pointer ${
+                language === 'ID'
+                  ? 'bg-black text-[#b8ff00] shadow-sm'
+                  : 'text-zinc-500 hover:text-black'
+              }`}
+            >
+              ID
+            </button>
+          </div>
+
           <a
             href="#contact"
             onClick={(e) => {
@@ -92,19 +121,44 @@ export default function Navbar() {
             }}
             className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#b8ff00] hover:text-black transition-all duration-300 rounded-full px-5 py-2 text-xs sm:text-sm font-semibold tracking-tight shadow-sm hover:shadow"
           >
-            Hire agency
+            {t.hire}
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </motion.div>
 
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 text-black md:hidden rounded-lg focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile menu and mobile language switcher */}
+        <div className="flex items-center gap-2 sm:hidden">
+          <div className="flex items-center p-0.5 rounded-full bg-zinc-100 border border-zinc-200 text-[10px] font-bold">
+            <button
+              onClick={() => setLanguage('EN')}
+              className={`px-2 py-0.5 rounded-full transition-all ${
+                language === 'EN'
+                  ? 'bg-black text-[#b8ff00]'
+                  : 'text-zinc-500'
+              }`}
+            >
+              EN
+            </button>
+            <button
+              onClick={() => setLanguage('ID')}
+              className={`px-2 py-0.5 rounded-full transition-all ${
+                language === 'ID'
+                  ? 'bg-black text-[#b8ff00]'
+                  : 'text-zinc-500'
+              }`}
+            >
+              ID
+            </button>
+          </div>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 text-black rounded-lg focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
@@ -117,7 +171,36 @@ export default function Navbar() {
             className="md:hidden bg-white border-b border-zinc-200 px-6 py-6 shadow-xl overflow-hidden"
           >
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
+              {/* Mobile Language Switcher */}
+              <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
+                <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
+                  {language === 'EN' ? 'Language' : 'Bahasa'}
+                </span>
+                <div className="flex items-center p-0.5 rounded-full bg-zinc-100 border border-zinc-200 text-xs font-bold">
+                  <button
+                    onClick={() => setLanguage('EN')}
+                    className={`px-3 py-1 rounded-full transition-all ${
+                      language === 'EN'
+                        ? 'bg-black text-[#b8ff00]'
+                        : 'text-zinc-500'
+                    }`}
+                  >
+                    English
+                  </button>
+                  <button
+                    onClick={() => setLanguage('ID')}
+                    className={`px-3 py-1 rounded-full transition-all ${
+                      language === 'ID'
+                        ? 'bg-black text-[#b8ff00]'
+                        : 'text-zinc-500'
+                    }`}
+                  >
+                    Indonesia
+                  </button>
+                </div>
+              </div>
+
+              {t.links.map((link) => (
                 <button
                   key={link.label}
                   onClick={() => handleNavClick(link.href)}
@@ -134,7 +217,7 @@ export default function Navbar() {
                 }}
                 className="mt-2 inline-flex items-center justify-center gap-2 bg-black text-white rounded-full py-3 text-sm font-semibold hover:bg-[#b8ff00] hover:text-black transition-colors"
               >
-                Hire agency
+                {t.hire}
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>

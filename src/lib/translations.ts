@@ -15,11 +15,12 @@ export interface ProjectTranslation {
   image: string;
 }
 
-export interface BlogTranslation {
+export interface EventTranslation {
   id: number;
   category: string;
   date: string;
   title: string;
+  location: string;
   image: string;
 }
 
@@ -31,7 +32,7 @@ export const translations = {
         { label: "About", href: "#about" },
         { label: "Services", href: "#expertise" },
         { label: "Projects", href: "#projects" },
-        { label: "Articles", href: "#articles" },
+        { label: "Events", href: "#events" },
         { label: "Contact", href: "#contact" },
       ],
       hire: "Start project",
@@ -98,39 +99,44 @@ export const translations = {
       modalCta: "Start Similar Project",
       modalDesc: "Created with care and dedication by Kreanata Studio. Every detail reflects our commitment to modern aesthetics, thoughtful composition, and impactful brand communication.",
     },
-    blogs: {
-      title: "Articles",
-      exploreBtn: "READ ALL ARTICLES",
+    events: {
+      title: "Events",
+      subtitle: "Curated Event Documentation Archive",
+      exploreBtn: "EXPLORE ALL EVENTS",
       list: [
         {
           id: 1,
-          category: "PRODUCTION",
-          date: "24 OCTOBER 2024",
-          title: "Behind the Lens: Capturing High-Energy Festival and Event Moments",
-          image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80",
+          category: "MUSIC FESTIVAL",
+          date: "OCTOBER 2024",
+          title: "Soundwave Electronic Music Festival Coverage",
+          location: "GBK Senayan, Jakarta",
+          image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
         },
         {
           id: 2,
-          category: "CINEMA",
-          date: "18 OCTOBER 2024",
-          title: "Color Grading for Commercial TVC: DaVinci Resolve Masterclass",
-          image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80",
+          category: "TECH SUMMIT",
+          date: "OCTOBER 2024",
+          title: "Nusantara Digital & Creative Leaders Conference",
+          location: "ICE BSD, Tangerang",
+          image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
         },
         {
           id: 3,
-          category: "BRANDING",
-          date: "10 OCTOBER 2024",
-          title: "Building an Unforgettable Brand Identity for Modern Businesses",
-          image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80",
+          category: "BRAND LAUNCH",
+          date: "OCTOBER 2024",
+          title: "Aura Luxury Fashion & Design Premiere",
+          location: "SCBD, Jakarta Selatan",
+          image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
         },
         {
           id: 4,
-          category: "DIGITAL",
-          date: "02 OCTOBER 2024",
-          title: "Designing Immersive Web Experiences with Next.js and Motion",
-          image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=700&q=80",
+          category: "CULTURAL GALA",
+          date: "OCTOBER 2024",
+          title: "Jakarta Visual Arts & Cinematography Showcase",
+          location: "Taman Ismail Marzuki, Jakarta",
+          image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
         },
-      ] as BlogTranslation[],
+      ] as EventTranslation[],
     },
     footer: {
       inquiryTitle: "Ready to create something remarkable?",
@@ -160,7 +166,7 @@ export const translations = {
         { label: "Tentang", href: "#about" },
         { label: "Layanan", href: "#expertise" },
         { label: "Proyek", href: "#projects" },
-        { label: "Artikel", href: "#articles" },
+        { label: "Event", href: "#events" },
         { label: "Kontak", href: "#contact" },
       ],
       hire: "Mulai proyek",
@@ -227,39 +233,44 @@ export const translations = {
       modalCta: "Mulai Proyek Serupa",
       modalDesc: "Dikerjakan dengan dedikasi dan perhatian penuh oleh Kreanata Studio. Setiap detail dirancang untuk memberikan visual yang rapi, profesional, dan berdaya pikat.",
     },
-    blogs: {
-      title: "Artikel",
-      exploreBtn: "BACA SEMUA ARTIKEL",
+    events: {
+      title: "Event",
+      subtitle: "Arsip Dokumentasi Acara & Festival",
+      exploreBtn: "JELAJAHI SEMUA EVENT",
       list: [
         {
           id: 1,
-          category: "PRODUKSI",
-          date: "24 OKTOBER 2024",
-          title: "Di Balik Lensa: Menangkap Momen Berenergi Tinggi pada Festival & Acara",
-          image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80",
+          category: "FESTIVAL MUSIK",
+          date: "OKTOBER 2024",
+          title: "Dokumentasi Soundwave Electronic Music Festival",
+          location: "GBK Senayan, Jakarta",
+          image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
         },
         {
           id: 2,
-          category: "SINEMA",
-          date: "18 OKTOBER 2024",
-          title: "Color Grading untuk Iklan TVC Komersial: DaVinci Resolve Masterclass",
-          image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80",
+          category: "KONFERENSI TEKNOLOGI",
+          date: "OKTOBER 2024",
+          title: "Dokumentasi Nusantara Digital & Creative Summit",
+          location: "ICE BSD, Tangerang",
+          image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
         },
         {
           id: 3,
-          category: "BRANDING",
-          date: "10 OKTOBER 2024",
-          title: "Membangun Identitas Visual yang Melekat Kuat untuk Bisnis Modern",
-          image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80",
+          category: "PELUNCURAN BRAND",
+          date: "OKTOBER 2024",
+          title: "Dokumentasi Eksklusif Aura Luxury Fashion Premiere",
+          location: "SCBD, Jakarta Selatan",
+          image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
         },
         {
           id: 4,
-          category: "DIGITAL",
-          date: "02 OKTOBER 2024",
-          title: "Merancang Platform Web Interaktif dengan Next.js dan Animasi Motion",
-          image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=700&q=80",
+          category: "GALA KREATIF",
+          date: "OKTOBER 2024",
+          title: "Dokumentasi Malam Penghargaan Seni Visual Jakarta",
+          location: "Taman Ismail Marzuki, Jakarta",
+          image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
         },
-      ] as BlogTranslation[],
+      ] as EventTranslation[],
     },
     footer: {
       inquiryTitle: "Siap mewujudkan karya luar biasa?",

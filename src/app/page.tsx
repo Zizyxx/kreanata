@@ -5,7 +5,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
-import Blogs from "@/components/Blogs";
+import Events from "@/components/Events";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -34,8 +34,8 @@ export default function Home() {
         {/* Section 4: Projects (Giant 'projects' + 4 Cards) */}
         <Portfolio />
 
-        {/* Section 5: Articles / Blogs (4 monochrome journal cards) */}
-        <Blogs />
+        {/* Section 5: Events Showcase (4 monochrome event cards) */}
+        <Events />
       </main>
 
       {/* Section 6: Epic Footer CTA ('work together.') */}

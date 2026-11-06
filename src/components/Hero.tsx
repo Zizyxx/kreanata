@@ -51,10 +51,10 @@ export default function Hero() {
           initial={{ scale: 0.9, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[28vw] sm:text-[25vw] md:text-[23vw] lg:text-[22vw] font-black text-[#ffe600] tracking-tighter leading-none whitespace-nowrap block text-center transform -translate-y-2 sm:-translate-y-4"
+          className="text-[34vw] sm:text-[34vw] md:text-[35vw] lg:text-[35vw] xl:text-[36vw] font-bold text-[#ffe600] tracking-tighter leading-none whitespace-nowrap block text-center transform -translate-y-1 sm:-translate-y-2"
           style={{
             fontFamily: 'var(--font-sans), sans-serif',
-            letterSpacing: '-0.07em',
+            letterSpacing: '-0.06em',
           }}
         >
           creative
@@ -70,7 +70,7 @@ export default function Hero() {
           transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
         >
-          <div className="relative w-[300px] sm:w-[420px] md:w-[520px] h-[300px] sm:h-[420px] md:h-[520px]">
+          <div className="relative w-[320px] sm:w-[440px] md:w-[540px] lg:w-[620px] h-[320px] sm:h-[440px] md:h-[540px] lg:h-[620px]">
             <svg
               viewBox="0 0 200 200"
               className="w-full h-full animate-spin-slow opacity-80"

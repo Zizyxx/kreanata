@@ -63,7 +63,7 @@ export const projectsData: ProjectItem[] = [
     id: 1,
     slug: "fotografi",
     pillar: "01",
-    title: "Fotografi Komersial & Editorial",
+    title: "Fotografi",
     category: "Fotografi",
     client: "Katalog & Lookbook",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",

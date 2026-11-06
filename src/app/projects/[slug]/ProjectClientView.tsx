@@ -14,11 +14,19 @@ interface Props {
 export default function ProjectClientView({ category }: Props) {
   const { language, setLanguage } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
+  const [photoFilter, setPhotoFilter] = useState<'beauty-shoot' | 'dokumentasi' | 'all'>('beauty-shoot');
+
+  const isPhoto = category.slug === 'fotografi' || category.slug === 'photography';
+
+  // Filter projects for photography pillar
+  const displayedProjects = isPhoto
+    ? category.projects.filter((p) => photoFilter === 'all' || p.categoryType === photoFilter)
+    : category.projects;
 
   // Canonical 4 pillars for cross-navigation
   const canonicalSlugs = ['fotografi', 'videografi', 'desain', 'website'];
   const otherCategories = canonicalSlugs
-    .filter((s) => s !== category.slug)
+    .filter((s) => s !== category.slug && s !== (category.slug === 'photography' ? 'fotografi' : ''))
     .map((s) => portfolioCategories[s]);
 
   return (
@@ -121,6 +129,7 @@ export default function ProjectClientView({ category }: Props) {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="lg:col-span-8"
             >
+              {/* Title strictly "Fotografi" / "Photography" */}
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-black tracking-tight leading-[1.08]">
                 {category.title[language]}
               </h1>
@@ -149,38 +158,84 @@ export default function ProjectClientView({ category }: Props) {
           </div>
         </div>
 
-        {/* Gallery Section Header */}
-        <div className="mt-16 sm:mt-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
+        {/* Section Header & Sub-Category Filters */}
+        <div className="mt-14 sm:mt-18 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-10">
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold text-black tracking-tight">
-              {language === 'EN' ? 'Curated Project Showcase' : 'Katalog Karya Pilihan'}
+              {language === 'EN' ? 'Curated Visual Archive' : 'Katalog Karya Pilihan'}
             </h2>
             <p className="text-xs sm:text-sm text-zinc-500 mt-1">
               {language === 'EN'
-                ? `Displaying ${category.projects.length} featured productions`
-                : `Menampilkan ${category.projects.length} karya produksi pilihan`}
+                ? `Displaying ${displayedProjects.length} photographs`
+                : `Menampilkan ${displayedProjects.length} foto pilihan`}
             </p>
           </div>
 
-          <div className="text-xs text-zinc-400 font-medium hidden sm:block">
-            {language === 'EN' ? 'Hover to reveal color • Click for full preview' : 'Arahkan kursor untuk warna • Klik untuk detail'}
-          </div>
+          {/* 2 Kategori Khusus Fotografi: Beauty Shoot & Dokumentasi */}
+          {isPhoto ? (
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-1.5 bg-zinc-100 rounded-full border border-zinc-200">
+              <button
+                onClick={() => setPhotoFilter('beauty-shoot')}
+                className={`px-5 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  photoFilter === 'beauty-shoot'
+                    ? 'bg-black text-[#ffe600] shadow-md'
+                    : 'text-zinc-600 hover:text-black hover:bg-zinc-200/70'
+                }`}
+              >
+                Beauty Shoot
+              </button>
+              <button
+                onClick={() => setPhotoFilter('dokumentasi')}
+                className={`px-5 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  photoFilter === 'dokumentasi'
+                    ? 'bg-black text-[#ffe600] shadow-md'
+                    : 'text-zinc-600 hover:text-black hover:bg-zinc-200/70'
+                }`}
+              >
+                {language === 'EN' ? 'Documentation' : 'Dokumentasi'}
+              </button>
+              <button
+                onClick={() => setPhotoFilter('all')}
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  photoFilter === 'all'
+                    ? 'bg-black text-[#ffe600] shadow-md'
+                    : 'text-zinc-600 hover:text-black hover:bg-zinc-200/70'
+                }`}
+              >
+                {language === 'EN' ? 'All' : 'Semua'}
+              </button>
+            </div>
+          ) : (
+            <div className="text-xs text-zinc-400 font-medium hidden sm:block">
+              {language === 'EN'
+                ? 'Hover to reveal color • Click for full preview'
+                : 'Arahkan kursor untuk warna • Klik untuk detail'}
+            </div>
+          )}
         </div>
 
-        {/* 2-Column Responsive Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
-          {category.projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer flex flex-col bg-white border border-zinc-200 hover:border-black rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl"
-            >
-              {/* Media Image Frame: B&W by default, vivid color on hover */}
-              <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
+        {/* Photography: Clean Editorial 3-Column Grid without any text captions */}
+        {isPhoto ? (
+          <motion.div
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+          >
+            {displayedProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{
+                  duration: 0.6,
+                  delay: (index % 6) * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                onClick={() => setSelectedProject(project)}
+                className="group relative aspect-[4/3] sm:aspect-[4/5] rounded-xl overflow-hidden bg-zinc-100 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer"
+              >
+                {/* Clean B&W Image turning to rich vivid color on hover */}
                 <img
                   src={project.image}
                   alt={project.title[language]}
@@ -188,68 +243,100 @@ export default function ProjectClientView({ category }: Props) {
                   className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
                 />
 
-                {/* Top Badge: Client & Year */}
-                <div className="absolute top-4 left-4 z-10">
-                  <span className="text-[11px] font-bold text-black bg-white/95 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
-                    {project.client} • {project.year}
+                {/* Minimalist Hover Accent */}
+                <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                  <span className="w-11 h-11 rounded-full bg-[#ffe600] text-black flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                    <ArrowUpRight className="w-5 h-5 text-black stroke-[2.5]" />
                   </span>
                 </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          /* Other 3 Pillars: Detailed Case Study Grid */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+            {displayedProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                onClick={() => setSelectedProject(project)}
+                className="group cursor-pointer flex flex-col bg-white border border-zinc-200 hover:border-black rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl"
+              >
+                {/* Media Image Frame: B&W by default, vivid color on hover */}
+                <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
+                  <img
+                    src={project.image}
+                    alt={project.title[language]}
+                    loading="lazy"
+                    className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                  />
 
-                {/* Hover Overlay Button */}
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
-                  <span className="inline-flex items-center gap-2 text-xs font-bold text-black bg-[#ffe600] px-4 py-2 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    {language === 'EN' ? 'Preview Details' : 'Lihat Detail Proyek'}
-                    <ArrowUpRight className="w-3.5 h-3.5 text-black" />
-                  </span>
-                </div>
-              </div>
-
-              {/* Information Body */}
-              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
-                <div>
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {project.tags[language].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-semibold text-zinc-600 bg-zinc-100 px-2.5 py-0.5 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  {/* Top Badge: Client & Year */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="text-[11px] font-bold text-black bg-white/95 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
+                      {project.client} • {project.year}
+                    </span>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-black leading-snug group-hover:text-zinc-600 transition-colors">
-                    {project.title[language]}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="mt-3 text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                    {project.description[language]}
-                  </p>
+                  {/* Hover Overlay Button */}
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+                    <span className="inline-flex items-center gap-2 text-xs font-bold text-black bg-[#ffe600] px-4 py-2 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      {language === 'EN' ? 'Preview Details' : 'Lihat Detail Proyek'}
+                      <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                    </span>
+                  </div>
                 </div>
 
-                {/* Key Deliverables Highlights */}
-                {project.highlights && (
-                  <div className="mt-5 pt-4 border-t border-zinc-100">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-black mb-2">
-                      {language === 'EN' ? 'Key Deliverables' : 'Fitur & Hasil Produksi'}
-                    </div>
-                    <ul className="space-y-1.5">
-                      {project.highlights[language].map((hl) => (
-                        <li key={hl} className="text-xs text-zinc-500 flex items-center gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#ffe600] fill-black shrink-0" />
-                          <span>{hl}</span>
-                        </li>
+                {/* Information Body */}
+                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                  <div>
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {project.tags[language].map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] font-semibold text-zinc-600 bg-zinc-100 px-2.5 py-0.5 rounded-full"
+                        >
+                          {tag}
+                        </span>
                       ))}
-                    </ul>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl sm:text-2xl font-bold text-black leading-snug group-hover:text-zinc-600 transition-colors">
+                      {project.title[language]}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mt-3 text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                      {project.description[language]}
+                    </p>
                   </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+
+                  {/* Key Deliverables Highlights */}
+                  {project.highlights && (
+                    <div className="mt-5 pt-4 border-t border-zinc-100">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-black mb-2">
+                        {language === 'EN' ? 'Key Deliverables' : 'Fitur & Hasil Produksi'}
+                      </div>
+                      <ul className="space-y-1.5">
+                        {project.highlights[language].map((hl) => (
+                          <li key={hl} className="text-xs text-zinc-500 flex items-center gap-2">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#ffe600] fill-black shrink-0" />
+                            <span>{hl}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Cross-Navigation: Explore the Other 3 Pillars */}
         <section className="mt-28 pt-16 border-t border-zinc-200">
@@ -332,7 +419,7 @@ export default function ProjectClientView({ category }: Props) {
         </section>
       </main>
 
-      {/* Interactive Lightbox / Modal for Expanded Project Preview */}
+      {/* Interactive Lightbox / Modal for Expanded Photo / Project Preview */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -340,26 +427,26 @@ export default function ProjectClientView({ category }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl p-6 sm:p-8 shadow-2xl"
+              className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-white rounded-3xl p-5 sm:p-8 shadow-2xl"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-zinc-100 text-black hover:bg-zinc-200 transition-colors cursor-pointer z-20"
+                className="absolute top-5 right-5 p-2 rounded-full bg-zinc-100 text-black hover:bg-zinc-200 transition-colors cursor-pointer z-20"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
 
               {/* Full Image Preview */}
-              <div className="w-full aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
+              <div className="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title[language]}
@@ -367,12 +454,18 @@ export default function ProjectClientView({ category }: Props) {
                 />
               </div>
 
-              {/* Meta & Header */}
+              {/* Header & Inquire */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-5 mb-5">
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-2 mb-1.5">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-black bg-[#ffe600] px-3 py-0.5 rounded-full">
-                      {category.title[language]}
+                      {selectedProject.categoryType
+                        ? selectedProject.categoryType === 'beauty-shoot'
+                          ? 'Beauty Shoot'
+                          : language === 'EN'
+                          ? 'Documentation'
+                          : 'Dokumentasi'
+                        : category.title[language]}
                     </span>
                     <span className="text-xs text-zinc-400 font-medium">
                       {selectedProject.year}
@@ -381,45 +474,24 @@ export default function ProjectClientView({ category }: Props) {
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-black">
                     {selectedProject.title[language]}
                   </h3>
-                  <p className="text-sm text-zinc-500 mt-1">
-                    {language === 'EN' ? 'Client' : 'Klien'}: <strong className="text-black">{selectedProject.client}</strong>
-                  </p>
                 </div>
 
                 <a
-                  href={`https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20proyek%20${encodeURIComponent(selectedProject.title[language])}`}
+                  href={`https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20proyek%20foto%20${encodeURIComponent(selectedProject.title[language])}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#ffe600] hover:text-black rounded-full px-6 py-3 text-xs sm:text-sm font-semibold tracking-tight transition-colors self-start sm:self-center shrink-0 cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  {language === 'EN' ? 'Inquire Similar Project' : 'Minta Proyek Serupa'}
+                  {language === 'EN' ? 'Inquire Similar Shoot' : 'Konsultasi Sesi Foto'}
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
 
-              {/* Detailed Description */}
-              <div className="space-y-4">
-                <p className="text-sm sm:text-base text-zinc-700 leading-relaxed">
-                  {selectedProject.description[language]}
-                </p>
-
-                {selectedProject.highlights && (
-                  <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-5 mt-4">
-                    <div className="text-xs font-bold uppercase tracking-wider text-black mb-3">
-                      {language === 'EN' ? 'Production Highlights & Specs' : 'Spesifikasi & Hasil Produksi'}
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      {selectedProject.highlights[language].map((hl) => (
-                        <div key={hl} className="text-xs text-zinc-600 flex items-center gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-black shrink-0" />
-                          <span>{hl}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              {/* Description */}
+              <p className="text-sm sm:text-base text-zinc-700 leading-relaxed">
+                {selectedProject.description[language]}
+              </p>
             </motion.div>
           </motion.div>
         )}

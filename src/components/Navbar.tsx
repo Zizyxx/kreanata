@@ -64,12 +64,12 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-7 lg:gap-8">
           {t.links.map((link, idx) => (
             <motion.button
-              key={link.label}
+              key={`${link.href}-${language}`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.6,
-                delay: 0.15 + idx * 0.05,
+                duration: 0.5,
+                delay: idx * 0.04,
                 ease: [0.16, 1, 0.3, 1],
               }}
               onClick={() => handleNavClick(link.href)}
@@ -202,7 +202,7 @@ export default function Navbar() {
 
               {t.links.map((link) => (
                 <button
-                  key={link.label}
+                  key={`${link.href}-${language}`}
                   onClick={() => handleNavClick(link.href)}
                   className="text-left text-base font-semibold text-zinc-800 hover:text-black py-1"
                 >

@@ -423,3 +423,4 @@ export const translations = {
 export function getTranslation(lang: Language) {
   return translations[lang] || translations.EN;
 }
+

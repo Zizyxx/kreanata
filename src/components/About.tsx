@@ -33,7 +33,6 @@ export default function About() {
           {/* Right Column: Narrative Content with Individual Staggered Entrances */}
           <div className="lg:col-span-6 relative flex flex-col justify-center">
             <motion.h2
-              key={`about-head-${language}`}
               initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -46,7 +45,6 @@ export default function About() {
             </motion.h2>
 
             <motion.p
-              key={`about-p-${language}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}

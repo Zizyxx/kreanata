@@ -47,7 +47,6 @@ export default function Awards() {
               </motion.div>
 
               <motion.h2
-                key={`awards-head-${language}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
@@ -91,7 +90,6 @@ export default function Awards() {
           {/* Right Column: Narrative + Clean Table + Logos with Staggered Entrance */}
           <div className="lg:col-span-7 relative z-10 pt-2 lg:pt-4">
             <motion.p
-              key={`awards-intro-${language}`}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}

@@ -15,7 +15,6 @@ export default function Blogs() {
         {/* Section Header with Entrance Animation */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-14">
           <motion.h2
-            key={`blogs-head-${language}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}

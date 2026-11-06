@@ -16,11 +16,11 @@ export default function About() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 relative"
           >
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[1.15/1] shadow-xl bg-zinc-100">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[1.15/1] shadow-xl bg-zinc-100 group cursor-pointer">
               <img
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80"
                 alt="Kreanata Creative Team"
-                className="w-full h-full object-cover filter grayscale contrast-110 hover:scale-105 transition-transform duration-700 ease-out"
+                className="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
               />
             </div>
           </motion.div>

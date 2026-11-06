@@ -61,7 +61,7 @@ export default function Blogs() {
                   src={blog.image}
                   alt={blog.title}
                   loading="lazy"
-                  className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 ease-out group-hover:scale-105"
+                  className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
                 />
               </div>
 

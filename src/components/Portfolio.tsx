@@ -80,18 +80,18 @@ export default function Portfolio() {
               onClick={() => setSelectedProject(project)}
               className="group cursor-pointer flex flex-col"
             >
-              {/* Image Frame */}
+              {/* Image Frame with B&W to Color on Hover */}
               <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-zinc-100 shadow-sm transition-all duration-500 group-hover:shadow-xl">
                 <img
                   src={project.image}
                   alt={project.title}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                  className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-108 transition-all duration-700 ease-out"
                 />
 
                 {/* Subtle Hover Overlay */}
-                <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-black/85 backdrop-blur-md px-3.5 py-1.5 rounded-full">
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-black/85 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-lg">
                     View Project <ArrowUpRight className="w-3.5 h-3.5 text-[#b8ff00]" />
                   </span>
                 </div>

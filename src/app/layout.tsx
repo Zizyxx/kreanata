@@ -14,18 +14,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kreanata — Creative Digital Agency & Production Studio",
+  title: "Kreanata — Production House & Creative Visual Studio",
   description:
-    "We're a creative digital agency and production studio specializing in unique visual experiences, event documentation, commercial cinematography, branding, and modern web development.",
+    "Kreanata adalah production house dan creative studio berbasis di Jakarta yang siap melayani seluruh wilayah Jabodetabek. Menghadirkan dokumentasi acara, fotografi komersial, produksi video sinematik, desain identitas visual, dan pengembangan website.",
   keywords: [
-    "Creative Agency",
-    "Digital Agency",
     "Production House",
-    "Web Design",
+    "Creative Studio",
     "Event Documentation",
-    "Cinematography",
-    "Branding",
+    "Dokumentasi Acara",
+    "Commercial Photography",
+    "Cinematic Video",
+    "Web Development",
     "Kreanata",
+    "Jakarta",
+    "Jabodetabek",
   ],
 };
 

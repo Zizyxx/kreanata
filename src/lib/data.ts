@@ -1,4 +1,4 @@
-// Mock data for Kreanata Creative Agency & Production Studio
+// Mock data for Kreanata Production House & Creative Visual Studio
 
 export interface ServiceItem {
   id: string;
@@ -91,44 +91,7 @@ export const projectsData: ProjectItem[] = [
   },
 ];
 
-export interface AwardItem {
-  id: number;
-  multiplier: string;
-  title: string;
-  organizer: string;
-  year: string;
-}
 
-export const awardsData: AwardItem[] = [
-  {
-    id: 1,
-    multiplier: "4X",
-    title: "Best Commercial Cinematography",
-    organizer: "Indonesian Film & Video Awards",
-    year: "2024",
-  },
-  {
-    id: 2,
-    multiplier: "3X",
-    title: "Site of the Day & UI Excellence",
-    organizer: "Awwwards",
-    year: "2024",
-  },
-  {
-    id: 3,
-    multiplier: "5X",
-    title: "Top Event Documentation Studio",
-    organizer: "Creative Media Index",
-    year: "2023",
-  },
-  {
-    id: 4,
-    multiplier: "2X",
-    title: "Brand Identity of the Year",
-    organizer: "Visual Design Annual",
-    year: "2023",
-  },
-];
 
 export interface TestimonialItem {
   id: number;
@@ -203,11 +166,10 @@ export const blogsData: BlogItem[] = [
 
 export const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "Agency", href: "#agency" },
-  { label: "Expertise", href: "#expertise" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#expertise" },
   { label: "Projects", href: "#projects" },
-  { label: "Awards", href: "#awards" },
-  { label: "Blog", href: "#blog" },
+  { label: "Articles", href: "#articles" },
   { label: "Contact", href: "#contact" },
 ];
 

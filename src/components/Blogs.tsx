@@ -10,7 +10,7 @@ export default function Blogs() {
   const t = translations[language].blogs;
 
   return (
-    <section id="blog" className="relative py-28 sm:py-36 bg-white overflow-hidden">
+    <section id="articles" className="relative py-28 sm:py-36 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         {/* Section Header with Entrance Animation */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-14">

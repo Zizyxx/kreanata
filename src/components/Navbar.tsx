@@ -40,7 +40,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
-        {/* Left: Minimalist Agency Logo mark */}
+        {/* Left: Minimalist Studio Logo mark */}
         <motion.a
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -80,7 +80,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right: Language Switcher (EN / ID) + Hire Agency Pill CTA */}
+        {/* Right: Language Switcher (EN / ID) + Start Project Pill CTA */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}

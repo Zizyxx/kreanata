@@ -159,7 +159,7 @@ export default function Hero() {
             className="flex items-center gap-1.5"
           >
             <Heart className="w-3.5 h-3.5 text-black fill-black shrink-0" />
-            <span>{t.tickerAward}</span>
+            <span>{t.tickerQuality}</span>
           </motion.div>
         </div>
       </motion.div>

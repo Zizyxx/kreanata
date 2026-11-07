@@ -10,7 +10,7 @@ export default function Footer() {
   const t = translations[language].footer;
 
   return (
-    <footer id="contact" className="relative pt-10 pb-16 bg-white overflow-hidden border-t border-zinc-100">
+    <footer id="contact" className="relative pt-10 pb-16 bg-white overflow-hidden border-t border-zinc-100 scroll-mt-24">
       {/* Giant "work together." Typography with In & Out Scroll Animation */}
       <motion.div
         variants={{

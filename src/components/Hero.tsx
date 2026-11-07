@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[90vh] sm:min-h-screen flex flex-col justify-between pt-28 sm:pt-36 pb-12 overflow-hidden bg-white"
+      className="relative min-h-[90vh] sm:min-h-screen flex flex-col justify-between pt-28 sm:pt-36 pb-12 overflow-hidden bg-white scroll-mt-24"
     >
       {/* Floating subtle particles / dots (exact matching reference image) */}
       <motion.div

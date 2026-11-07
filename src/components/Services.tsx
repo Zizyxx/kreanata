@@ -9,7 +9,7 @@ export default function Services() {
   const services = translations[language].services;
 
   return (
-    <section id="expertise" className="relative pt-20 pb-16 bg-white overflow-hidden">
+    <section id="expertise" className="relative pt-20 pb-16 bg-white overflow-hidden scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         {/* Row 1: 3 Numbered Columns Grid (01, 02, 03) with Scroll In & Out Animation */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">

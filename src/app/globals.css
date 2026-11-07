@@ -18,15 +18,12 @@ html {
   scroll-behavior: smooth;
   background-color: #ffffff;
   color: #111111;
-  overflow-x: hidden;
-  max-width: 100vw;
 }
 
 body {
   background-color: #ffffff;
   color: #111111;
   overflow-x: hidden;
-  max-width: 100vw;
   position: relative;
 }
 

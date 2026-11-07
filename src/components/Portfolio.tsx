@@ -12,7 +12,7 @@ export default function Portfolio() {
   const t = translations[language].portfolio;
 
   return (
-    <section id="projects" className="relative pt-16 pb-28 sm:pb-36 bg-white overflow-hidden">
+    <section id="projects" className="relative pt-16 pb-28 sm:pb-36 bg-white overflow-hidden scroll-mt-24">
       {/* Top Transition Bar: Giant "projects" + Clean Metadata Pill + Action Button */}
       <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="relative flex flex-col md:flex-row items-start md:items-end justify-between gap-6 pb-6 border-b border-zinc-100">

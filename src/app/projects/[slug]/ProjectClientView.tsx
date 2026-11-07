@@ -59,10 +59,12 @@ export default function ProjectClientView({ category }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
           {/* Left: Logo & Breadcrumbs */}
           <div className="flex items-center gap-3 sm:gap-6">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm tracking-tighter transition-transform duration-300 group-hover:scale-105">
-                <span className="text-[#ffe600]">k</span>.
-              </div>
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <img
+                src="https://res.cloudinary.com/xidvgvul/image/upload/v1794044011/Kreanata_Logo_Trial.png"
+                alt="Kreanata Logo"
+                className="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
               <span className="font-bold text-lg tracking-tight text-black hidden sm:inline">
                 Kreanata
               </span>

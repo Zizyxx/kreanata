@@ -52,9 +52,11 @@ export default function Navbar() {
           }}
           className="flex items-center gap-2.5 group"
         >
-          <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm tracking-tighter transition-transform duration-300 group-hover:scale-105">
-            <span className="text-[#ffe600]">k</span>.
-          </div>
+          <img
+            src="https://res.cloudinary.com/xidvgvul/image/upload/v1794044011/Kreanata_Logo_Trial.png"
+            alt="Kreanata Logo"
+            className="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
           <span className="font-bold text-lg tracking-tight text-black">
             Kreanata
           </span>

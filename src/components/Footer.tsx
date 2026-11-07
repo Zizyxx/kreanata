@@ -117,7 +117,14 @@ export default function Footer() {
             whileInView="visible"
             viewport={{ once: false, amount: 0.2 }}
           >
-            <div className="font-bold text-black mb-3 text-base">Kreanata Studio.</div>
+            <div className="flex items-center gap-2.5 mb-3">
+              <img
+                src="https://res.cloudinary.com/xidvgvul/image/upload/v1794044011/Kreanata_Logo_Trial.png"
+                alt="Kreanata Logo"
+                className="h-7 w-auto object-contain"
+              />
+              <span className="font-bold text-black text-base">Kreanata Studio.</span>
+            </div>
             <p className="leading-relaxed text-zinc-500">
               {t.studioDesc}
             </p>

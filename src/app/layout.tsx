@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "Kreanata — Production House & Creative Visual Studio",
   description:
     "Kreanata adalah production house dan creative studio berbasis di Jakarta yang siap melayani seluruh wilayah Jabodetabek. Menghadirkan dokumentasi acara, fotografi komersial, produksi video sinematik, desain identitas visual, dan pengembangan website.",
+  icons: {
+    icon: "https://res.cloudinary.com/xidvgvul/image/upload/v1794044011/Kreanata_Logo_Trial.png",
+    apple: "https://res.cloudinary.com/xidvgvul/image/upload/v1794044011/Kreanata_Logo_Trial.png",
+  },
   keywords: [
     "Production House",
     "Creative Studio",

@@ -56,9 +56,9 @@ export default function ProjectClientView({ category }: Props) {
     <div className="relative min-h-screen bg-white text-zinc-950 selection:bg-[#ffe600] selection:text-black">
       {/* Sticky Header with Breadcrumb & Back Navigation */}
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-zinc-100">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
           {/* Left: Logo & Breadcrumbs */}
-          <div className="flex items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-3 sm:gap-6">
             <Link href="/" className="flex items-center gap-2 group">
               <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-extrabold text-sm tracking-tighter transition-transform duration-300 group-hover:scale-105">
                 <span className="text-[#ffe600]">k</span>.
@@ -70,24 +70,24 @@ export default function ProjectClientView({ category }: Props) {
 
             <span className="text-zinc-300 hidden sm:inline">/</span>
 
-            <nav className="flex items-center gap-2 text-xs sm:text-sm font-medium text-zinc-500">
-              <Link href="/#projects" className="hover:text-black transition-colors">
+            <nav className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-zinc-500">
+              <Link href="/#projects" className="hover:text-black transition-colors hidden sm:inline">
                 {language === 'EN' ? 'Projects' : 'Proyek'}
               </Link>
-              <span>/</span>
-              <span className="text-black font-semibold uppercase tracking-wider text-[11px] sm:text-xs bg-zinc-100 px-2.5 py-0.5 rounded-full">
+              <span className="hidden sm:inline">/</span>
+              <span className="text-black font-semibold uppercase tracking-wider text-[10px] sm:text-xs bg-zinc-100 px-2.5 py-0.5 rounded-full">
                 {category.title[language]}
               </span>
             </nav>
           </div>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             {/* Language Switcher */}
-            <div className="flex items-center bg-zinc-100 p-1 rounded-full text-xs font-semibold">
+            <div className="flex items-center bg-zinc-100 p-0.5 sm:p-1 rounded-full text-[11px] sm:text-xs font-semibold">
               <button
                 onClick={() => setLanguage('EN')}
-                className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
+                className={`px-2 sm:px-2.5 py-1 rounded-full transition-all cursor-pointer ${
                   language === 'EN' ? 'bg-black text-[#ffe600] shadow-sm' : 'text-zinc-500 hover:text-black'
                 }`}
               >
@@ -95,7 +95,7 @@ export default function ProjectClientView({ category }: Props) {
               </button>
               <button
                 onClick={() => setLanguage('ID')}
-                className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
+                className={`px-2 sm:px-2.5 py-1 rounded-full transition-all cursor-pointer ${
                   language === 'ID' ? 'bg-black text-[#ffe600] shadow-sm' : 'text-zinc-500 hover:text-black'
                 }`}
               >
@@ -106,10 +106,11 @@ export default function ProjectClientView({ category }: Props) {
             {/* Back to Home Button */}
             <Link
               href="/#projects"
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold border border-zinc-200 hover:border-black rounded-full px-4 py-2 text-black transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold border border-zinc-200 hover:border-black rounded-full p-2 sm:px-4 sm:py-2 text-black transition-colors"
+              title={language === 'EN' ? 'Back to Home' : 'Kembali'}
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span className="hidden md:inline">{language === 'EN' ? 'Back to Home' : 'Kembali'}</span>
+              <span className="hidden md:inline">{language === 'EN' ? 'Back' : 'Kembali'}</span>
             </Link>
 
             {/* CTA Button */}
@@ -117,7 +118,8 @@ export default function ProjectClientView({ category }: Props) {
               href="https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20layanan%20portofolio%20ini"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#ffe600] hover:text-black rounded-full px-4 sm:px-5 py-2 text-xs font-semibold tracking-tight transition-colors"
+              className="inline-flex items-center gap-1.5 bg-black text-white hover:bg-[#ffe600] hover:text-black rounded-full px-3.5 sm:px-5 py-2 text-xs font-semibold tracking-tight transition-colors"
+              title={language === 'EN' ? 'Start Project' : 'Mulai Proyek'}
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{language === 'EN' ? 'Start Project' : 'Mulai Proyek'}</span>
@@ -127,9 +129,9 @@ export default function ProjectClientView({ category }: Props) {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-24">
+      <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-10 sm:py-24">
         {/* Category Hero Banner */}
-        <div className="relative border-b border-zinc-200 pb-16 sm:pb-20">
+        <div className="relative border-b border-zinc-200 pb-10 sm:pb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -182,7 +184,7 @@ export default function ProjectClientView({ category }: Props) {
         </div>
 
         {/* Section Header & Sub-Category Filters */}
-        <div className="mt-14 sm:mt-18 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-10">
+        <div className="mt-10 sm:mt-18 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6 mb-8 sm:mb-10">
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold text-black tracking-tight">
               {language === 'EN' ? 'Curated Visual Archive' : 'Katalog Karya Pilihan'}
@@ -194,35 +196,35 @@ export default function ProjectClientView({ category }: Props) {
             </p>
           </div>
 
-          {/* 2 Kategori Khusus Fotografi: Photoshoot & Dokumentasi */}
+          {/* 2 Kategori Khusus Fotografi: Photoshoot & Dokumentasi (Responsive Segmented Control) */}
           {isPhoto ? (
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 p-1.5 bg-zinc-100 rounded-full border border-zinc-200">
+            <div className="w-full md:w-auto p-1 bg-zinc-100 rounded-2xl md:rounded-full border border-zinc-200/90 shadow-xs flex items-center">
               <button
                 onClick={() => setPhotoFilter('photoshoot')}
-                className={`px-5 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`flex-1 md:flex-initial px-3 sm:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-center transition-all cursor-pointer whitespace-nowrap ${
                   photoFilter === 'photoshoot'
-                    ? 'bg-black text-[#ffe600] shadow-md'
-                    : 'text-zinc-600 hover:text-black hover:bg-zinc-200/70'
+                    ? 'bg-black text-[#ffe600] shadow-sm'
+                    : 'text-zinc-600 hover:text-black hover:bg-zinc-200/60'
                 }`}
               >
                 Photoshoot
               </button>
               <button
                 onClick={() => setPhotoFilter('dokumentasi')}
-                className={`px-5 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`flex-1 md:flex-initial px-3 sm:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-center transition-all cursor-pointer whitespace-nowrap ${
                   photoFilter === 'dokumentasi'
-                    ? 'bg-black text-[#ffe600] shadow-md'
-                    : 'text-zinc-600 hover:text-black hover:bg-zinc-200/70'
+                    ? 'bg-black text-[#ffe600] shadow-sm'
+                    : 'text-zinc-600 hover:text-black hover:bg-zinc-200/60'
                 }`}
               >
                 {language === 'EN' ? 'Documentation' : 'Dokumentasi'}
               </button>
               <button
                 onClick={() => setPhotoFilter('all')}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`flex-1 md:flex-initial px-3 sm:px-5 py-2.5 md:py-2 rounded-xl md:rounded-full text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-center transition-all cursor-pointer whitespace-nowrap ${
                   photoFilter === 'all'
-                    ? 'bg-black text-[#ffe600] shadow-md'
-                    : 'text-zinc-600 hover:text-black hover:bg-zinc-200/70'
+                    ? 'bg-black text-[#ffe600] shadow-sm'
+                    : 'text-zinc-600 hover:text-black hover:bg-zinc-200/60'
                 }`}
               >
                 {language === 'EN' ? 'All' : 'Semua'}
@@ -447,10 +449,10 @@ export default function ProjectClientView({ category }: Props) {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-colors cursor-pointer z-50"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-colors cursor-pointer z-50"
                 aria-label="Close"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
               {/* Prev / Next Navigation Controls */}
@@ -463,10 +465,10 @@ export default function ProjectClientView({ category }: Props) {
                       const prevIdx = (currIdx - 1 + displayedProjects.length) % displayedProjects.length;
                       setSelectedProject(displayedProjects[prevIdx]);
                     }}
-                    className="absolute left-3 sm:left-8 top-1/2 -translate-y-1/2 p-3 sm:p-3.5 rounded-full bg-white/10 hover:bg-[#ffe600] hover:text-black text-white backdrop-blur-md transition-all cursor-pointer z-50"
+                    className="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 p-2.5 sm:p-3.5 rounded-full bg-white/10 hover:bg-[#ffe600] hover:text-black text-white backdrop-blur-md transition-all cursor-pointer z-50"
                     aria-label="Previous photo"
                   >
-                    <ChevronLeft className="w-6 h-6" />
+                    <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
 
                   <button
@@ -476,10 +478,10 @@ export default function ProjectClientView({ category }: Props) {
                       const nextIdx = (currIdx + 1) % displayedProjects.length;
                       setSelectedProject(displayedProjects[nextIdx]);
                     }}
-                    className="absolute right-3 sm:right-8 top-1/2 -translate-y-1/2 p-3 sm:p-3.5 rounded-full bg-white/10 hover:bg-[#ffe600] hover:text-black text-white backdrop-blur-md transition-all cursor-pointer z-50"
+                    className="absolute right-2 sm:right-8 top-1/2 -translate-y-1/2 p-2.5 sm:p-3.5 rounded-full bg-white/10 hover:bg-[#ffe600] hover:text-black text-white backdrop-blur-md transition-all cursor-pointer z-50"
                     aria-label="Next photo"
                   >
-                    <ChevronRight className="w-6 h-6" />
+                    <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
                 </>
               )}

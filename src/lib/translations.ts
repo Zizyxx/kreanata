@@ -7,23 +7,6 @@ export interface ServiceTranslation {
   description: string;
 }
 
-export interface ProjectTranslation {
-  id: number;
-  title: string;
-  category: string;
-  client: string;
-  image: string;
-}
-
-export interface EventTranslation {
-  id: number;
-  category: string;
-  date: string;
-  title: string;
-  location: string;
-  image: string;
-}
-
 export const translations = {
   EN: {
     nav: {
@@ -94,48 +77,6 @@ export const translations = {
       subtitle: "Film, Photography & Digital Platforms",
       exploreBtn: "EXPLORE ALL WORKS",
       viewProject: "View Project",
-      clientLabel: "Client:",
-      modalCta: "Start Similar Project",
-      modalDesc: "Created with care and dedication by Kreanata Studio. Every detail reflects our commitment to modern aesthetics, thoughtful composition, and impactful brand communication.",
-    },
-    events: {
-      title: "Events",
-      subtitle: "Curated Event Documentation Archive",
-      exploreBtn: "EXPLORE ALL EVENTS",
-      list: [
-        {
-          id: 1,
-          category: "MUSIC FESTIVAL",
-          date: "OCTOBER 2024",
-          title: "Soundwave Electronic Music Festival Coverage",
-          location: "GBK Senayan, Jakarta",
-          image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-          id: 2,
-          category: "TECH SUMMIT",
-          date: "OCTOBER 2024",
-          title: "Nusantara Digital & Creative Leaders Conference",
-          location: "ICE BSD, Tangerang",
-          image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-          id: 3,
-          category: "BRAND LAUNCH",
-          date: "OCTOBER 2024",
-          title: "Aura Luxury Fashion & Design Premiere",
-          location: "SCBD, Jakarta Selatan",
-          image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-          id: 4,
-          category: "CULTURAL GALA",
-          date: "OCTOBER 2024",
-          title: "Jakarta Visual Arts & Cinematography Showcase",
-          location: "Taman Ismail Marzuki, Jakarta",
-          image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
-        },
-      ] as EventTranslation[],
     },
     footer: {
       inquiryTitle: "Ready to create something remarkable?",
@@ -227,48 +168,6 @@ export const translations = {
       subtitle: "Film, Fotografi & Platform Digital",
       exploreBtn: "LIHAT SEMUA KARYA",
       viewProject: "Lihat Proyek",
-      clientLabel: "Klien:",
-      modalCta: "Mulai Proyek Serupa",
-      modalDesc: "Dikerjakan dengan dedikasi dan perhatian penuh oleh Kreanata Studio. Setiap detail dirancang untuk memberikan visual yang rapi, profesional, dan berdaya pikat.",
-    },
-    events: {
-      title: "Event",
-      subtitle: "Arsip Dokumentasi Acara & Festival",
-      exploreBtn: "JELAJAHI SEMUA EVENT",
-      list: [
-        {
-          id: 1,
-          category: "FESTIVAL MUSIK",
-          date: "OKTOBER 2024",
-          title: "Dokumentasi Soundwave Electronic Music Festival",
-          location: "GBK Senayan, Jakarta",
-          image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-          id: 2,
-          category: "KONFERENSI TEKNOLOGI",
-          date: "OKTOBER 2024",
-          title: "Dokumentasi Nusantara Digital & Creative Summit",
-          location: "ICE BSD, Tangerang",
-          image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-          id: 3,
-          category: "PELUNCURAN BRAND",
-          date: "OKTOBER 2024",
-          title: "Dokumentasi Eksklusif Aura Luxury Fashion Premiere",
-          location: "SCBD, Jakarta Selatan",
-          image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
-        },
-        {
-          id: 4,
-          category: "GALA KREATIF",
-          date: "OKTOBER 2024",
-          title: "Dokumentasi Malam Penghargaan Seni Visual Jakarta",
-          location: "Taman Ismail Marzuki, Jakarta",
-          image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
-        },
-      ] as EventTranslation[],
     },
     footer: {
       inquiryTitle: "Siap mewujudkan karya luar biasa?",

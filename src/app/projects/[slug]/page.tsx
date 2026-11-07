@@ -12,11 +12,9 @@ export function generateStaticParams() {
   return [
     { slug: 'fotografi' },
     { slug: 'videografi' },
-    { slug: 'desain' },
     { slug: 'website' },
     { slug: 'photography' },
     { slug: 'videography' },
-    { slug: 'design' },
   ];
 }
 

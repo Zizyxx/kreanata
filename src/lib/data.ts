@@ -76,7 +76,7 @@ export const projectsData: ProjectItem[] = [
     title: "Videografi",
     category: "Videografi",
     client: "Iklan & Aftermovie",
-    image: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80",
+    image: "https://img.youtube.com/vi/_b2or8uboDA/maxresdefault.jpg",
     link: "/projects/videografi",
   },
   {

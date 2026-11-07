@@ -1,6 +1,7 @@
 export interface PortfolioProject {
   id: string;
   categoryType?: 'dokumentasi' | 'photoshoot';
+  youtubeId?: string;
   title: {
     EN: string;
     ID: string;
@@ -511,138 +512,75 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
       EN: 'From concept storyboard, scriptwriting, and multi-camera 4K/6K cinematography to color grading in DaVinci Resolve and sound design. We produce moving pictures that engage and inspire.',
       ID: 'Dari storyboard konsep, naskah narasi, pengambilan gambar multi-kamera 4K/6K, hingga color grading DaVinci Resolve dan tata suara. Kami menghadirkan karya visual bergerak yang memikat.',
     },
-    heroImage: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80',
+    heroImage: 'https://img.youtube.com/vi/_b2or8uboDA/maxresdefault.jpg',
     projects: [
       {
-        id: 'video-1',
+        id: 'video-mahardika',
+        youtubeId: 'mdtKpwB-A00',
         title: {
-          EN: 'Luminaire Chrono TVC Brand Film',
-          ID: 'Film Komersial TVC Luminaire Chrono',
+          EN: 'After Movie Mahardika Batch 8',
+          ID: 'After Movie Mahardika Batch 8',
         },
-        client: 'Luminaire Geneve',
+        client: 'Mahardika Batch 8',
         year: '2024',
         tags: {
-          EN: ['Commercial TVC', 'Cinema 6K', 'DaVinci Grading'],
-          ID: ['Iklan TVC', 'Sinema 6K', 'Grading DaVinci'],
+          EN: ['Cinematic Aftermovie', 'Event Coverage', 'DaVinci Resolve'],
+          ID: ['Aftermovie Sinematik', 'Dokumentasi Acara', 'Grading DaVinci'],
         },
         description: {
-          EN: 'A 60-second broadcast commercial blending high-speed precision footage, dramatic shadows, and orchestral sound design.',
-          ID: 'Iklan komersial 60 detik beresolusi 6K yang memadukan rekaman kecepatan tinggi, kontras bayangan dramatis, dan tata musik orkestra.',
+          EN: 'Official cinematic aftermovie documentation of Mahardika Batch 8 produced by Kreanata. Capturing emotional moments, camaraderie, and memorable event milestones.',
+          ID: 'Produksi dokumentasi aftermovie sinematik resmi Mahardika Batch 8 oleh Kreanata. Menangkap momen penuh energi, kebersamaan, dan perayaan kelulusan berkesan.',
         },
-        image: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=800&q=80',
+        image: 'https://img.youtube.com/vi/mdtKpwB-A00/maxresdefault.jpg',
         highlights: {
-          EN: ['High-speed 120fps motion tracking', 'Custom DaVinci Resolve film LUT', 'Dolby 5.1 surround master mix'],
-          ID: ['Pelacakan gerak 120fps kecepatan tinggi', 'Formula warna LUT film khusus', 'Master audio Dolby 5.1'],
+          EN: ['Cinema-grade camera optics', 'Dynamic narrative pacing & custom sound design', 'Broadcast color grading in DaVinci Resolve'],
+          ID: ['Perekaman sinematik multi-sudut kamera', 'Pacing cerita dinamis dan tata musik berenergi', 'Formula warna sinematik DaVinci Resolve'],
         },
       },
       {
-        id: 'video-2',
+        id: 'video-teflin-aftermovie',
+        youtubeId: '_b2or8uboDA',
         title: {
-          EN: 'Soundwave Electronic Music Aftermovie',
-          ID: 'Aftermovie Festival Musik Elektronik Soundwave',
+          EN: 'After Movie The 72nd TEFLIN International Conference',
+          ID: 'After Movie The 72nd TEFLIN International Conference',
         },
-        client: 'Soundwave Live Indonesia',
+        client: 'TEFLIN International',
         year: '2024',
         tags: {
-          EN: ['Music Festival', 'Multi-Cam 4K', 'Drone Aerials'],
-          ID: ['Festival Musik', 'Multi-Kamera 4K', 'Sinematografi Drone'],
+          EN: ['International Conference', 'Aftermovie', 'Multi-Cam 4K'],
+          ID: ['Konferensi Internasional', 'Aftermovie', 'Multi-Kamera 4K'],
         },
         description: {
-          EN: 'Electrifying festival recap video featuring crowd energy, mainstage pyrotechnics, and dynamic drone cinematography over GBK.',
-          ID: 'Video recap festival musik penuh energi yang mengabadikan antusiasme penonton, tata lampu panggung utama, dan visual udara drone di GBK.',
+          EN: 'Cinema-grade aftermovie capturing plenary keynote sessions, international academic delegates, cultural performances, and gala evening of The 72nd TEFLIN Conference.',
+          ID: 'Aftermovie sinematik skala internasional merangkum sesi keynote, delegasi akademisi mancanegara, pertunjukan seni budaya, dan malam puncak The 72nd TEFLIN Conference.',
         },
-        image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80',
+        image: 'https://img.youtube.com/vi/_b2or8uboDA/maxresdefault.jpg',
         highlights: {
-          EN: ['FPV acrobatic drone capture', 'Multi-camera audio timecode sync', '48-hour rapid delivery highlights'],
-          ID: ['Perekaman drone akrobatik FPV', 'Sinkronisasi audio multi-kamera', 'Penyelesaian video kilat 48 jam'],
+          EN: ['Multi-angle stage & delegate coverage', 'Clear multi-channel audio master capture', 'Fast-turnaround high-production edit'],
+          ID: ['Liputan panggung dan delegasi multi-sudut', 'Perekaman audio multi-channel jernih', 'Hasil editing sinematik berkualitas tinggi'],
         },
       },
       {
-        id: 'video-3',
+        id: 'video-teflin-recap',
+        youtubeId: 'AKPjKTS7RYE',
         title: {
-          EN: 'Echoes of the Archipelago Documentary',
-          ID: 'Dokumenter Naratif Tradisi Nusantara',
+          EN: 'Recap Day 1 & Day 2 TEFLIN International Conference',
+          ID: 'Recap Day 1 & Day 2 The 72nd TEFLIN International Conference',
         },
-        client: 'Nusantara Heritage Foundation',
+        client: 'TEFLIN International',
         year: '2024',
         tags: {
-          EN: ['Mini-Documentary', 'Storytelling', 'Natural Sound'],
-          ID: ['Dokumenter Pendek', 'Kisah Narasi', 'Suara Alami'],
+          EN: ['Conference Recap', 'Event Highlights', 'Same-Day Production'],
+          ID: ['Recap Acara', 'Highlight Konferensi', 'Produksi Cepat'],
         },
         description: {
-          EN: 'A soulful documentary spotlighting master artisans carving traditional textiles and heritage crafts in authentic workshop environments.',
-          ID: 'Film dokumenter pendek yang mengangkat dedikasi perajin tradisional dalam melestarikan wastra tenun dan kriya warisan leluhur.',
+          EN: 'High-energy 2-day conference recap highlighting opening ceremony, parallel symposium workshops, attendee discussions, and interactive exhibitions.',
+          ID: 'Dokumentasi recap dua hari konferensi yang merangkum upacara pembukaan, simposium paralel, interaksi aktif peserta, dan pameran pendidikan.',
         },
-        image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80',
+        image: 'https://img.youtube.com/vi/AKPjKTS7RYE/maxresdefault.jpg',
         highlights: {
-          EN: ['Anamorphic lens warmth and flare', 'Organic soundscapes and ambient audio', 'Curated cultural exhibition screening'],
-          ID: ['Lensa anamorfin bernuansa hangat', 'Tata suara organik lingkungan asli', 'Penayangan eksklusif kurasi pameran'],
-        },
-      },
-      {
-        id: 'video-4',
-        title: {
-          EN: 'Jakarta Creative Week Teaser & Recap',
-          ID: 'Teaser & Recap Pekan Kreatif Jakarta',
-        },
-        client: 'DKI Creative Board',
-        year: '2024',
-        tags: {
-          EN: ['Event Teaser', 'Kinetic Motion', 'Urban Hyperlapse'],
-          ID: ['Teaser Acara', 'Gerak Kinetik', 'Hyperlapse Kota'],
-        },
-        description: {
-          EN: 'High-speed kinetic promotional video with hyperlapse urban sequences, typography integration, and fast-paced editorial cuts.',
-          ID: 'Video promosi cepat dengan urutan hyperlapse gedung perkotaan, tipografi kinetik, dan potongan editor dinamis berenergi tinggi.',
-        },
-        image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
-        highlights: {
-          EN: ['Custom motion graphics overlay', 'Night hyperlapse stabilization', 'Vertical 9:16 reels package included'],
-          ID: ['Grafis gerak tipografi kustom', 'Stabilisasi hyperlapse malam hari', 'Paket format vertikal media sosial'],
-        },
-      },
-      {
-        id: 'video-5',
-        title: {
-          EN: 'Artha Group Corporate Showcase Film',
-          ID: 'Film Profil Korporat Artha Group',
-        },
-        client: 'Artha Group Jakarta',
-        year: '2024',
-        tags: {
-          EN: ['Corporate Film', 'Interviews', 'Executive Story'],
-          ID: ['Film Korporat', 'Wawancara', 'Kisah Pemimpin'],
-        },
-        description: {
-          EN: 'A compelling brand profile film communicating vision, sustainable operations, and technological advancements to global stakeholders.',
-          ID: 'Film profil korporat yang mengomunikasikan visi masa depan, operasional berkelanjutan, dan kemajuan teknologi kepada mitra global.',
-        },
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-        highlights: {
-          EN: ['Three-point cinema lighting interview', 'Clean b-roll industrial footage', 'Bilingual subtitle master delivery'],
-          ID: ['Pencahayaan wawancara sinematik', 'Dokumentasi operasional industri', 'Master dua bahasa Inggris & Indonesia'],
-        },
-      },
-      {
-        id: 'video-6',
-        title: {
-          EN: 'Velox Automotive Night Commercial',
-          ID: 'Iklan Sinematik Malam Velox Automotive',
-        },
-        client: 'Velox Motors',
-        year: '2024',
-        tags: {
-          EN: ['Automotive Shoot', 'Night Aesthetics', 'Car Rigging'],
-          ID: ['Syuting Otomotif', 'Estetika Malam', 'Rigging Mobil'],
-        },
-        description: {
-          EN: 'Atmospheric car commercial filmed through Jakarta SCBD illuminated by neon reflections and high-speed chase camera rigs.',
-          ID: 'Iklan mobil atmosferik yang direkam melintasi jalanan SCBD Jakarta berhiaskan pantulan lampu malam menggunakan rig kamera kejar.',
-        },
-        image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80',
-        highlights: {
-          EN: ['Suction-mount car camera rig', 'Anamorphic blue streak lenses', 'Engine telemetry audio foley design'],
-          ID: ['Rig kamera khusus bodi mobil', 'Lensa anamorfin garis biru khas', 'Desain audio raungan mesin presisi'],
+          EN: ['Comprehensive 2-day conference coverage', 'Engaging pacing tailored for digital platforms', 'Multi-speaker keynote synchronisation'],
+          ID: ['Dokumentasi lengkap 2 hari rangkaian acara', 'Irama video memikat untuk publikasi digital', 'Sinkronisasi narasumber dan panggung utama'],
         },
       },
     ],

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin, ChevronLeft, ChevronRight, Play, ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { type PortfolioCategory, type PortfolioProject, portfolioCategories } from '@/lib/portfolioData';
 import { getPreviewImageUrl, getFullResImageUrl } from '@/lib/imageOptimization';
@@ -269,8 +269,8 @@ export default function ProjectClientView({ category }: Props) {
             ))}
           </div>
         ) : (
-          /* Other 3 Pillars: Detailed Case Study Grid */
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+          /* Other Disciplines: Detailed Case Study / Embedded Video Grid */
+          <div className={category.slug === 'videografi' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8' : 'grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10'}>
             {displayedProjects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -278,38 +278,65 @@ export default function ProjectClientView({ category }: Props) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                onClick={() => setSelectedProject(project)}
-                className="group cursor-pointer flex flex-col bg-white border border-zinc-200 hover:border-black rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl"
+                className="group flex flex-col bg-white border border-zinc-200 hover:border-black rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl"
               >
-                {/* Media Image Frame: B&W by default, vivid color on hover */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
-                  <img
-                    src={getPreviewImageUrl(project.image)}
-                    alt={project.title[language]}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
-                  />
-
-                  {/* Top Badge: Client & Year */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="text-[11px] font-bold text-black bg-white/95 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
-                      {project.client} • {project.year}
-                    </span>
+                {/* Media Image Frame or Direct Video Player */}
+                {project.youtubeId ? (
+                  <div className="relative aspect-video w-full bg-black overflow-hidden shadow-inner">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${project.youtubeId}?rel=0&modestbranding=1`}
+                      title={project.title[language]}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                      loading="lazy"
+                    />
                   </div>
+                ) : (
+                  <div
+                    onClick={() => setSelectedProject(project)}
+                    className="relative aspect-[16/10] overflow-hidden bg-zinc-100 cursor-pointer"
+                  >
+                    <img
+                      src={getPreviewImageUrl(project.image)}
+                      alt={project.title[language]}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                    />
 
-                  {/* Hover Overlay Button */}
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
-                    <span className="inline-flex items-center gap-2 text-xs font-bold text-black bg-[#ffe600] px-4 py-2 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      {language === 'EN' ? 'Preview Details' : 'Lihat Detail Proyek'}
-                      <ArrowUpRight className="w-3.5 h-3.5 text-black" />
-                    </span>
+                    {/* Top Badge: Client & Year */}
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="text-[11px] font-bold text-black bg-white/95 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
+                        {project.client} • {project.year}
+                      </span>
+                    </div>
+
+                    {/* Hover Overlay Button */}
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+                      <span className="inline-flex items-center gap-2 text-xs font-bold text-black bg-[#ffe600] px-4 py-2 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        {language === 'EN' ? 'Preview Details' : 'Lihat Detail Proyek'}
+                        <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Information Body */}
                 <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                   <div>
+                    {/* Video Header Badges */}
+                    {project.youtubeId && (
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <span className="text-[11px] font-bold text-zinc-700 bg-zinc-100 px-3 py-1 rounded-full">
+                          {project.client} • {project.year}
+                        </span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-black bg-[#ffe600] px-2.5 py-0.5 rounded-full">
+                          Video 1080p
+                        </span>
+                      </div>
+                    )}
+
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-3">
                       {project.tags[language].map((tag) => (
@@ -323,7 +350,10 @@ export default function ProjectClientView({ category }: Props) {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-bold text-black leading-snug group-hover:text-zinc-600 transition-colors">
+                    <h3
+                      onClick={() => setSelectedProject(project)}
+                      className="text-xl sm:text-2xl font-bold text-black leading-snug group-hover:text-zinc-600 transition-colors cursor-pointer"
+                    >
                       {project.title[language]}
                     </h3>
 
@@ -347,6 +377,31 @@ export default function ProjectClientView({ category }: Props) {
                           </li>
                         ))}
                       </ul>
+                    </div>
+                  )}
+
+                  {/* Video Actions Footer */}
+                  {project.youtubeId && (
+                    <div className="mt-5 pt-4 border-t border-zinc-100 flex items-center justify-between gap-3">
+                      <a
+                        href={`https://www.youtube.com/watch?v=${project.youtubeId}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-700 hover:text-red-600 transition-colors"
+                      >
+                        <Play className="w-3.5 h-3.5 fill-red-600 text-red-600" />
+                        <span>{language === 'EN' ? 'Open in YouTube' : 'Buka di YouTube'}</span>
+                        <ExternalLink className="w-3 h-3 text-zinc-400" />
+                      </a>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedProject(project)}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-[#ffe600] transition-colors ml-auto cursor-pointer"
+                      >
+                        <span>{language === 'EN' ? 'Theater View' : 'Mode Bioskop'}</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   )}
                 </div>
@@ -530,14 +585,26 @@ export default function ProjectClientView({ category }: Props) {
                   <X className="w-5 h-5" />
                 </button>
 
-                {/* Full Image Preview */}
-                <div className="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
-                  <img
-                    src={getFullResImageUrl(selectedProject.image)}
-                    alt={selectedProject.title[language]}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                {/* Full Video or Image Preview */}
+                {selectedProject.youtubeId ? (
+                  <div className="w-full aspect-video rounded-2xl overflow-hidden bg-black mb-6 shadow-xl">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${selectedProject.youtubeId}?autoplay=1&rel=0`}
+                      title={selectedProject.title[language]}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
+                    <img
+                      src={getFullResImageUrl(selectedProject.image)}
+                      alt={selectedProject.title[language]}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
 
                 {/* Header & Inquire */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-5 mb-5">

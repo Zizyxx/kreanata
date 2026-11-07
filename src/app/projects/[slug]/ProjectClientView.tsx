@@ -246,13 +246,13 @@ export default function ProjectClientView({ category }: Props) {
           ) : (
             <div className="text-xs text-zinc-400 font-medium hidden sm:block">
               {isVideo
-                ? (language === 'EN' ? 'Click video to enter cinema theater mode' : 'Klik video untuk memutar dalam mode bioskop')
+                ? (language === 'EN' ? 'Click any video to play' : 'Klik video untuk memutar')
                 : (language === 'EN' ? 'Hover to reveal color • Click for full preview' : 'Arahkan kursor untuk warna • Klik untuk detail')}
             </div>
           )}
         </div>
 
-        {/* Theater Mode Cinema Stage (In-Page on same page, NOT a popup) */}
+        {/* Video Player Cinema Stage (In-Page on same page, NOT a popup) */}
         <AnimatePresence>
           {isVideo && activeTheaterVideo && (
             <motion.div
@@ -264,26 +264,19 @@ export default function ProjectClientView({ category }: Props) {
               className="mb-12 overflow-hidden"
             >
               <div className="bg-zinc-950 text-white rounded-3xl p-4 sm:p-7 shadow-2xl border border-zinc-800">
-                {/* Top Cinema Bar */}
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-zinc-800/80">
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#ffe600] animate-pulse" />
-                    <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-black bg-[#ffe600] px-3 py-1 rounded-full">
-                      {language === 'EN' ? 'Cinema Theater Mode' : 'Mode Bioskop • Sedang Tayang'}
-                    </span>
-                  </div>
-
+                {/* Top Action: Close Button */}
+                <div className="flex items-center justify-end pb-3 mb-3 border-b border-zinc-800/80">
                   <button
                     onClick={() => setActiveTheaterVideo(null)}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-zinc-400 hover:text-white transition-colors px-3 py-1.5 rounded-full hover:bg-zinc-800 cursor-pointer"
-                    aria-label="Tutup Mode Bioskop"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-400 hover:text-white transition-colors px-3 py-1.5 rounded-full hover:bg-zinc-800 cursor-pointer"
+                    aria-label="Tutup"
                   >
-                    <span>{language === 'EN' ? 'Close Theater' : 'Tutup Mode Bioskop'}</span>
+                    <span>{language === 'EN' ? 'Close' : 'Tutup'}</span>
                     <X className="w-4 h-4" />
                   </button>
                 </div>
 
-                {/* Grand 16:9 Cinema Screen */}
+                {/* Grand 16:9 Screen */}
                 <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-2xl">
                   <iframe
                     src={`https://www.youtube-nocookie.com/embed/${activeTheaterVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
@@ -294,7 +287,7 @@ export default function ProjectClientView({ category }: Props) {
                   />
                 </div>
 
-                {/* Cinema Video Header Below Screen */}
+                {/* Video Header Below Screen */}
                 <div className="mt-5 pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">

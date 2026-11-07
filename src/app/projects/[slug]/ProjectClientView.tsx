@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin, ChevronLeft, ChevronRight, Play, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { type PortfolioCategory, type PortfolioProject, portfolioCategories } from '@/lib/portfolioData';
 import { getPreviewImageUrl, getFullResImageUrl } from '@/lib/imageOptimization';
@@ -269,20 +269,21 @@ export default function ProjectClientView({ category }: Props) {
             ))}
           </div>
         ) : (
-          /* Other Disciplines: Detailed Case Study / Embedded Video Grid */
+          /* Other Disciplines: Video Embed Grid / Case Study Grid */
           <div className={category.slug === 'videografi' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8' : 'grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10'}>
-            {displayedProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group flex flex-col bg-white border border-zinc-200 hover:border-black rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl"
-              >
-                {/* Media Image Frame or Direct Video Player */}
-                {project.youtubeId ? (
-                  <div className="relative aspect-video w-full bg-black overflow-hidden shadow-inner">
+            {displayedProjects.map((project, index) =>
+              project.youtubeId ? (
+                /* Pure Minimalist Video Card: ONLY Video Embed + Title, ZERO borders, ZERO background */
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col gap-3 group"
+                >
+                  {/* Clean Frameless 16:9 Video Embed Player */}
+                  <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-sm">
                     <iframe
                       src={`https://www.youtube-nocookie.com/embed/${project.youtubeId}?rel=0&modestbranding=1`}
                       title={project.title[language]}
@@ -292,7 +293,22 @@ export default function ProjectClientView({ category }: Props) {
                       loading="lazy"
                     />
                   </div>
-                ) : (
+
+                  {/* Title Only - Bold, Minimalist Typography */}
+                  <h3 className="text-base sm:text-lg font-bold text-black leading-snug">
+                    {project.title[language]}
+                  </h3>
+                </motion.div>
+              ) : (
+                /* Standard Case Study Card (e.g. Website) */
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="group flex flex-col bg-white border border-zinc-200 hover:border-black rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl"
+                >
                   <div
                     onClick={() => setSelectedProject(project)}
                     className="relative aspect-[16/10] overflow-hidden bg-zinc-100 cursor-pointer"
@@ -320,93 +336,56 @@ export default function ProjectClientView({ category }: Props) {
                       </span>
                     </div>
                   </div>
-                )}
 
-                {/* Information Body */}
-                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
-                  <div>
-                    {/* Video Header Badges */}
-                    {project.youtubeId && (
-                      <div className="flex items-center justify-between gap-2 mb-3">
-                        <span className="text-[11px] font-bold text-zinc-700 bg-zinc-100 px-3 py-1 rounded-full">
-                          {project.client} • {project.year}
-                        </span>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-black bg-[#ffe600] px-2.5 py-0.5 rounded-full">
-                          Video 1080p
-                        </span>
+                  {/* Information Body */}
+                  <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                    <div>
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {project.tags[language].map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] font-semibold text-zinc-600 bg-zinc-100 px-2.5 py-0.5 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Title */}
+                      <h3
+                        onClick={() => setSelectedProject(project)}
+                        className="text-xl sm:text-2xl font-bold text-black leading-snug group-hover:text-zinc-600 transition-colors cursor-pointer"
+                      >
+                        {project.title[language]}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="mt-3 text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                        {project.description[language]}
+                      </p>
+                    </div>
+
+                    {/* Key Deliverables Highlights */}
+                    {project.highlights && (
+                      <div className="mt-5 pt-4 border-t border-zinc-100">
+                        <div className="text-[11px] font-bold uppercase tracking-wider text-black mb-2">
+                          {language === 'EN' ? 'Key Deliverables' : 'Fitur & Hasil Produksi'}
+                        </div>
+                        <ul className="space-y-1.5">
+                          {project.highlights[language].map((hl) => (
+                            <li key={hl} className="text-xs text-zinc-500 flex items-center gap-2">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-[#ffe600] fill-black shrink-0" />
+                              <span>{hl}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     )}
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {project.tags[language].map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-[10px] font-semibold text-zinc-600 bg-zinc-100 px-2.5 py-0.5 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Title */}
-                    <h3
-                      onClick={() => setSelectedProject(project)}
-                      className="text-xl sm:text-2xl font-bold text-black leading-snug group-hover:text-zinc-600 transition-colors cursor-pointer"
-                    >
-                      {project.title[language]}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="mt-3 text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                      {project.description[language]}
-                    </p>
                   </div>
-
-                  {/* Key Deliverables Highlights */}
-                  {project.highlights && (
-                    <div className="mt-5 pt-4 border-t border-zinc-100">
-                      <div className="text-[11px] font-bold uppercase tracking-wider text-black mb-2">
-                        {language === 'EN' ? 'Key Deliverables' : 'Fitur & Hasil Produksi'}
-                      </div>
-                      <ul className="space-y-1.5">
-                        {project.highlights[language].map((hl) => (
-                          <li key={hl} className="text-xs text-zinc-500 flex items-center gap-2">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#ffe600] fill-black shrink-0" />
-                            <span>{hl}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {/* Video Actions Footer */}
-                  {project.youtubeId && (
-                    <div className="mt-5 pt-4 border-t border-zinc-100 flex items-center justify-between gap-3">
-                      <a
-                        href={`https://www.youtube.com/watch?v=${project.youtubeId}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-700 hover:text-red-600 transition-colors"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-red-600 text-red-600" />
-                        <span>{language === 'EN' ? 'Open in YouTube' : 'Buka di YouTube'}</span>
-                        <ExternalLink className="w-3 h-3 text-zinc-400" />
-                      </a>
-
-                      <button
-                        type="button"
-                        onClick={() => setSelectedProject(project)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-[#ffe600] transition-colors ml-auto cursor-pointer"
-                      >
-                        <span>{language === 'EN' ? 'Theater View' : 'Mode Bioskop'}</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              )
+            )}
           </div>
         )}
 

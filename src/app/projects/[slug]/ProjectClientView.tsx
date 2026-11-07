@@ -46,8 +46,8 @@ export default function ProjectClientView({ category }: Props) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedProject, isPhoto, displayedProjects]);
 
-  // Canonical 4 pillars for cross-navigation
-  const canonicalSlugs = ['fotografi', 'videografi', 'desain', 'website'];
+  // Canonical active pillars for cross-navigation
+  const canonicalSlugs = ['fotografi', 'videografi', 'website'];
   const otherCategories = canonicalSlugs
     .filter((s) => s !== category.slug && s !== (category.slug === 'photography' ? 'fotografi' : ''))
     .map((s) => portfolioCategories[s]);
@@ -368,7 +368,7 @@ export default function ProjectClientView({ category }: Props) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {otherCategories.map((other) => (
               <Link
                 key={other.slug}

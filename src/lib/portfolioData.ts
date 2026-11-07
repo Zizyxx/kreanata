@@ -496,8 +496,8 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
     slug: 'videografi',
     number: '02',
     title: {
-      EN: 'Cinematic Films & Commercial Videography',
-      ID: 'Videografi Sinematik & Film Komersial',
+      EN: 'Videography',
+      ID: 'Videografi',
     },
     subtitle: {
       EN: 'Broadcast TVCs, brand films, narrative mini-documentaries, and high-energy festival aftermovies.',
@@ -806,10 +806,10 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
 
   website: {
     slug: 'website',
-    number: '04',
+    number: '03',
     title: {
-      EN: 'Modern Interactive Web Development',
-      ID: 'Pengembangan Website Modern & Interaktif',
+      EN: 'Website',
+      ID: 'Website',
     },
     subtitle: {
       EN: 'High-performance interactive web platforms built with Next.js, Framer Motion, and conversion-focused UX architecture.',

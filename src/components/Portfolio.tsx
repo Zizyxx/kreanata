@@ -76,8 +76,8 @@ export default function Portfolio() {
           </motion.div>
         </div>
 
-        {/* 4-Column Horizontal Project Gallery Cards with In & Out Staggered Scroll */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 sm:mt-16">
+        {/* 3-Column Horizontal Project Gallery Cards with In & Out Staggered Scroll */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 sm:mt-16">
           {projectsData.map((project, index) => (
             <motion.div
               key={project.id}

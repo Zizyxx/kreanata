@@ -66,7 +66,7 @@ export const projectsData: ProjectItem[] = [
     title: "Fotografi",
     category: "Fotografi",
     client: "Katalog & Lookbook",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    image: "https://res.cloudinary.com/xidvgvul/image/upload/w_2400,c_limit,f_auto,q_auto/v1794042146/drinks-11.jpg",
     link: "/projects/fotografi",
   },
   {

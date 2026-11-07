@@ -66,7 +66,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
       EN: 'Cinema-grade optics, controlled studio lighting, and meticulous composition for live documentation and photoshoot sessions.',
       ID: 'Kamera optik cinema, tata cahaya studio presisi, dan komposisi detail untuk dokumentasi dan photoshoot.',
     },
-    heroImage: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794042151/adia-6.jpg',
+    heroImage: 'https://res.cloudinary.com/xidvgvul/image/upload/w_2400,c_limit,f_auto,q_auto/v1794042146/drinks-11.jpg',
     projects: [
       // Photoshoot (Cloudinary CDN - Folder: photoshoot)
       {

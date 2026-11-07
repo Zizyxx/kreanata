@@ -45,28 +45,32 @@ export default function Hero() {
         className="absolute top-52 right-[22%] w-1.5 h-1.5 rounded-full bg-black/40 pointer-events-none"
       />
 
-      {/* Giant Edge-to-Edge Background Word "creative" with Entrance & Exit Scroll Animation */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
-        <motion.span
-          variants={{
-            hidden: { scale: 0.9, opacity: 0, y: 30, transition: { duration: 0.4, ease: 'easeIn' } },
-            visible: { scale: 1, opacity: 1, y: 0, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } },
-          }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.15 }}
-          className="text-[34vw] sm:text-[34vw] md:text-[35vw] lg:text-[35vw] xl:text-[36vw] font-bold text-[#ffe600] tracking-tighter leading-none whitespace-nowrap block text-center transform -translate-y-1 sm:-translate-y-2"
-          style={{
-            fontFamily: 'var(--font-sans), sans-serif',
-            letterSpacing: '-0.06em',
-          }}
-        >
-          creative
-        </motion.span>
-      </div>
-
-      {/* Main Hero Center Container with Sunburst & Foreground Headline */}
+      {/* Main Hero Center Container with Sunburst, Centered Background "creative", & Foreground Headline */}
       <div className="relative flex-1 flex items-center justify-center w-full max-w-7xl mx-auto px-4 sm:px-6 z-10">
+        {/* Giant Edge-to-Edge Background Word "creative" - Concentric with Sunburst */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 overflow-hidden">
+          <motion.div
+            variants={{
+              hidden: { scale: 0.9, opacity: 0, y: 15, transition: { duration: 0.4, ease: 'easeIn' } },
+              visible: { scale: 1, opacity: 1, y: 0, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.15 }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none select-none"
+          >
+            <span
+              className="text-[28vw] sm:text-[33vw] md:text-[34vw] lg:text-[35vw] xl:text-[36vw] font-bold text-[#ffe600] tracking-tighter leading-none whitespace-nowrap block text-center"
+              style={{
+                fontFamily: 'var(--font-sans), sans-serif',
+                letterSpacing: '-0.06em',
+              }}
+            >
+              creative
+            </span>
+          </motion.div>
+        </div>
+
         {/* Radiating Optical Sunburst Graphic with Scale & Spin Entrance & Exit */}
         <motion.div
           variants={{
@@ -78,7 +82,7 @@ export default function Hero() {
           viewport={{ once: false, amount: 0.15 }}
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
         >
-          <div className="relative w-[320px] sm:w-[440px] md:w-[540px] lg:w-[620px] h-[320px] sm:h-[440px] md:h-[540px] lg:h-[620px]">
+          <div className="relative w-[300px] sm:w-[440px] md:w-[540px] lg:w-[620px] h-[300px] sm:h-[440px] md:h-[540px] lg:h-[620px]">
             <svg
               viewBox="0 0 200 200"
               className="w-full h-full animate-spin-slow opacity-80"

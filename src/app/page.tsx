@@ -5,7 +5,6 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
-// import Events from "@/components/Events";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -25,7 +24,7 @@ export default function Home() {
         {/* Section 1: Hero (Giant 'creative' + Sunburst + Headline + Sub-bar) */}
         <Hero />
 
-        {/* Section 2: About (B&W Photo + Narrative + Giant 'about') */}
+        {/* Section 2: About (Freestanding Logo + Narrative + Giant 'about') */}
         <About />
 
         {/* Section 3: Services / Expertise (01, 02, 03 numbered columns) */}
@@ -33,12 +32,9 @@ export default function Home() {
 
         {/* Section 4: Projects (Giant 'projects' + 3 Cards) */}
         <Portfolio />
-
-        {/* Section 5: Events Showcase (temporarily hidden per user request) */}
-        {/* <Events /> */}
       </main>
 
-      {/* Section 6: Epic Footer CTA ('work together.') */}
+      {/* Section 5: Epic Footer CTA ('work together.') */}
       <Footer />
     </div>
   );

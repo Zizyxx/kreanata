@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin, ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, MessageCircle, X, MapPin, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { type PortfolioCategory, type PortfolioProject, portfolioCategories } from '@/lib/portfolioData';
 import { getPreviewImageUrl, getFullResImageUrl } from '@/lib/imageOptimization';
@@ -400,89 +400,55 @@ export default function ProjectClientView({ category }: Props) {
                   </h3>
                 </motion.div>
               ) : (
-                /* Standard Case Study Card (e.g. Website) */
+                /* Website Card: Preview + Website Name + Short Description, ZERO borders, ZERO clutter */
                 <motion.div
                   key={project.id}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group flex flex-col bg-white border border-zinc-200 hover:border-black rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl"
+                  transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col"
                 >
-                  <div
-                    onClick={() => setSelectedProject(project)}
-                    className="relative aspect-[16/10] overflow-hidden bg-zinc-100 cursor-pointer"
+                  <a
+                    href={project.projectUrl || '#'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col gap-3.5 cursor-pointer"
                   >
-                    <img
-                      src={getPreviewImageUrl(project.image)}
-                      alt={project.title[language]}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
-                    />
+                    {/* Frameless Website Preview with Clean Shadow */}
+                    <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-zinc-100 shadow-sm group-hover:shadow-xl transition-all duration-500">
+                      <img
+                        src={project.image}
+                        alt={project.title[language]}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-top filter grayscale contrast-[1.02] group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-700 ease-out"
+                      />
 
-                    {/* Top Badge: Client & Year */}
-                    <div className="absolute top-4 left-4 z-10">
-                      <span className="text-[11px] font-bold text-black bg-white/95 backdrop-blur-md px-3 py-1 rounded-full shadow-sm">
-                        {project.client} • {project.year}
-                      </span>
+                      {/* Hover Overlay Button */}
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
+                        <span className="inline-flex items-center gap-2 text-xs font-bold text-black bg-[#ffe600] px-5 py-2.5 rounded-full shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                          <span>{language === 'EN' ? 'Visit Website' : 'Kunjungi Website'}</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Hover Overlay Button */}
-                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-6">
-                      <span className="inline-flex items-center gap-2 text-xs font-bold text-black bg-[#ffe600] px-4 py-2 rounded-full shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                        {language === 'EN' ? 'Preview Details' : 'Lihat Detail Proyek'}
-                        <ArrowUpRight className="w-3.5 h-3.5 text-black" />
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Information Body */}
-                  <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
-                    <div>
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {project.tags[language].map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[10px] font-semibold text-zinc-600 bg-zinc-100 px-2.5 py-0.5 rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                    {/* Website Name & Short Description */}
+                    <div className="pt-1">
+                      <div className="flex items-center justify-between gap-2">
+                        <h3 className="text-xl sm:text-2xl font-bold text-black group-hover:text-zinc-600 transition-colors leading-snug">
+                          {project.title[language]}
+                        </h3>
+                        <span className="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center shrink-0 group-hover:bg-[#ffe600] transition-colors">
+                          <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                        </span>
                       </div>
 
-                      {/* Title */}
-                      <h3
-                        onClick={() => setSelectedProject(project)}
-                        className="text-xl sm:text-2xl font-bold text-black leading-snug group-hover:text-zinc-600 transition-colors cursor-pointer"
-                      >
-                        {project.title[language]}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="mt-3 text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                      <p className="mt-2 text-xs sm:text-sm text-zinc-600 leading-relaxed">
                         {project.description[language]}
                       </p>
                     </div>
-
-                    {/* Key Deliverables Highlights */}
-                    {project.highlights && (
-                      <div className="mt-5 pt-4 border-t border-zinc-100">
-                        <div className="text-[11px] font-bold uppercase tracking-wider text-black mb-2">
-                          {language === 'EN' ? 'Key Deliverables' : 'Fitur & Hasil Produksi'}
-                        </div>
-                        <ul className="space-y-1.5">
-                          {project.highlights[language].map((hl) => (
-                            <li key={hl} className="text-xs text-zinc-500 flex items-center gap-2">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-[#ffe600] fill-black shrink-0" />
-                              <span>{hl}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
+                  </a>
                 </motion.div>
               )
             )}

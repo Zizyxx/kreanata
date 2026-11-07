@@ -2,6 +2,7 @@ export interface PortfolioProject {
   id: string;
   categoryType?: 'dokumentasi' | 'photoshoot';
   youtubeId?: string;
+  projectUrl?: string;
   title: {
     EN: string;
     ID: string;
@@ -761,139 +762,83 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
       EN: 'We engineer websites that blend fluid visual animations with blazing load times. Mobile-responsive, SEO-optimized, and built to transform visitors into long-term clients.',
       ID: 'Kami membangun website yang memadukan keindahan animasi visual interaktif dengan kecepatan akses kilat. Responsif di seluruh layar gawai, teroptimasi SEO, dan dirancang untuk menghasilkan konversi.',
     },
-    heroImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/web-adia.webp',
     projects: [
       {
-        id: 'web-1',
+        id: 'web-adia',
+        projectUrl: 'https://adiasuites.th14ndr4.workers.dev/',
         title: {
-          EN: 'Luminaire Geneva Interactive Flagship Store',
-          ID: 'Platform Flagship Digital Luminaire Geneva',
+          EN: 'ADIA Suites Hotel',
+          ID: 'ADIA Suites Hotel',
         },
-        client: 'Luminaire Geneve',
+        client: 'ADIA Suites',
         year: '2024',
         tags: {
-          EN: ['Next.js App Router', 'Interactive Motion', 'Luxury Commerce'],
-          ID: ['Next.js App Router', 'Animasi Motion', 'E-Commerce Mewah'],
+          EN: ['Hospitality', 'Next.js', 'Online Booking'],
+          ID: ['Perhotelan', 'Next.js', 'Booking Online'],
         },
         description: {
-          EN: 'High-performance luxury e-commerce experience with interactive 360-degree product showcases and bespoke typography.',
-          ID: 'Website e-commerce mewah berkecepatan tinggi dengan fitur interaktif putaran produk 360 derajat dan tata letak elegan.',
+          EN: 'Boutique hotel reservation and catalog website with instant room showcase and direct WhatsApp booking integration.',
+          ID: 'Website reservasi hotel dan katalog kamar dengan tampilan visual modern serta pemesanan langsung via WhatsApp.',
         },
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-        highlights: {
-          EN: ['Sub-second page navigation', 'Seamless animated cart drawer', 'Lighthouse 98+ performance score'],
-          ID: ['Perpindahan halaman di bawah 1 detik', 'Keranjang belanja animasi interaktif', 'Skor performa Google Lighthouse 98+'],
-        },
+        image: '/web-adia.webp',
       },
       {
-        id: 'web-2',
+        id: 'web-medkraf',
+        projectUrl: 'https://request-medkraf.vercel.app/',
         title: {
-          EN: 'Artha Capital Investor Relations Portal',
-          ID: 'Portal Digital Hubungan Investor Artha Capital',
+          EN: 'Media Kreatif Request Hub',
+          ID: 'Media Kreatif Request Hub',
         },
-        client: 'Artha Group',
+        client: 'Tim Media Kreatif',
         year: '2024',
         tags: {
-          EN: ['Corporate Portal', 'Financial UI', 'Data Visualization'],
-          ID: ['Portal Korporat', 'Antarmuka Finansial', 'Visualisasi Data'],
+          EN: ['Web App', 'Workflow Management', 'Tracking System'],
+          ID: ['Aplikasi Web', 'Manajemen Alur Kerja', 'Sistem Tracking'],
         },
         description: {
-          EN: 'Secure corporate platform delivering interactive financial reports, leadership profiles, and downloadable investor dossiers.',
-          ID: 'Platform digital korporat dengan visualisasi data laporan keuangan interaktif, profil jajaran direksi, dan unduhan dokumen investor.',
+          EN: 'Production brief management system and real-time project workflow tracker for creative media teams.',
+          ID: 'Platform sistem manajemen brief produksi kreatif dan pelacakan alur kerja proyek konten secara terintegrasi.',
         },
-        image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
-        highlights: {
-          EN: ['Responsive SVG interactive charts', 'Enterprise-grade accessibility standards', 'Instant search and filtering system'],
-          ID: ['Grafik SVG interaktif responsif', 'Standar aksesibilitas internasional', 'Pencarian dan filter data instan'],
-        },
+        image: '/web-medkraf.webp',
       },
       {
-        id: 'web-3',
+        id: 'web-bilis',
+        projectUrl: 'https://bilis-tracking.vercel.app/',
         title: {
-          EN: 'Kultura Roasters Direct-to-Consumer Store',
-          ID: 'Website E-Commerce Kopi Kultura Roasters',
+          EN: 'Bilis Tracking UIN Jakarta',
+          ID: 'Bilis Tracking UIN Jakarta',
         },
-        client: 'Kultura Coffee Co.',
+        client: 'UIN Syarif Hidayatullah Jakarta',
         year: '2024',
         tags: {
-          EN: ['E-Commerce', 'Subscription Engine', 'Mobile First'],
-          ID: ['E-Commerce', 'Sistem Langganan', 'Utamakan Mobile'],
+          EN: ['GPS Tracking', 'Campus Mobility', 'Live Map'],
+          ID: ['Tracking GPS', 'Transportasi Kampus', 'Peta Real-Time'],
         },
         description: {
-          EN: 'Engaging coffee store with personalized bean flavor quiz, automated recurring coffee subscriptions, and WhatsApp checkout integration.',
-          ID: 'Toko online kopi dengan kuis rekomendasi rasa biji kopi, sistem langganan otomatis bulanan, dan integrasi checkout via WhatsApp.',
+          EN: 'Real-time GPS live tracking web application for campus electric shuttle buses, serving students, drivers, and admins.',
+          ID: 'Aplikasi web live tracking GPS bus listrik kampus secara real-time untuk mahasiswa, sopir, dan administrator.',
         },
-        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80',
-        highlights: {
-          EN: ['Custom coffee quiz selector', 'Integrated WhatsApp cart link', 'Ultra-fast mobile checkout funnel'],
-          ID: ['Kuis penentu selera kopi kustom', 'Integrasi keranjang belanja WhatsApp', 'Alur pembayaran mobile super cepat'],
-        },
+        image: '/web-bilis.webp',
       },
       {
-        id: 'web-4',
+        id: 'web-waqf',
+        projectUrl: 'https://waqfforest.vercel.app/',
         title: {
-          EN: 'Maison De Mode Digital Lookbook Platform',
-          ID: 'Platform Lookbook Digital Maison De Mode',
+          EN: 'WaqfForest Connect',
+          ID: 'WaqfForest Connect',
         },
-        client: 'Maison De Mode',
+        client: 'Badan Wakaf Indonesia (BWI)',
         year: '2024',
         tags: {
-          EN: ['Editorial Lookbook', 'Smooth Scroll', 'Full-Bleed Media'],
-          ID: ['Lookbook Editorial', 'Scroll Mulus', 'Visual Layar Penuh'],
+          EN: ['Philanthropy Platform', 'Environmental Conservation', 'Digital Wakaf'],
+          ID: ['Platform Filantropi', 'Konservasi Lingkungan', 'Wakaf Digital'],
         },
         description: {
-          EN: 'A sensory digital fashion lookbook platform combining high-resolution imagery with editorial layout typography and soundscapes.',
-          ID: 'Platform lookbook fashion digital yang memadukan keindahan foto resolusi tinggi, tipografi editorial, dan tata suara latar halus.',
+          EN: 'Digital Islamic philanthropy platform for land conservation and sustainable forest preservation.',
+          ID: 'Platform digital filantropi Islam untuk perlindungan lahan produktif dan pelestarian hutan berkelanjutan.',
         },
-        image: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80',
-        highlights: {
-          EN: ['Custom inertia smooth scroll engine', 'Adaptive image CDN delivery', 'Zero-layout-shift responsive rendering'],
-          ID: ['Mesin scrolling inersia yang halus', 'Distribusi gambar cepat via CDN', 'Tampilan stabil tanpa pergeseran tata letak'],
-        },
-      },
-      {
-        id: 'web-5',
-        title: {
-          EN: 'Atelier Architecture Portfolio Website',
-          ID: 'Website Portofolio Arsitektur Atelier Studio',
-        },
-        client: 'Atelier Studio',
-        year: '2024',
-        tags: {
-          EN: ['Architecture Portfolio', 'Minimal Grid', 'Image Lightbox'],
-          ID: ['Portofolio Arsitektur', 'Grid Minimalis', 'Lightbox Foto'],
-        },
-        description: {
-          EN: 'Minimalist architectural studio showcase featuring full-bleed project imagery, floor plan overlays, and case study narratives.',
-          ID: 'Website portofolio studio arsitektur dengan galeri foto layar penuh, tampilan denah interaktif, dan ulasan mendalam setiap karya.',
-        },
-        image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80',
-        highlights: {
-          EN: ['Dual-theme high-contrast typography', 'Interactive architectural plan toggle', 'SEO rich-schema architectural metadata'],
-          ID: ['Tipografi kontras tinggi yang tegas', 'Tombol perbandingan denah dan hasil jadi', 'Metadata SEO terstruktur untuk arsitektur'],
-        },
-      },
-      {
-        id: 'web-6',
-        title: {
-          EN: 'Nusantara Tech Startup Landing Platform',
-          ID: 'Landing Page Startup Nusantara Tech',
-        },
-        client: 'Nusantara Tech',
-        year: '2024',
-        tags: {
-          EN: ['SaaS Landing', 'Interactive Pricing', 'Conversion Engine'],
-          ID: ['Landing Page SaaS', 'Kalkulator Harga', 'Fokus Konversi'],
-        },
-        description: {
-          EN: 'Modern software product landing platform featuring interactive pricing calculator, testimonial sliders, and feature breakdowns.',
-          ID: 'Platform produk teknologi modern dengan fitur kalkulator simulasi biaya, slider ulasan klien, dan penjelasan keunggulan fitur.',
-        },
-        image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
-        highlights: {
-          EN: ['Interactive monthly/annual slider', 'Tailwind CSS v4 zero-runtime styling', 'Conversion tracking analytics integration'],
-          ID: ['Slider interaktif kalkulasi biaya', 'Styling Tailwind CSS v4 performa tinggi', 'Integrasi analitik pelacakan konversi'],
-        },
+        image: '/web-waqf.webp',
       },
     ],
   },

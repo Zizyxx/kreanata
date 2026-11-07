@@ -86,7 +86,7 @@ export const projectsData: ProjectItem[] = [
     title: "Website",
     category: "Website",
     client: "Platform Interaktif & Web",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    image: "/web-adia.webp",
     link: "/projects/website",
   },
 ];

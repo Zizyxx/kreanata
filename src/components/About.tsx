@@ -13,7 +13,7 @@ export default function About() {
     <section id="about" className="relative py-28 sm:py-36 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Black & White Editorial Photo with Entrance & Exit Scroll Animation */}
+          {/* Left Column: Kreanata Brand Logo Showcase with Entrance & Exit Scroll Animation */}
           <motion.div
             variants={{
               hidden: { opacity: 0, x: -40, scale: 0.95, transition: { duration: 0.4, ease: 'easeIn' } },
@@ -24,11 +24,11 @@ export default function About() {
             viewport={{ once: false, amount: 0.2 }}
             className="lg:col-span-6 relative"
           >
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[1.15/1] shadow-xl bg-zinc-100 group cursor-pointer">
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[1.15/1] shadow-xl bg-black flex items-center justify-center p-8 sm:p-14 group">
               <img
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80"
-                alt="Kreanata Creative Team"
-                className="w-full h-full object-cover filter grayscale contrast-110 group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                src="https://res.cloudinary.com/xidvgvul/image/upload/v1794044011/Kreanata_Logo_Trial.png"
+                alt="Kreanata Logo"
+                className="w-full max-w-[280px] sm:max-w-[380px] h-auto object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </div>
           </motion.div>

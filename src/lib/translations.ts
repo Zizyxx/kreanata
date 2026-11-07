@@ -46,7 +46,7 @@ export const translations = {
     about: {
       headline1: "We craft bespoke",
       headline2: "visual & digital stories.",
-      p1: "At Kreanata, we unite cinema-grade filmmaking, commercial photography, and modern web development into a multidisciplinary creative studio. Based in Jakarta and ready to serve clients across Jabodetabek, our commitment is to provide ",
+      p1: "At Kreanata, we unite videography, commercial photography, and modern web development into a multidisciplinary creative studio. Based in Jakarta and ready to serve clients across Jabodetabek, our commitment is to provide ",
       highlight: "fresh creative ideas & high-standard production quality",
       p2: " that translate your vision into impactful visual assets that truly resonate.",
       button: "ABOUT KREANATA",
@@ -56,7 +56,7 @@ export const translations = {
         id: "event",
         number: "01",
         title: "Event documentation",
-        description: "Full multi-camera 4K/6K coverage, drone cinematography, and same-day highlights for festivals, corporate gatherings, and exclusive events.",
+        description: "Full multi-camera video coverage, drone documentation, and same-day highlights for festivals, corporate gatherings, and exclusive events.",
       },
       {
         id: "photo",
@@ -67,7 +67,7 @@ export const translations = {
       {
         id: "video",
         number: "03",
-        title: "Cinematic video production",
+        title: "Video production",
         description: "Broadcast-quality TVCs, brand films, and narrative short videos from concept, scriptwriting, and directing to color grading.",
       },
       {
@@ -90,7 +90,7 @@ export const translations = {
       },
     ] as ServiceTranslation[],
     portfolio: {
-      badge: "CURATED ARCHIVE • 2024—2025",
+      badge: "CURATED ARCHIVE • 2025—2026",
       subtitle: "Film, Photography & Digital Platforms",
       exploreBtn: "EXPLORE ALL WORKS",
       viewProject: "View Project",
@@ -139,14 +139,14 @@ export const translations = {
     },
     footer: {
       inquiryTitle: "Ready to create something remarkable?",
-      inquirySubtitle: "Have an upcoming event documentation, a cinematic video brief, or a visual digital project? Let's collaborate and bring your ideas to life.",
+      inquirySubtitle: "Have an upcoming event documentation, a video brief, or a visual digital project? Let's collaborate and bring your ideas to life.",
       chatWa: "Chat via WhatsApp",
       studioDesc: "A dedicated creative production house and visual studio based in Jakarta, serving Jabodetabek and beyond.",
       expertiseTitle: "Expertise",
       expertiseItems: [
         "Event Documentation",
         "Commercial Photography",
-        "Cinematic Video Production",
+        "Video Production",
         "Visual Identity & Design",
         "Modern Web Development",
       ],
@@ -179,7 +179,7 @@ export const translations = {
     about: {
       headline1: "Kami merancang cerita",
       headline2: "visual & digital berkelas.",
-      p1: "Di Kreanata, kami menyatukan sinematografi kelas bioskop, fotografi komersial, dan pembuatan website modern ke dalam satu studio produksi kreatif. Berbasis di Jakarta dan siap melayani seluruh wilayah Jabodetabek, komitmen utama kami adalah menghadirkan ",
+      p1: "Di Kreanata, kami menyatukan videografi, fotografi komersial, dan pembuatan website modern ke dalam satu studio produksi kreatif. Berbasis di Jakarta dan siap melayani seluruh wilayah Jabodetabek, komitmen utama kami adalah menghadirkan ",
       highlight: "ide kreatif segar & standar produksi berkualitas tinggi",
       p2: " untuk menerjemahkan pesan dan visi brand Anda menjadi karya visual yang mengesankan.",
       button: "TENTANG KREANATA",
@@ -189,7 +189,7 @@ export const translations = {
         id: "event",
         number: "01",
         title: "Dokumentasi acara",
-        description: "Liputan multi-kamera 4K/6K komprehensif, sinematografi drone, dan video highlight same-day untuk festival, konferensi, dan acara khusus.",
+        description: "Liputan multi-kamera, dokumentasi drone, dan video highlight acara untuk festival, konferensi, dan kegiatan perusahaan.",
       },
       {
         id: "photo",
@@ -200,7 +200,7 @@ export const translations = {
       {
         id: "video",
         number: "03",
-        title: "Produksi video sinematik",
+        title: "Produksi video",
         description: "Iklan komersial TVC, video profil brand, dan video naratif mulai dari perumusan ide, naskah, penyutradaraan, hingga tahap akhir color grading.",
       },
       {
@@ -223,7 +223,7 @@ export const translations = {
       },
     ] as ServiceTranslation[],
     portfolio: {
-      badge: "ARSIP PILIHAN • 2024—2025",
+      badge: "ARSIP PILIHAN • 2025—2026",
       subtitle: "Film, Fotografi & Platform Digital",
       exploreBtn: "LIHAT SEMUA KARYA",
       viewProject: "Lihat Proyek",
@@ -272,14 +272,14 @@ export const translations = {
     },
     footer: {
       inquiryTitle: "Siap mewujudkan karya luar biasa?",
-      inquirySubtitle: "Punya agenda dokumentasi acara, proyek video sinematik, atau pembuatan website? Mari berkolaborasi dan wujudkan ide kreatif Anda bersama kami.",
+      inquirySubtitle: "Punya agenda dokumentasi acara, proyek video, atau pembuatan website? Mari berkolaborasi dan wujudkan ide kreatif Anda bersama kami.",
       chatWa: "Hubungi via WhatsApp",
       studioDesc: "Production house dan studio kreatif visual berbasis di Jakarta, siap melayani kebutuhan dokumentasi dan produksi di seluruh wilayah Jabodetabek.",
       expertiseTitle: "Keahlian",
       expertiseItems: [
         "Dokumentasi Acara",
         "Fotografi Komersial",
-        "Produksi Video Sinematik",
+        "Produksi Video",
         "Identitas Visual & Desain",
         "Pengembangan Website Modern",
       ],

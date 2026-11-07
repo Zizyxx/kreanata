@@ -65,8 +65,8 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
       ID: 'PILAR 01 • FOTOGRAFI',
     },
     overview: {
-      EN: 'Cinema-grade optics, controlled studio lighting, and meticulous composition for live documentation and photoshoot sessions.',
-      ID: 'Kamera optik cinema, tata cahaya studio presisi, dan komposisi detail untuk dokumentasi dan photoshoot.',
+      EN: 'Professional camera gear, studio lighting, and meticulous composition for live documentation and photoshoot sessions.',
+      ID: 'Peralatan kamera profesional, tata cahaya studio presisi, dan komposisi detail untuk dokumentasi dan photoshoot.',
     },
     heroImage: 'https://res.cloudinary.com/xidvgvul/image/upload/w_2400,c_limit,f_auto,q_auto/v1794042146/drinks-11.jpg',
     projects: [
@@ -510,8 +510,8 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
       ID: 'PILAR 02 • ARSIP VIDEOGRAFI',
     },
     overview: {
-      EN: 'From concept storyboard, scriptwriting, and multi-camera 4K/6K cinematography to color grading in DaVinci Resolve and sound design. We produce moving pictures that engage and inspire.',
-      ID: 'Dari storyboard konsep, naskah narasi, pengambilan gambar multi-kamera 4K/6K, hingga color grading DaVinci Resolve dan tata suara. Kami menghadirkan karya visual bergerak yang memikat.',
+      EN: 'From concept storyboard, scriptwriting, and multi-camera production to color grading in DaVinci Resolve and sound design. We produce moving pictures that engage and inspire.',
+      ID: 'Dari storyboard konsep, naskah narasi, perekaman multi-kamera, hingga color grading DaVinci Resolve dan tata suara. Kami menghadirkan karya visual bergerak yang memikat.',
     },
     heroImage: 'https://res.cloudinary.com/xidvgvul/image/upload/w_2400,c_limit,f_auto,q_auto/v1794038566/f5oooebtm9sjbepkzieh.webp',
     projects: [
@@ -525,17 +525,17 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         client: 'Mahardika Batch 8',
         year: '2024',
         tags: {
-          EN: ['Cinematic Aftermovie', 'Event Coverage', 'DaVinci Resolve'],
-          ID: ['Aftermovie Sinematik', 'Dokumentasi Acara', 'Grading DaVinci'],
+          EN: ['Aftermovie', 'Event Coverage', 'DaVinci Resolve'],
+          ID: ['Aftermovie', 'Dokumentasi Acara', 'Grading DaVinci'],
         },
         description: {
-          EN: 'Official cinematic aftermovie documentation of Mahardika Batch 8 produced by Kreanata. Capturing emotional moments, camaraderie, and memorable event milestones.',
-          ID: 'Produksi dokumentasi aftermovie sinematik resmi Mahardika Batch 8 oleh Kreanata. Menangkap momen penuh energi, kebersamaan, dan perayaan kelulusan berkesan.',
+          EN: 'Official aftermovie documentation of Mahardika Batch 8 produced by Kreanata. Capturing emotional moments, camaraderie, and memorable event milestones.',
+          ID: 'Produksi dokumentasi aftermovie resmi Mahardika Batch 8 oleh Kreanata. Menangkap momen penuh energi, kebersamaan, dan perayaan kelulusan berkesan.',
         },
         image: 'https://img.youtube.com/vi/mdtKpwB-A00/maxresdefault.jpg',
         highlights: {
-          EN: ['Cinema-grade camera optics', 'Dynamic narrative pacing & custom sound design', 'Broadcast color grading in DaVinci Resolve'],
-          ID: ['Perekaman sinematik multi-sudut kamera', 'Pacing cerita dinamis dan tata musik berenergi', 'Formula warna sinematik DaVinci Resolve'],
+          EN: ['Multi-angle camera coverage', 'Dynamic narrative pacing & custom sound design', 'Professional color grading in DaVinci Resolve'],
+          ID: ['Perekaman multi-sudut kamera', 'Pacing cerita dinamis dan tata musik berenergi', 'Formula warna DaVinci Resolve'],
         },
       },
       {
@@ -548,12 +548,12 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         client: 'TEFLIN International',
         year: '2024',
         tags: {
-          EN: ['International Conference', 'Aftermovie', 'Multi-Cam 4K'],
-          ID: ['Konferensi Internasional', 'Aftermovie', 'Multi-Kamera 4K'],
+          EN: ['International Conference', 'Aftermovie', 'Multi-Cam'],
+          ID: ['Konferensi Internasional', 'Aftermovie', 'Multi-Kamera'],
         },
         description: {
-          EN: 'Cinema-grade aftermovie capturing plenary keynote sessions, international academic delegates, cultural performances, and gala evening of The 72nd TEFLIN Conference.',
-          ID: 'Aftermovie sinematik skala internasional merangkum sesi keynote, delegasi akademisi mancanegara, pertunjukan seni budaya, dan malam puncak The 72nd TEFLIN Conference.',
+          EN: 'Official aftermovie capturing plenary keynote sessions, international academic delegates, cultural performances, and gala evening of The 72nd TEFLIN Conference.',
+          ID: 'Aftermovie resmi skala internasional merangkum sesi keynote, delegasi akademisi mancanegara, pertunjukan seni budaya, dan malam puncak The 72nd TEFLIN Conference.',
         },
         image: 'https://img.youtube.com/vi/_b2or8uboDA/maxresdefault.jpg',
         highlights: {

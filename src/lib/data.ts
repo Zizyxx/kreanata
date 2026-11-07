@@ -13,7 +13,7 @@ export const servicesData: ServiceItem[] = [
     id: "event",
     number: "01",
     title: "Event documentation",
-    description: "Full multi-camera 4K/6K coverage, drone cinematography, and same-day highlights for festivals, conferences, and exclusive events.",
+    description: "Full multi-camera coverage, drone documentation, and same-day highlights for festivals, conferences, and exclusive events.",
   },
   {
     id: "photo",
@@ -24,7 +24,7 @@ export const servicesData: ServiceItem[] = [
   {
     id: "video",
     number: "03",
-    title: "Cinematic video production",
+    title: "Video production",
     description: "Broadcast-quality TVCs, brand films, and narrative documentaries from concept, scriptwriting, and directing to color grading.",
   },
   {
@@ -105,7 +105,7 @@ export const testimonialsData: TestimonialItem[] = [
   {
     id: 1,
     rating: "4.95",
-    quote: "Kreanata transformed our brand presence with cinema-grade event documentation and a stunning digital platform. Their eye for detail and commitment to quality is unmatched in the industry.",
+    quote: "Kreanata transformed our brand presence with professional event documentation and a stunning digital platform. Their eye for detail and commitment to quality is evident in every deliverable.",
     author: "ADITYA PRATAMA",
     company: "Managing Director, Artha Group",
   },

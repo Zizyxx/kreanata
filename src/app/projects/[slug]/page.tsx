@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { portfolioCategories } from '@/lib/portfolioData';
-import { fetchCloudinaryDokumentasi } from '@/lib/cloudinary';
+import { fetchCloudinaryDokumentasi, fetchCloudinaryPhotoshoot } from '@/lib/cloudinary';
 import ProjectClientView from './ProjectClientView';
 
 interface PageProps {
@@ -43,17 +43,28 @@ export default async function ProjectCategoryPage({ params }: PageProps) {
     notFound();
   }
 
-  // Enhance dokumentasi projects live from Cloudinary folder 'dokumentasi'
+  // Enhance photography projects live from Cloudinary folders 'photoshoot' and 'dokumentasi'
   if (slug === 'fotografi' || slug === 'photography') {
     try {
-      const liveDokumentasi = await fetchCloudinaryDokumentasi();
-      if (liveDokumentasi.length > 0) {
-        const photoshoots = category.projects.filter((p) => p.categoryType !== 'dokumentasi');
-        category = {
-          ...category,
-          projects: [...photoshoots, ...liveDokumentasi],
-        };
-      }
+      const [livePhotoshoots, liveDokumentasi] = await Promise.all([
+        fetchCloudinaryPhotoshoot(),
+        fetchCloudinaryDokumentasi(),
+      ]);
+
+      const basePhotoshoots =
+        livePhotoshoots.length > 0
+          ? livePhotoshoots
+          : category.projects.filter((p) => p.categoryType === 'photoshoot');
+
+      const baseDokumentasi =
+        liveDokumentasi.length > 0
+          ? liveDokumentasi
+          : category.projects.filter((p) => p.categoryType === 'dokumentasi');
+
+      category = {
+        ...category,
+        projects: [...basePhotoshoots, ...baseDokumentasi],
+      };
     } catch (e) {
       console.error('Failed to load live Cloudinary photos:', e);
     }

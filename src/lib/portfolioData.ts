@@ -212,7 +212,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038575/dfsm8rz8svxdejyho9zg.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-2',
@@ -223,7 +223,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038574/vmsgurn2ppmdububh2gw.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-3',
@@ -234,7 +234,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038571/eenzysbk4dfqt0grg9cf.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-4',
@@ -245,7 +245,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038571/hcdc1mxljhkojfhoe6vi.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-5',
@@ -256,7 +256,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038571/yklo2rj5tybxza6ufimr.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-6',
@@ -267,7 +267,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038571/pg7idzfdbsub7m7ooiym.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-7',
@@ -278,7 +278,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038571/fxr9gkntpab8znpdjtco.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-8',
@@ -289,7 +289,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038569/uwmqntf4th1trgo8u61a.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-9',
@@ -300,7 +300,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038569/xgvppuwarhnirvtkhk5r.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-10',
@@ -311,7 +311,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038568/pz80ftdmxetxm1srujkd.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-11',
@@ -322,7 +322,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038568/radgo2gy8un86iqr6bml.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-12',
@@ -333,7 +333,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038568/syb2no4nqmmkdnfdz677.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-13',
@@ -344,7 +344,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038568/u40tbhuheoqw0akfdjlp.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-14',
@@ -355,7 +355,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038567/opflp1sgpgf3bwcajiyt.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-15',
@@ -366,7 +366,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038567/pcyv1o7z0leqz4prh4c8.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-16',
@@ -377,7 +377,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038566/agqw0anz8uqly3r64vyx.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-17',
@@ -388,7 +388,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038566/awu4lnb12m6lc5pemusc.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-18',
@@ -399,7 +399,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038566/bxftspnez6bf0irqaxma.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-19',
@@ -410,7 +410,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038566/ikjl7tj8n6rig0pvvfir.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-20',
@@ -421,7 +421,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038566/f5oooebtm9sjbepkzieh.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
       {
         id: 'dok-21',
@@ -432,7 +432,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
         tags: { EN: ['Dokumentasi', 'Live Event'], ID: ['Dokumentasi', 'Live Event'] },
         description: { EN: 'Live event visual documentation captured by Kreanata.', ID: 'Dokumentasi visual acara langsung oleh Kreanata.' },
         image: 'https://res.cloudinary.com/xidvgvul/image/upload/v1794038566/hhcj3tgnwzsnmbekhshu.webp',
-        aspect: 'aspect-[16/10]',
+        aspect: 'aspect-[3/2]',
       },
     ],
   },

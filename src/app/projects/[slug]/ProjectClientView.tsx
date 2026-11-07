@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { type PortfolioCategory, type PortfolioProject, portfolioCategories } from '@/lib/portfolioData';
+import { getPreviewImageUrl, getFullResImageUrl } from '@/lib/imageOptimization';
 
 interface Props {
   category: PortfolioCategory;
@@ -236,44 +237,33 @@ export default function ProjectClientView({ category }: Props) {
           )}
         </div>
 
-        {/* Photography: Clean Editorial 3-Column Grid without any text captions */}
+        {/* Photography: Clean Editorial Masonry Layout that preserves exact natural scale (3:2, 4:5, etc.) */}
         {isPhoto ? (
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
-          >
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6">
             {displayedProjects.map((project, index) => (
-              <motion.div
+              <div
                 key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{
-                  duration: 0.6,
-                  delay: (index % 6) * 0.06,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
                 onClick={() => setSelectedProject(project)}
-                className="group relative aspect-[4/3] sm:aspect-[4/5] rounded-xl overflow-hidden bg-zinc-100 shadow-sm hover:shadow-xl transition-all duration-500 cursor-zoom-in"
+                className="break-inside-avoid mb-4 sm:mb-6 group relative rounded-xl overflow-hidden bg-zinc-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-zoom-in"
               >
-                {/* Natural full color photo without B&W effect */}
+                {/* Natural full color photo compressed for ultra-fast preview while preserving exact scale */}
                 <img
-                  src={project.image}
+                  src={getPreviewImageUrl(project.image)}
                   alt={project.title[language]}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  loading={index < 6 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  className="w-full h-auto block object-contain group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                 />
 
                 {/* Minimalist Hover Accent */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 pointer-events-none">
                   <span className="w-10 h-10 rounded-full bg-[#ffe600] text-black flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
                     <ArrowUpRight className="w-5 h-5 text-black stroke-[2.5]" />
                   </span>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         ) : (
           /* Other 3 Pillars: Detailed Case Study Grid */
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
@@ -290,9 +280,10 @@ export default function ProjectClientView({ category }: Props) {
                 {/* Media Image Frame: B&W by default, vivid color on hover */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
                   <img
-                    src={project.image}
+                    src={getPreviewImageUrl(project.image)}
                     alt={project.title[language]}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover filter grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:contrast-100 group-hover:scale-105 transition-all duration-700 ease-out"
                   />
 
@@ -493,7 +484,7 @@ export default function ProjectClientView({ category }: Props) {
                 </>
               )}
 
-              {/* Photo Display Only - Absolutely No Text */}
+              {/* Photo Display Only - Absolutely No Text, Crisp Full Resolution */}
               <motion.div
                 key={selectedProject.id}
                 initial={{ scale: 0.96, opacity: 0 }}
@@ -504,7 +495,7 @@ export default function ProjectClientView({ category }: Props) {
                 className="relative max-w-7xl max-h-[92vh] flex items-center justify-center p-2"
               >
                 <img
-                  src={selectedProject.image}
+                  src={getFullResImageUrl(selectedProject.image)}
                   alt=""
                   className="max-h-[88vh] max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl select-none"
                 />
@@ -538,7 +529,7 @@ export default function ProjectClientView({ category }: Props) {
                 {/* Full Image Preview */}
                 <div className="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
                   <img
-                    src={selectedProject.image}
+                    src={getFullResImageUrl(selectedProject.image)}
                     alt={selectedProject.title[language]}
                     className="w-full h-full object-cover"
                   />

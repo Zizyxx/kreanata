@@ -76,7 +76,19 @@ function mapCloudinaryResources(resources: CloudinaryResource[]): PortfolioProje
   return resources.map((r, i) => {
     const w = r.width || 6000;
     const h = r.height || 4000;
-    const aspect = w > h * 1.25 ? 'aspect-[16/10]' : w > h ? 'aspect-[4/3]' : h > w ? 'aspect-[4/5]' : 'aspect-[1/1]';
+    const ratio = w / h;
+    const aspect =
+      Math.abs(ratio - 1.5) < 0.05
+        ? 'aspect-[3/2]'
+        : Math.abs(ratio - 16 / 9) < 0.05
+        ? 'aspect-[16/9]'
+        : Math.abs(ratio - 4 / 3) < 0.05
+        ? 'aspect-[4/3]'
+        : Math.abs(ratio - 0.8) < 0.05
+        ? 'aspect-[4/5]'
+        : ratio > 1
+        ? 'aspect-[16/10]'
+        : 'aspect-[4/5]';
 
     return {
       id: `dok-${r.public_id || i + 1}`,

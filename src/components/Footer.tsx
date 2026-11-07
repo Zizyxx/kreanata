@@ -86,7 +86,7 @@ export default function Footer() {
             className="flex flex-wrap items-center gap-4"
           >
             <a
-              href="https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20untuk%20konsultasi%20proyek"
+              href="https://wa.me/62895371127622?text=Halo%20Kreanata,%20saya%20tertarik%20untuk%20konsultasi%20proyek"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 bg-black text-white hover:bg-[#ffe600] hover:text-black transition-all duration-300 rounded-full px-7 py-3.5 text-sm font-semibold tracking-tight shadow-md hover:shadow-lg cursor-pointer"

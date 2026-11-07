@@ -127,7 +127,7 @@ export default function ProjectClientView({ category }: Props) {
 
             {/* CTA Button */}
             <a
-              href="https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20layanan%20portofolio%20ini"
+              href="https://wa.me/62895371127622?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20layanan%20portofolio%20ini"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 bg-black text-white hover:bg-[#ffe600] hover:text-black rounded-full px-3.5 sm:px-5 py-2 text-xs font-semibold tracking-tight transition-colors"
@@ -302,7 +302,7 @@ export default function ProjectClientView({ category }: Props) {
                   </div>
 
                   <a
-                    href={`https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20produksi%20video%20seperti%20${encodeURIComponent(activeTheaterVideo.title[language])}`}
+                    href={`https://wa.me/62895371127622?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20produksi%20video%20seperti%20${encodeURIComponent(activeTheaterVideo.title[language])}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-[#ffe600] text-black hover:bg-white transition-colors rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold shadow-md self-start sm:self-center shrink-0 cursor-pointer"
@@ -519,7 +519,7 @@ export default function ProjectClientView({ category }: Props) {
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
-                href={`https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20untuk%20diskusi%20proyek%20${category.slug}`}
+                href={`https://wa.me/62895371127622?text=Halo%20Kreanata,%20saya%20tertarik%20untuk%20diskusi%20proyek%20${category.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-[#ffe600] text-black hover:bg-white transition-colors rounded-full px-7 py-3.5 text-sm font-bold shadow-md cursor-pointer"
@@ -659,7 +659,7 @@ export default function ProjectClientView({ category }: Props) {
                   </div>
 
                   <a
-                    href={`https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20proyek%20${encodeURIComponent(selectedProject.title[language])}`}
+                    href={`https://wa.me/62895371127622?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20proyek%20${encodeURIComponent(selectedProject.title[language])}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-black text-white hover:bg-[#ffe600] hover:text-black rounded-full px-6 py-3 text-xs sm:text-sm font-semibold tracking-tight transition-colors self-start sm:self-center shrink-0 cursor-pointer"

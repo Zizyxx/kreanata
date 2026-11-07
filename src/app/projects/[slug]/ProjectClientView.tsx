@@ -19,6 +19,7 @@ export default function ProjectClientView({ category }: Props) {
 
   const isPhoto = category.slug === 'fotografi' || category.slug === 'photography';
   const isVideo = category.slug === 'videografi' || category.slug === 'videography';
+  const isWebsite = category.slug === 'website';
   const [activeTheaterVideo, setActiveTheaterVideo] = useState<PortfolioProject | null>(null);
   const theaterRef = useRef<HTMLDivElement>(null);
 
@@ -247,6 +248,8 @@ export default function ProjectClientView({ category }: Props) {
             <div className="text-xs text-zinc-400 font-medium hidden sm:block">
               {isVideo
                 ? (language === 'EN' ? 'Click any video to play' : 'Klik video untuk memutar')
+                : isWebsite
+                ? (language === 'EN' ? 'Click to visit website' : 'Klik untuk mengunjungi website')
                 : (language === 'EN' ? 'Hover to reveal color • Click for full preview' : 'Arahkan kursor untuk warna • Klik untuk detail')}
             </div>
           )}
@@ -421,7 +424,7 @@ export default function ProjectClientView({ category }: Props) {
                         src={project.image}
                         alt={project.title[language]}
                         loading="lazy"
-                        className="w-full h-full object-cover object-top filter grayscale contrast-[1.02] group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-700 ease-out"
+                        className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                       />
 
                       {/* Hover Overlay Button */}

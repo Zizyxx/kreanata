@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight, MessageCircle, X, MapPin, ChevronLeft, ChevronRight, Play } from 'lucide-react';
@@ -22,6 +22,18 @@ export default function ProjectClientView({ category }: Props) {
   const isWebsite = category.slug === 'website';
   const [activeTheaterVideo, setActiveTheaterVideo] = useState<PortfolioProject | null>(null);
   const theaterRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Stop video & audio playback instantly and close theater mode
+  const closeTheater = useCallback(() => {
+    if (iframeRef.current) {
+      try {
+        iframeRef.current.contentWindow?.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+      } catch {}
+      iframeRef.current.src = 'about:blank';
+    }
+    setActiveTheaterVideo(null);
+  }, []);
 
   useEffect(() => {
     if (activeTheaterVideo && theaterRef.current) {
@@ -29,32 +41,55 @@ export default function ProjectClientView({ category }: Props) {
     }
   }, [activeTheaterVideo]);
 
+  // Automatically terminate video playback and close theater mode
+  // when navigating away, using browser back button, switching tabs, or unmounting
+  useEffect(() => {
+    const handleLeave = () => {
+      closeTheater();
+    };
+
+    window.addEventListener('popstate', handleLeave);
+    window.addEventListener('pagehide', handleLeave);
+    window.addEventListener('beforeunload', handleLeave);
+
+    return () => {
+      closeTheater();
+      window.removeEventListener('popstate', handleLeave);
+      window.removeEventListener('pagehide', handleLeave);
+      window.removeEventListener('beforeunload', handleLeave);
+    };
+  }, [closeTheater]);
+
   // Filter projects for photography pillar
   const displayedProjects = isPhoto
     ? category.projects.filter((p) => photoFilter === 'all' || p.categoryType === photoFilter)
     : category.projects;
 
-  // Handle keyboard events (Escape, Left, Right) for pure photo lightbox
+  // Handle keyboard events (Escape, Left, Right)
   useEffect(() => {
-    if (!selectedProject || !isPhoto) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setSelectedProject(null);
-      } else if (e.key === 'ArrowLeft') {
-        const currIdx = displayedProjects.findIndex((p) => p.id === selectedProject.id);
-        const prevIdx = (currIdx - 1 + displayedProjects.length) % displayedProjects.length;
-        setSelectedProject(displayedProjects[prevIdx]);
-      } else if (e.key === 'ArrowRight') {
-        const currIdx = displayedProjects.findIndex((p) => p.id === selectedProject.id);
-        const nextIdx = (currIdx + 1) % displayedProjects.length;
-        setSelectedProject(displayedProjects[nextIdx]);
+        if (activeTheaterVideo) {
+          closeTheater();
+        } else if (selectedProject) {
+          setSelectedProject(null);
+        }
+      } else if (isPhoto && selectedProject) {
+        if (e.key === 'ArrowLeft') {
+          const currIdx = displayedProjects.findIndex((p) => p.id === selectedProject.id);
+          const prevIdx = (currIdx - 1 + displayedProjects.length) % displayedProjects.length;
+          setSelectedProject(displayedProjects[prevIdx]);
+        } else if (e.key === 'ArrowRight') {
+          const currIdx = displayedProjects.findIndex((p) => p.id === selectedProject.id);
+          const nextIdx = (currIdx + 1) % displayedProjects.length;
+          setSelectedProject(displayedProjects[nextIdx]);
+        }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedProject, isPhoto, displayedProjects]);
+  }, [activeTheaterVideo, selectedProject, isPhoto, displayedProjects, closeTheater]);
 
   // Canonical active pillars for cross-navigation
   const canonicalSlugs = ['fotografi', 'videografi', 'website'];
@@ -69,7 +104,7 @@ export default function ProjectClientView({ category }: Props) {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
           {/* Left: Logo & Breadcrumbs */}
           <div className="flex items-center gap-3 sm:gap-6">
-            <Link href="/" className="flex items-center gap-2.5 group">
+            <Link href="/" onClick={closeTheater} className="flex items-center gap-2.5 group">
               <img
                 src="https://res.cloudinary.com/xidvgvul/image/upload/v1794044011/Kreanata_Logo_Trial.png"
                 alt="Kreanata Logo"
@@ -83,7 +118,7 @@ export default function ProjectClientView({ category }: Props) {
             <span className="text-zinc-300 hidden sm:inline">/</span>
 
             <nav className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-zinc-500">
-              <Link href="/#projects" className="hover:text-black transition-colors hidden sm:inline">
+              <Link href="/#projects" onClick={closeTheater} className="hover:text-black transition-colors hidden sm:inline">
                 {language === 'EN' ? 'Projects' : 'Proyek'}
               </Link>
               <span className="hidden sm:inline">/</span>
@@ -118,6 +153,7 @@ export default function ProjectClientView({ category }: Props) {
             {/* Back to Home Button */}
             <Link
               href="/#projects"
+              onClick={closeTheater}
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold border border-zinc-200 hover:border-black rounded-full p-2 sm:px-4 sm:py-2 text-black transition-colors"
               title={language === 'EN' ? 'Back to Home' : 'Kembali'}
             >
@@ -267,22 +303,23 @@ export default function ProjectClientView({ category }: Props) {
               className="mb-12 overflow-hidden"
             >
               <div className="bg-zinc-950 text-white rounded-3xl p-4 sm:p-7 shadow-2xl border border-zinc-800">
-                {/* Top Action: Close Button */}
+                {/* Top Action: Close Button (Kreanata Yellow for high visibility) */}
                 <div className="flex items-center justify-end pb-3 mb-3 border-b border-zinc-800/80">
                   <button
-                    onClick={() => setActiveTheaterVideo(null)}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-400 hover:text-white transition-colors px-3 py-1.5 rounded-full hover:bg-zinc-800 cursor-pointer"
-                    aria-label="Tutup"
+                    onClick={closeTheater}
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold bg-[#ffe600] text-black hover:bg-white transition-all duration-200 px-4 py-1.5 rounded-full shadow-md hover:scale-105 cursor-pointer"
+                    aria-label={language === 'EN' ? 'Close' : 'Tutup'}
                   >
                     <span>{language === 'EN' ? 'Close' : 'Tutup'}</span>
-                    <X className="w-4 h-4" />
+                    <X className="w-4 h-4 stroke-[2.5]" />
                   </button>
                 </div>
 
                 {/* Grand 16:9 Screen */}
                 <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-2xl">
                   <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${activeTheaterVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                    ref={iframeRef}
+                    src={`https://www.youtube-nocookie.com/embed/${activeTheaterVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1`}
                     title={activeTheaterVideo.title[language]}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
@@ -476,6 +513,7 @@ export default function ProjectClientView({ category }: Props) {
               <Link
                 key={other.slug}
                 href={`/projects/${other.slug}`}
+                onClick={closeTheater}
                 className="group relative border border-zinc-200 hover:border-black rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-lg bg-zinc-50 hover:bg-white"
               >
                 <div>
@@ -530,6 +568,7 @@ export default function ProjectClientView({ category }: Props) {
 
               <Link
                 href="/#contact"
+                onClick={closeTheater}
                 className="inline-flex items-center gap-2 border border-zinc-700 hover:border-white rounded-full px-6 py-3.5 text-sm font-semibold text-white transition-colors"
               >
                 {language === 'EN' ? 'All Contact Options' : 'Opsi Kontak Lainnya'}

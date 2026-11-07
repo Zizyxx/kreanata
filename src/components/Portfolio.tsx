@@ -13,10 +13,10 @@ export default function Portfolio() {
 
   return (
     <section id="projects" className="relative pt-16 pb-28 sm:pb-36 bg-white overflow-hidden scroll-mt-24">
-      {/* Top Transition Bar: Giant "projects" + Clean Metadata Pill + Action Button */}
+      {/* Top Transition Bar: Giant "projects" + Clean Metadata Pill */}
       <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="relative flex flex-col md:flex-row items-start md:items-end justify-between gap-6 pb-6 border-b border-zinc-100">
-          {/* Left: Giant Lime "projects" Typography with In & Out Scroll Animation */}
+        <div className="relative pb-6 border-b border-zinc-100">
+          {/* Giant Lime "projects" Typography with In & Out Scroll Animation */}
           <div className="relative z-0 select-none">
             <motion.span
               variants={{
@@ -50,30 +50,6 @@ export default function Portfolio() {
               </span>
             </motion.div>
           </div>
-
-          {/* Right Action: EXPLORE PROJECTS Pill with In & Out Scroll Animation */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, x: 30, transition: { duration: 0.3, ease: 'easeIn' } },
-              visible: { opacity: 1, x: 0, transition: { duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] } },
-            }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }}
-            className="relative z-20 self-start md:self-end mb-2"
-          >
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-black transition-all"
-            >
-              <span className="w-8 h-8 rounded-full bg-[#ffe600] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                <ArrowUpRight className="w-4 h-4 text-black" />
-              </span>
-              <span className="border-b border-black pb-0.5 group-hover:border-[#ffe600]">
-                {t.exploreBtn}
-              </span>
-            </a>
-          </motion.div>
         </div>
 
         {/* 3-Column Horizontal Project Gallery Cards with In & Out Staggered Scroll */}

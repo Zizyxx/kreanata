@@ -75,7 +75,6 @@ export const translations = {
     portfolio: {
       badge: "CURATED ARCHIVE • 2025—2026",
       subtitle: "Film, Photography & Digital Platforms",
-      exploreBtn: "EXPLORE ALL WORKS",
       viewProject: "View Project",
     },
     footer: {
@@ -166,7 +165,6 @@ export const translations = {
     portfolio: {
       badge: "ARSIP PILIHAN • 2025—2026",
       subtitle: "Film, Fotografi & Platform Digital",
-      exploreBtn: "LIHAT SEMUA KARYA",
       viewProject: "Lihat Proyek",
     },
     footer: {

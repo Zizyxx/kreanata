@@ -62,26 +62,14 @@ function Interactive3DLogo() {
         whileTap={{ scale: 0.95 }}
         className="relative flex items-center justify-center w-full"
       >
-        {/* Ambient 3D Depth Glow behind logo */}
-        <div
-          className={`absolute inset-0 rounded-full bg-[#ffe600] pointer-events-none filter blur-3xl transition-opacity duration-500 ${
-            isHovered ? 'opacity-35 scale-110' : 'opacity-0 scale-95'
-          }`}
-          style={{ transform: 'translateZ(-40px)' }}
-        />
-
-        {/* 3D Elevated Logo Image with Drop Shadow Depth */}
+        {/* 3D Elevated Logo Image */}
         <motion.img
           src="https://res.cloudinary.com/xidvgvul/image/upload/v1794044011/Kreanata_Logo_Trial.png"
           alt="Kreanata Logo"
           style={{
             transform: 'translateZ(40px)',
           }}
-          className={`w-full h-auto object-contain pointer-events-none transition-all duration-300 ${
-            isHovered
-              ? 'drop-shadow-[0_25px_35px_rgba(0,0,0,0.18)]'
-              : 'drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)]'
-          }`}
+          className="w-full h-auto object-contain pointer-events-none"
           draggable={false}
         />
       </motion.div>

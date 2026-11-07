@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CheckCircle2, MessageCircle, X, MapPin, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { type PortfolioCategory, type PortfolioProject, portfolioCategories } from '@/lib/portfolioData';
 import { getPreviewImageUrl, getFullResImageUrl } from '@/lib/imageOptimization';
@@ -18,6 +18,15 @@ export default function ProjectClientView({ category }: Props) {
   const [photoFilter, setPhotoFilter] = useState<'photoshoot' | 'dokumentasi' | 'all'>('photoshoot');
 
   const isPhoto = category.slug === 'fotografi' || category.slug === 'photography';
+  const isVideo = category.slug === 'videografi' || category.slug === 'videography';
+  const [activeTheaterVideo, setActiveTheaterVideo] = useState<PortfolioProject | null>(null);
+  const theaterRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (activeTheaterVideo && theaterRef.current) {
+      theaterRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [activeTheaterVideo]);
 
   // Filter projects for photography pillar
   const displayedProjects = isPhoto
@@ -192,9 +201,11 @@ export default function ProjectClientView({ category }: Props) {
               {language === 'EN' ? 'Curated Visual Archive' : 'Katalog Karya Pilihan'}
             </h2>
             <p className="text-xs sm:text-sm text-zinc-500 mt-1">
-              {language === 'EN'
-                ? `Displaying ${displayedProjects.length} photographs`
-                : `Menampilkan ${displayedProjects.length} foto pilihan`}
+              {isVideo
+                ? (language === 'EN' ? `Displaying ${displayedProjects.length} video productions` : `Menampilkan ${displayedProjects.length} karya video`)
+                : isPhoto
+                ? (language === 'EN' ? `Displaying ${displayedProjects.length} photographs` : `Menampilkan ${displayedProjects.length} foto pilihan`)
+                : (language === 'EN' ? `Displaying ${displayedProjects.length} projects` : `Menampilkan ${displayedProjects.length} proyek pilihan`)}
             </p>
           </div>
 
@@ -234,12 +245,81 @@ export default function ProjectClientView({ category }: Props) {
             </div>
           ) : (
             <div className="text-xs text-zinc-400 font-medium hidden sm:block">
-              {language === 'EN'
-                ? 'Hover to reveal color • Click for full preview'
-                : 'Arahkan kursor untuk warna • Klik untuk detail'}
+              {isVideo
+                ? (language === 'EN' ? 'Click video to enter cinema theater mode' : 'Klik video untuk memutar dalam mode bioskop')
+                : (language === 'EN' ? 'Hover to reveal color • Click for full preview' : 'Arahkan kursor untuk warna • Klik untuk detail')}
             </div>
           )}
         </div>
+
+        {/* Theater Mode Cinema Stage (In-Page on same page, NOT a popup) */}
+        <AnimatePresence>
+          {isVideo && activeTheaterVideo && (
+            <motion.div
+              ref={theaterRef}
+              initial={{ opacity: 0, y: -20, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: 'auto' }}
+              exit={{ opacity: 0, y: -20, height: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-12 overflow-hidden"
+            >
+              <div className="bg-zinc-950 text-white rounded-3xl p-4 sm:p-7 shadow-2xl border border-zinc-800">
+                {/* Top Cinema Bar */}
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-zinc-800/80">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#ffe600] animate-pulse" />
+                    <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-black bg-[#ffe600] px-3 py-1 rounded-full">
+                      {language === 'EN' ? 'Cinema Theater Mode' : 'Mode Bioskop • Sedang Tayang'}
+                    </span>
+                  </div>
+
+                  <button
+                    onClick={() => setActiveTheaterVideo(null)}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-zinc-400 hover:text-white transition-colors px-3 py-1.5 rounded-full hover:bg-zinc-800 cursor-pointer"
+                    aria-label="Tutup Mode Bioskop"
+                  >
+                    <span>{language === 'EN' ? 'Close Theater' : 'Tutup Mode Bioskop'}</span>
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Grand 16:9 Cinema Screen */}
+                <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-2xl">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${activeTheaterVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                    title={activeTheaterVideo.title[language]}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                </div>
+
+                {/* Cinema Video Header Below Screen */}
+                <div className="mt-5 pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                      {activeTheaterVideo.title[language]}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+                      {activeTheaterVideo.client} • {activeTheaterVideo.year}
+                    </p>
+                  </div>
+
+                  <a
+                    href={`https://wa.me/6281234567890?text=Halo%20Kreanata,%20saya%20tertarik%20dengan%20produksi%20video%20seperti%20${encodeURIComponent(activeTheaterVideo.title[language])}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#ffe600] text-black hover:bg-white transition-colors rounded-full px-5 py-2.5 text-xs sm:text-sm font-bold shadow-md self-start sm:self-center shrink-0 cursor-pointer"
+                  >
+                    <MessageCircle className="w-4 h-4 text-black" />
+                    <span>{language === 'EN' ? 'Discuss Similar Video' : 'Konsultasi Video Serupa'}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-black" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Photography: Clean Editorial Masonry Layout that preserves exact natural scale (3:2, 4:5, etc.) */}
         {isPhoto ? (
@@ -273,29 +353,56 @@ export default function ProjectClientView({ category }: Props) {
           <div className={category.slug === 'videografi' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8' : 'grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10'}>
             {displayedProjects.map((project, index) =>
               project.youtubeId ? (
-                /* Pure Minimalist Video Card: ONLY Video Embed + Title, ZERO borders, ZERO background */
+                /* Pure Minimalist Video Card: Click to Expand into Theater Mode on same page */
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col gap-3 group"
+                  onClick={() => setActiveTheaterVideo(project)}
+                  className="flex flex-col gap-3 group cursor-pointer"
                 >
-                  {/* Clean Frameless 16:9 Video Embed Player */}
-                  <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-sm">
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${project.youtubeId}?rel=0&modestbranding=1`}
-                      title={project.title[language]}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="w-full h-full border-0"
+                  {/* Frameless 16:9 Video Thumbnail Frame with Play Indicator */}
+                  <div className={`relative aspect-video w-full rounded-2xl overflow-hidden bg-zinc-900 shadow-sm transition-all duration-300 group-hover:shadow-xl ${
+                    activeTheaterVideo?.id === project.id ? 'ring-3 ring-black shadow-lg' : ''
+                  }`}>
+                    <img
+                      src={project.image}
+                      alt={project.title[language]}
                       loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
+
+                    {/* Dark gradient overlay */}
+                    <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
+
+                    {/* Centered Play Button Badge */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className={`w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-md shadow-xl transition-all duration-300 transform group-hover:scale-110 ${
+                        activeTheaterVideo?.id === project.id
+                          ? 'bg-[#ffe600] text-black scale-105'
+                          : 'bg-black/80 text-white group-hover:bg-[#ffe600] group-hover:text-black'
+                      }`}>
+                        <Play className="w-5 h-5 ml-0.5 fill-current" />
+                      </span>
+                    </div>
+
+                    {/* Active State / Mode Bioskop Pill */}
+                    {activeTheaterVideo?.id === project.id && (
+                      <div className="absolute top-3 left-3 z-10">
+                        <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-black bg-[#ffe600] px-2.5 py-1 rounded-full shadow-md">
+                          <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                          {language === 'EN' ? 'Now Playing' : 'Sedang Diputar'}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Title Only - Bold, Minimalist Typography */}
-                  <h3 className="text-base sm:text-lg font-bold text-black leading-snug">
+                  <h3 className={`text-base sm:text-lg font-bold leading-snug transition-colors ${
+                    activeTheaterVideo?.id === project.id ? 'text-black' : 'text-zinc-900 group-hover:text-zinc-600'
+                  }`}>
                     {project.title[language]}
                   </h3>
                 </motion.div>
@@ -472,7 +579,7 @@ export default function ProjectClientView({ category }: Props) {
 
       {/* Interactive Lightbox / Modal for Expanded Photo / Project Preview */}
       <AnimatePresence>
-        {selectedProject && (
+        {selectedProject && !isVideo && (
           isPhoto ? (
             /* Pure Photo Lightbox - ZERO text, ZERO captions, pure photo view */
             <motion.div
@@ -564,26 +671,14 @@ export default function ProjectClientView({ category }: Props) {
                   <X className="w-5 h-5" />
                 </button>
 
-                {/* Full Video or Image Preview */}
-                {selectedProject.youtubeId ? (
-                  <div className="w-full aspect-video rounded-2xl overflow-hidden bg-black mb-6 shadow-xl">
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${selectedProject.youtubeId}?autoplay=1&rel=0`}
-                      title={selectedProject.title[language]}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="w-full h-full border-0"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
-                    <img
-                      src={getFullResImageUrl(selectedProject.image)}
-                      alt={selectedProject.title[language]}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
+                {/* Full Image Preview */}
+                <div className="w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-100 mb-6">
+                  <img
+                    src={getFullResImageUrl(selectedProject.image)}
+                    alt={selectedProject.title[language]}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
                 {/* Header & Inquire */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-100 pb-5 mb-5">

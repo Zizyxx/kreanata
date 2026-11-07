@@ -512,7 +512,7 @@ export const portfolioCategories: Record<string, PortfolioCategory> = {
       EN: 'From concept storyboard, scriptwriting, and multi-camera 4K/6K cinematography to color grading in DaVinci Resolve and sound design. We produce moving pictures that engage and inspire.',
       ID: 'Dari storyboard konsep, naskah narasi, pengambilan gambar multi-kamera 4K/6K, hingga color grading DaVinci Resolve dan tata suara. Kami menghadirkan karya visual bergerak yang memikat.',
     },
-    heroImage: 'https://img.youtube.com/vi/_b2or8uboDA/maxresdefault.jpg',
+    heroImage: 'https://res.cloudinary.com/xidvgvul/image/upload/w_2400,c_limit,f_auto,q_auto/v1794038566/f5oooebtm9sjbepkzieh.webp',
     projects: [
       {
         id: 'video-mahardika',

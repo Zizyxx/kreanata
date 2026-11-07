@@ -76,7 +76,7 @@ export const projectsData: ProjectItem[] = [
     title: "Videografi",
     category: "Videografi",
     client: "Iklan & Aftermovie",
-    image: "https://img.youtube.com/vi/_b2or8uboDA/maxresdefault.jpg",
+    image: "https://res.cloudinary.com/xidvgvul/image/upload/w_2400,c_limit,f_auto,q_auto/v1794038566/f5oooebtm9sjbepkzieh.webp",
     link: "/projects/videografi",
   },
   {
